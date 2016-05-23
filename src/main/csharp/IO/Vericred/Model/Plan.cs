@@ -29,25 +29,35 @@ namespace IO.Vericred.Model
         /// <param name="CarrierName">Name of the insurance carrier.</param>
         /// <param name="ChildDental">Does the plan provide dental coverage for children?.</param>
         /// <param name="ChildEyewear">Child eyewear benefits summary.</param>
+        /// <param name="ChildEyeExam">Child eye exam benefits summary.</param>
         /// <param name="CustomerServicePhoneNumber">Phone number to contact the insurance carrier.</param>
         /// <param name="DurableMedicalEquipment">Benefits summary for durable medical equipment.</param>
         /// <param name="DiagnosticTest">Diagnostic tests benefit summary.</param>
         /// <param name="DrugFormularyUrl">Link to the summary of drug benefits for the plan.</param>
+        /// <param name="EffectiveDate">Effective date of coverage..</param>
+        /// <param name="ExpirationDate">Expiration date of coverage..</param>
         /// <param name="EmergencyRoom">Description of costs when visiting the ER.</param>
         /// <param name="FamilyDrugDeductible">Deductible for drugs when a family is on the plan..</param>
         /// <param name="FamilyDrugMoop">Maximum out-of-pocket for drugs when a family is on the plan.</param>
         /// <param name="FamilyMedicalDeductible">Deductible when a family is on the plan.</param>
         /// <param name="FamilyMedicalMoop">Maximum out-of-pocket when a family is on the plan.</param>
         /// <param name="GenericDrugs">Cost for generic drugs.</param>
+        /// <param name="HabilitationServices">Habilitation services benefits summary.</param>
         /// <param name="HiosIssuerId">.</param>
+        /// <param name="HomeHealthCare">Home health care benefits summary.</param>
+        /// <param name="HospiceService">Hospice service benefits summary.</param>
         /// <param name="Id">Government-issued HIOS plan ID.</param>
         /// <param name="Imaging">Benefits summary for imaging coverage.</param>
+        /// <param name="InNetworkIds">List of NPI numbers for Providers passed in who accept this Plan.</param>
         /// <param name="IndividualDrugDeductible">Deductible for drugs when an individual is on the plan.</param>
         /// <param name="IndividualDrugMoop">Maximum out-of-pocket for drugs when an individual is on the plan.</param>
         /// <param name="IndividualMedicalDeductible">Deductible when an individual is on the plan.</param>
         /// <param name="IndividualMedicalMoop">Maximum out-of-pocket when an individual is on the plan.</param>
+        /// <param name="InpatientBirth">Inpatient birth benefits summary.</param>
         /// <param name="InpatientFacility">Cost under the plan for an inpatient facility.</param>
+        /// <param name="InpatientMentalHealth">Inpatient mental helath benefits summary.</param>
         /// <param name="InpatientPhysician">Cost under the plan for an inpatient physician.</param>
+        /// <param name="InpatientSubstance">Inpatient substance abuse benefits summary.</param>
         /// <param name="Level">Plan metal grouping (e.g. platinum, gold, silver, etc).</param>
         /// <param name="LogoUrl">Link to a copy of the insurance carrier&#39;s logo.</param>
         /// <param name="Name">Marketing name of the plan.</param>
@@ -56,20 +66,26 @@ namespace IO.Vericred.Model
         /// <param name="OnMarket">Is the plan on-market?.</param>
         /// <param name="OffMarket">Is the plan off-market?.</param>
         /// <param name="OutOfNetworkCoverage">Does this plan provide any out of network coverage?.</param>
+        /// <param name="OutOfNetworkIds">List of NPI numbers for Providers passed in who do not accept this Plan.</param>
         /// <param name="OutpatientFacility">Benefits summary for outpatient facility coverage.</param>
         /// <param name="OutpatientMentalHealth">Benefits summary for outpatient mental health coverage.</param>
         /// <param name="OutpatientPhysician">Benefits summary for outpatient physician coverage.</param>
+        /// <param name="OutpatientSubstance">Outpatient substance abuse benefits summary.</param>
         /// <param name="PlanMarket">Market in which the plan is offered (on_marketplace, shop, etc).</param>
         /// <param name="PlanType">Category of the plan (e.g. EPO, HMO, PPO, POS, Indemnity).</param>
         /// <param name="PreferredBrandDrugs">Cost under the plan for perferred brand drugs.</param>
+        /// <param name="PrenatalPostnatalCare">Inpatient substance abuse benefits summary.</param>
         /// <param name="PreventativeCare">Benefits summary for preventative care.</param>
+        /// <param name="PremiumSubsidized">Cumulative premium amount after subsidy.</param>
+        /// <param name="Premium">Cumulative premium amount.</param>
         /// <param name="PrimaryCarePhysician">Cost under the plan to visit a Primary Care Physician.</param>
         /// <param name="RehabilitationServices">Benefits summary for rehabilitation services.</param>
+        /// <param name="SkilledNursing">Benefits summary for skilled nursing services.</param>
         /// <param name="Specialist">Cost under the plan to visit a specialist.</param>
         /// <param name="SpecialtyDrugs">Cost under the plan for specialty drugs.</param>
         /// <param name="UrgentCare">Benefits summary for urgent care.</param>
 
-        public Plan(bool? AdultDental = null, string Ambulance = null, string BenefitsSummaryUrl = null, string BuyLink = null, string CarrierName = null, bool? ChildDental = null, string ChildEyewear = null, string CustomerServicePhoneNumber = null, string DurableMedicalEquipment = null, string DiagnosticTest = null, string DrugFormularyUrl = null, string EmergencyRoom = null, string FamilyDrugDeductible = null, string FamilyDrugMoop = null, string FamilyMedicalDeductible = null, string FamilyMedicalMoop = null, string GenericDrugs = null, string HiosIssuerId = null, string Id = null, string Imaging = null, string IndividualDrugDeductible = null, string IndividualDrugMoop = null, string IndividualMedicalDeductible = null, string IndividualMedicalMoop = null, string InpatientFacility = null, string InpatientPhysician = null, string Level = null, string LogoUrl = null, string Name = null, int? NetworkSize = null, string NonPreferredBrandDrugs = null, bool? OnMarket = null, bool? OffMarket = null, bool? OutOfNetworkCoverage = null, string OutpatientFacility = null, string OutpatientMentalHealth = null, string OutpatientPhysician = null, string PlanMarket = null, string PlanType = null, string PreferredBrandDrugs = null, string PreventativeCare = null, string PrimaryCarePhysician = null, string RehabilitationServices = null, string Specialist = null, string SpecialtyDrugs = null, string UrgentCare = null)
+        public Plan(bool? AdultDental = null, string Ambulance = null, string BenefitsSummaryUrl = null, string BuyLink = null, string CarrierName = null, bool? ChildDental = null, string ChildEyewear = null, string ChildEyeExam = null, string CustomerServicePhoneNumber = null, string DurableMedicalEquipment = null, string DiagnosticTest = null, string DrugFormularyUrl = null, string EffectiveDate = null, string ExpirationDate = null, string EmergencyRoom = null, string FamilyDrugDeductible = null, string FamilyDrugMoop = null, string FamilyMedicalDeductible = null, string FamilyMedicalMoop = null, string GenericDrugs = null, string HabilitationServices = null, string HiosIssuerId = null, string HomeHealthCare = null, string HospiceService = null, string Id = null, string Imaging = null, List<int?> InNetworkIds = null, string IndividualDrugDeductible = null, string IndividualDrugMoop = null, string IndividualMedicalDeductible = null, string IndividualMedicalMoop = null, string InpatientBirth = null, string InpatientFacility = null, string InpatientMentalHealth = null, string InpatientPhysician = null, string InpatientSubstance = null, string Level = null, string LogoUrl = null, string Name = null, int? NetworkSize = null, string NonPreferredBrandDrugs = null, bool? OnMarket = null, bool? OffMarket = null, bool? OutOfNetworkCoverage = null, List<int?> OutOfNetworkIds = null, string OutpatientFacility = null, string OutpatientMentalHealth = null, string OutpatientPhysician = null, string OutpatientSubstance = null, string PlanMarket = null, string PlanType = null, string PreferredBrandDrugs = null, string PrenatalPostnatalCare = null, string PreventativeCare = null, double? PremiumSubsidized = null, double? Premium = null, string PrimaryCarePhysician = null, string RehabilitationServices = null, string SkilledNursing = null, string Specialist = null, string SpecialtyDrugs = null, string UrgentCare = null)
         {
             this.AdultDental = AdultDental;
             this.Ambulance = Ambulance;
@@ -78,25 +94,35 @@ namespace IO.Vericred.Model
             this.CarrierName = CarrierName;
             this.ChildDental = ChildDental;
             this.ChildEyewear = ChildEyewear;
+            this.ChildEyeExam = ChildEyeExam;
             this.CustomerServicePhoneNumber = CustomerServicePhoneNumber;
             this.DurableMedicalEquipment = DurableMedicalEquipment;
             this.DiagnosticTest = DiagnosticTest;
             this.DrugFormularyUrl = DrugFormularyUrl;
+            this.EffectiveDate = EffectiveDate;
+            this.ExpirationDate = ExpirationDate;
             this.EmergencyRoom = EmergencyRoom;
             this.FamilyDrugDeductible = FamilyDrugDeductible;
             this.FamilyDrugMoop = FamilyDrugMoop;
             this.FamilyMedicalDeductible = FamilyMedicalDeductible;
             this.FamilyMedicalMoop = FamilyMedicalMoop;
             this.GenericDrugs = GenericDrugs;
+            this.HabilitationServices = HabilitationServices;
             this.HiosIssuerId = HiosIssuerId;
+            this.HomeHealthCare = HomeHealthCare;
+            this.HospiceService = HospiceService;
             this.Id = Id;
             this.Imaging = Imaging;
+            this.InNetworkIds = InNetworkIds;
             this.IndividualDrugDeductible = IndividualDrugDeductible;
             this.IndividualDrugMoop = IndividualDrugMoop;
             this.IndividualMedicalDeductible = IndividualMedicalDeductible;
             this.IndividualMedicalMoop = IndividualMedicalMoop;
+            this.InpatientBirth = InpatientBirth;
             this.InpatientFacility = InpatientFacility;
+            this.InpatientMentalHealth = InpatientMentalHealth;
             this.InpatientPhysician = InpatientPhysician;
+            this.InpatientSubstance = InpatientSubstance;
             this.Level = Level;
             this.LogoUrl = LogoUrl;
             this.Name = Name;
@@ -105,15 +131,21 @@ namespace IO.Vericred.Model
             this.OnMarket = OnMarket;
             this.OffMarket = OffMarket;
             this.OutOfNetworkCoverage = OutOfNetworkCoverage;
+            this.OutOfNetworkIds = OutOfNetworkIds;
             this.OutpatientFacility = OutpatientFacility;
             this.OutpatientMentalHealth = OutpatientMentalHealth;
             this.OutpatientPhysician = OutpatientPhysician;
+            this.OutpatientSubstance = OutpatientSubstance;
             this.PlanMarket = PlanMarket;
             this.PlanType = PlanType;
             this.PreferredBrandDrugs = PreferredBrandDrugs;
+            this.PrenatalPostnatalCare = PrenatalPostnatalCare;
             this.PreventativeCare = PreventativeCare;
+            this.PremiumSubsidized = PremiumSubsidized;
+            this.Premium = Premium;
             this.PrimaryCarePhysician = PrimaryCarePhysician;
             this.RehabilitationServices = RehabilitationServices;
+            this.SkilledNursing = SkilledNursing;
             this.Specialist = Specialist;
             this.SpecialtyDrugs = SpecialtyDrugs;
             this.UrgentCare = UrgentCare;
@@ -171,6 +203,13 @@ namespace IO.Vericred.Model
         public string ChildEyewear { get; set; }
     
         /// <summary>
+        /// Child eye exam benefits summary
+        /// </summary>
+        /// <value>Child eye exam benefits summary</value>
+        [DataMember(Name="child_eye_exam", EmitDefaultValue=false)]
+        public string ChildEyeExam { get; set; }
+    
+        /// <summary>
         /// Phone number to contact the insurance carrier
         /// </summary>
         /// <value>Phone number to contact the insurance carrier</value>
@@ -197,6 +236,20 @@ namespace IO.Vericred.Model
         /// <value>Link to the summary of drug benefits for the plan</value>
         [DataMember(Name="drug_formulary_url", EmitDefaultValue=false)]
         public string DrugFormularyUrl { get; set; }
+    
+        /// <summary>
+        /// Effective date of coverage.
+        /// </summary>
+        /// <value>Effective date of coverage.</value>
+        [DataMember(Name="effective_date", EmitDefaultValue=false)]
+        public string EffectiveDate { get; set; }
+    
+        /// <summary>
+        /// Expiration date of coverage.
+        /// </summary>
+        /// <value>Expiration date of coverage.</value>
+        [DataMember(Name="expiration_date", EmitDefaultValue=false)]
+        public string ExpirationDate { get; set; }
     
         /// <summary>
         /// Description of costs when visiting the ER
@@ -241,11 +294,32 @@ namespace IO.Vericred.Model
         public string GenericDrugs { get; set; }
     
         /// <summary>
+        /// Habilitation services benefits summary
+        /// </summary>
+        /// <value>Habilitation services benefits summary</value>
+        [DataMember(Name="habilitation_services", EmitDefaultValue=false)]
+        public string HabilitationServices { get; set; }
+    
+        /// <summary>
         /// 
         /// </summary>
         /// <value></value>
         [DataMember(Name="hios_issuer_id", EmitDefaultValue=false)]
         public string HiosIssuerId { get; set; }
+    
+        /// <summary>
+        /// Home health care benefits summary
+        /// </summary>
+        /// <value>Home health care benefits summary</value>
+        [DataMember(Name="home_health_care", EmitDefaultValue=false)]
+        public string HomeHealthCare { get; set; }
+    
+        /// <summary>
+        /// Hospice service benefits summary
+        /// </summary>
+        /// <value>Hospice service benefits summary</value>
+        [DataMember(Name="hospice_service", EmitDefaultValue=false)]
+        public string HospiceService { get; set; }
     
         /// <summary>
         /// Government-issued HIOS plan ID
@@ -260,6 +334,13 @@ namespace IO.Vericred.Model
         /// <value>Benefits summary for imaging coverage</value>
         [DataMember(Name="imaging", EmitDefaultValue=false)]
         public string Imaging { get; set; }
+    
+        /// <summary>
+        /// List of NPI numbers for Providers passed in who accept this Plan
+        /// </summary>
+        /// <value>List of NPI numbers for Providers passed in who accept this Plan</value>
+        [DataMember(Name="in_network_ids", EmitDefaultValue=false)]
+        public List<int?> InNetworkIds { get; set; }
     
         /// <summary>
         /// Deductible for drugs when an individual is on the plan
@@ -290,6 +371,13 @@ namespace IO.Vericred.Model
         public string IndividualMedicalMoop { get; set; }
     
         /// <summary>
+        /// Inpatient birth benefits summary
+        /// </summary>
+        /// <value>Inpatient birth benefits summary</value>
+        [DataMember(Name="inpatient_birth", EmitDefaultValue=false)]
+        public string InpatientBirth { get; set; }
+    
+        /// <summary>
         /// Cost under the plan for an inpatient facility
         /// </summary>
         /// <value>Cost under the plan for an inpatient facility</value>
@@ -297,11 +385,25 @@ namespace IO.Vericred.Model
         public string InpatientFacility { get; set; }
     
         /// <summary>
+        /// Inpatient mental helath benefits summary
+        /// </summary>
+        /// <value>Inpatient mental helath benefits summary</value>
+        [DataMember(Name="inpatient_mental_health", EmitDefaultValue=false)]
+        public string InpatientMentalHealth { get; set; }
+    
+        /// <summary>
         /// Cost under the plan for an inpatient physician
         /// </summary>
         /// <value>Cost under the plan for an inpatient physician</value>
         [DataMember(Name="inpatient_physician", EmitDefaultValue=false)]
         public string InpatientPhysician { get; set; }
+    
+        /// <summary>
+        /// Inpatient substance abuse benefits summary
+        /// </summary>
+        /// <value>Inpatient substance abuse benefits summary</value>
+        [DataMember(Name="inpatient_substance", EmitDefaultValue=false)]
+        public string InpatientSubstance { get; set; }
     
         /// <summary>
         /// Plan metal grouping (e.g. platinum, gold, silver, etc)
@@ -360,6 +462,13 @@ namespace IO.Vericred.Model
         public bool? OutOfNetworkCoverage { get; set; }
     
         /// <summary>
+        /// List of NPI numbers for Providers passed in who do not accept this Plan
+        /// </summary>
+        /// <value>List of NPI numbers for Providers passed in who do not accept this Plan</value>
+        [DataMember(Name="out_of_network_ids", EmitDefaultValue=false)]
+        public List<int?> OutOfNetworkIds { get; set; }
+    
+        /// <summary>
         /// Benefits summary for outpatient facility coverage
         /// </summary>
         /// <value>Benefits summary for outpatient facility coverage</value>
@@ -379,6 +488,13 @@ namespace IO.Vericred.Model
         /// <value>Benefits summary for outpatient physician coverage</value>
         [DataMember(Name="outpatient_physician", EmitDefaultValue=false)]
         public string OutpatientPhysician { get; set; }
+    
+        /// <summary>
+        /// Outpatient substance abuse benefits summary
+        /// </summary>
+        /// <value>Outpatient substance abuse benefits summary</value>
+        [DataMember(Name="outpatient_substance", EmitDefaultValue=false)]
+        public string OutpatientSubstance { get; set; }
     
         /// <summary>
         /// Market in which the plan is offered (on_marketplace, shop, etc)
@@ -402,11 +518,32 @@ namespace IO.Vericred.Model
         public string PreferredBrandDrugs { get; set; }
     
         /// <summary>
+        /// Inpatient substance abuse benefits summary
+        /// </summary>
+        /// <value>Inpatient substance abuse benefits summary</value>
+        [DataMember(Name="prenatal_postnatal_care", EmitDefaultValue=false)]
+        public string PrenatalPostnatalCare { get; set; }
+    
+        /// <summary>
         /// Benefits summary for preventative care
         /// </summary>
         /// <value>Benefits summary for preventative care</value>
         [DataMember(Name="preventative_care", EmitDefaultValue=false)]
         public string PreventativeCare { get; set; }
+    
+        /// <summary>
+        /// Cumulative premium amount after subsidy
+        /// </summary>
+        /// <value>Cumulative premium amount after subsidy</value>
+        [DataMember(Name="premium_subsidized", EmitDefaultValue=false)]
+        public double? PremiumSubsidized { get; set; }
+    
+        /// <summary>
+        /// Cumulative premium amount
+        /// </summary>
+        /// <value>Cumulative premium amount</value>
+        [DataMember(Name="premium", EmitDefaultValue=false)]
+        public double? Premium { get; set; }
     
         /// <summary>
         /// Cost under the plan to visit a Primary Care Physician
@@ -421,6 +558,13 @@ namespace IO.Vericred.Model
         /// <value>Benefits summary for rehabilitation services</value>
         [DataMember(Name="rehabilitation_services", EmitDefaultValue=false)]
         public string RehabilitationServices { get; set; }
+    
+        /// <summary>
+        /// Benefits summary for skilled nursing services
+        /// </summary>
+        /// <value>Benefits summary for skilled nursing services</value>
+        [DataMember(Name="skilled_nursing", EmitDefaultValue=false)]
+        public string SkilledNursing { get; set; }
     
         /// <summary>
         /// Cost under the plan to visit a specialist
@@ -458,25 +602,35 @@ namespace IO.Vericred.Model
             sb.Append("  CarrierName: ").Append(CarrierName).Append("\n");
             sb.Append("  ChildDental: ").Append(ChildDental).Append("\n");
             sb.Append("  ChildEyewear: ").Append(ChildEyewear).Append("\n");
+            sb.Append("  ChildEyeExam: ").Append(ChildEyeExam).Append("\n");
             sb.Append("  CustomerServicePhoneNumber: ").Append(CustomerServicePhoneNumber).Append("\n");
             sb.Append("  DurableMedicalEquipment: ").Append(DurableMedicalEquipment).Append("\n");
             sb.Append("  DiagnosticTest: ").Append(DiagnosticTest).Append("\n");
             sb.Append("  DrugFormularyUrl: ").Append(DrugFormularyUrl).Append("\n");
+            sb.Append("  EffectiveDate: ").Append(EffectiveDate).Append("\n");
+            sb.Append("  ExpirationDate: ").Append(ExpirationDate).Append("\n");
             sb.Append("  EmergencyRoom: ").Append(EmergencyRoom).Append("\n");
             sb.Append("  FamilyDrugDeductible: ").Append(FamilyDrugDeductible).Append("\n");
             sb.Append("  FamilyDrugMoop: ").Append(FamilyDrugMoop).Append("\n");
             sb.Append("  FamilyMedicalDeductible: ").Append(FamilyMedicalDeductible).Append("\n");
             sb.Append("  FamilyMedicalMoop: ").Append(FamilyMedicalMoop).Append("\n");
             sb.Append("  GenericDrugs: ").Append(GenericDrugs).Append("\n");
+            sb.Append("  HabilitationServices: ").Append(HabilitationServices).Append("\n");
             sb.Append("  HiosIssuerId: ").Append(HiosIssuerId).Append("\n");
+            sb.Append("  HomeHealthCare: ").Append(HomeHealthCare).Append("\n");
+            sb.Append("  HospiceService: ").Append(HospiceService).Append("\n");
             sb.Append("  Id: ").Append(Id).Append("\n");
             sb.Append("  Imaging: ").Append(Imaging).Append("\n");
+            sb.Append("  InNetworkIds: ").Append(InNetworkIds).Append("\n");
             sb.Append("  IndividualDrugDeductible: ").Append(IndividualDrugDeductible).Append("\n");
             sb.Append("  IndividualDrugMoop: ").Append(IndividualDrugMoop).Append("\n");
             sb.Append("  IndividualMedicalDeductible: ").Append(IndividualMedicalDeductible).Append("\n");
             sb.Append("  IndividualMedicalMoop: ").Append(IndividualMedicalMoop).Append("\n");
+            sb.Append("  InpatientBirth: ").Append(InpatientBirth).Append("\n");
             sb.Append("  InpatientFacility: ").Append(InpatientFacility).Append("\n");
+            sb.Append("  InpatientMentalHealth: ").Append(InpatientMentalHealth).Append("\n");
             sb.Append("  InpatientPhysician: ").Append(InpatientPhysician).Append("\n");
+            sb.Append("  InpatientSubstance: ").Append(InpatientSubstance).Append("\n");
             sb.Append("  Level: ").Append(Level).Append("\n");
             sb.Append("  LogoUrl: ").Append(LogoUrl).Append("\n");
             sb.Append("  Name: ").Append(Name).Append("\n");
@@ -485,15 +639,21 @@ namespace IO.Vericred.Model
             sb.Append("  OnMarket: ").Append(OnMarket).Append("\n");
             sb.Append("  OffMarket: ").Append(OffMarket).Append("\n");
             sb.Append("  OutOfNetworkCoverage: ").Append(OutOfNetworkCoverage).Append("\n");
+            sb.Append("  OutOfNetworkIds: ").Append(OutOfNetworkIds).Append("\n");
             sb.Append("  OutpatientFacility: ").Append(OutpatientFacility).Append("\n");
             sb.Append("  OutpatientMentalHealth: ").Append(OutpatientMentalHealth).Append("\n");
             sb.Append("  OutpatientPhysician: ").Append(OutpatientPhysician).Append("\n");
+            sb.Append("  OutpatientSubstance: ").Append(OutpatientSubstance).Append("\n");
             sb.Append("  PlanMarket: ").Append(PlanMarket).Append("\n");
             sb.Append("  PlanType: ").Append(PlanType).Append("\n");
             sb.Append("  PreferredBrandDrugs: ").Append(PreferredBrandDrugs).Append("\n");
+            sb.Append("  PrenatalPostnatalCare: ").Append(PrenatalPostnatalCare).Append("\n");
             sb.Append("  PreventativeCare: ").Append(PreventativeCare).Append("\n");
+            sb.Append("  PremiumSubsidized: ").Append(PremiumSubsidized).Append("\n");
+            sb.Append("  Premium: ").Append(Premium).Append("\n");
             sb.Append("  PrimaryCarePhysician: ").Append(PrimaryCarePhysician).Append("\n");
             sb.Append("  RehabilitationServices: ").Append(RehabilitationServices).Append("\n");
+            sb.Append("  SkilledNursing: ").Append(SkilledNursing).Append("\n");
             sb.Append("  Specialist: ").Append(Specialist).Append("\n");
             sb.Append("  SpecialtyDrugs: ").Append(SpecialtyDrugs).Append("\n");
             sb.Append("  UrgentCare: ").Append(UrgentCare).Append("\n");
@@ -569,6 +729,11 @@ namespace IO.Vericred.Model
                     this.ChildEyewear.Equals(other.ChildEyewear)
                 ) && 
                 (
+                    this.ChildEyeExam == other.ChildEyeExam ||
+                    this.ChildEyeExam != null &&
+                    this.ChildEyeExam.Equals(other.ChildEyeExam)
+                ) && 
+                (
                     this.CustomerServicePhoneNumber == other.CustomerServicePhoneNumber ||
                     this.CustomerServicePhoneNumber != null &&
                     this.CustomerServicePhoneNumber.Equals(other.CustomerServicePhoneNumber)
@@ -587,6 +752,16 @@ namespace IO.Vericred.Model
                     this.DrugFormularyUrl == other.DrugFormularyUrl ||
                     this.DrugFormularyUrl != null &&
                     this.DrugFormularyUrl.Equals(other.DrugFormularyUrl)
+                ) && 
+                (
+                    this.EffectiveDate == other.EffectiveDate ||
+                    this.EffectiveDate != null &&
+                    this.EffectiveDate.Equals(other.EffectiveDate)
+                ) && 
+                (
+                    this.ExpirationDate == other.ExpirationDate ||
+                    this.ExpirationDate != null &&
+                    this.ExpirationDate.Equals(other.ExpirationDate)
                 ) && 
                 (
                     this.EmergencyRoom == other.EmergencyRoom ||
@@ -619,9 +794,24 @@ namespace IO.Vericred.Model
                     this.GenericDrugs.Equals(other.GenericDrugs)
                 ) && 
                 (
+                    this.HabilitationServices == other.HabilitationServices ||
+                    this.HabilitationServices != null &&
+                    this.HabilitationServices.Equals(other.HabilitationServices)
+                ) && 
+                (
                     this.HiosIssuerId == other.HiosIssuerId ||
                     this.HiosIssuerId != null &&
                     this.HiosIssuerId.Equals(other.HiosIssuerId)
+                ) && 
+                (
+                    this.HomeHealthCare == other.HomeHealthCare ||
+                    this.HomeHealthCare != null &&
+                    this.HomeHealthCare.Equals(other.HomeHealthCare)
+                ) && 
+                (
+                    this.HospiceService == other.HospiceService ||
+                    this.HospiceService != null &&
+                    this.HospiceService.Equals(other.HospiceService)
                 ) && 
                 (
                     this.Id == other.Id ||
@@ -632,6 +822,11 @@ namespace IO.Vericred.Model
                     this.Imaging == other.Imaging ||
                     this.Imaging != null &&
                     this.Imaging.Equals(other.Imaging)
+                ) && 
+                (
+                    this.InNetworkIds == other.InNetworkIds ||
+                    this.InNetworkIds != null &&
+                    this.InNetworkIds.SequenceEqual(other.InNetworkIds)
                 ) && 
                 (
                     this.IndividualDrugDeductible == other.IndividualDrugDeductible ||
@@ -654,14 +849,29 @@ namespace IO.Vericred.Model
                     this.IndividualMedicalMoop.Equals(other.IndividualMedicalMoop)
                 ) && 
                 (
+                    this.InpatientBirth == other.InpatientBirth ||
+                    this.InpatientBirth != null &&
+                    this.InpatientBirth.Equals(other.InpatientBirth)
+                ) && 
+                (
                     this.InpatientFacility == other.InpatientFacility ||
                     this.InpatientFacility != null &&
                     this.InpatientFacility.Equals(other.InpatientFacility)
                 ) && 
                 (
+                    this.InpatientMentalHealth == other.InpatientMentalHealth ||
+                    this.InpatientMentalHealth != null &&
+                    this.InpatientMentalHealth.Equals(other.InpatientMentalHealth)
+                ) && 
+                (
                     this.InpatientPhysician == other.InpatientPhysician ||
                     this.InpatientPhysician != null &&
                     this.InpatientPhysician.Equals(other.InpatientPhysician)
+                ) && 
+                (
+                    this.InpatientSubstance == other.InpatientSubstance ||
+                    this.InpatientSubstance != null &&
+                    this.InpatientSubstance.Equals(other.InpatientSubstance)
                 ) && 
                 (
                     this.Level == other.Level ||
@@ -704,6 +914,11 @@ namespace IO.Vericred.Model
                     this.OutOfNetworkCoverage.Equals(other.OutOfNetworkCoverage)
                 ) && 
                 (
+                    this.OutOfNetworkIds == other.OutOfNetworkIds ||
+                    this.OutOfNetworkIds != null &&
+                    this.OutOfNetworkIds.SequenceEqual(other.OutOfNetworkIds)
+                ) && 
+                (
                     this.OutpatientFacility == other.OutpatientFacility ||
                     this.OutpatientFacility != null &&
                     this.OutpatientFacility.Equals(other.OutpatientFacility)
@@ -717,6 +932,11 @@ namespace IO.Vericred.Model
                     this.OutpatientPhysician == other.OutpatientPhysician ||
                     this.OutpatientPhysician != null &&
                     this.OutpatientPhysician.Equals(other.OutpatientPhysician)
+                ) && 
+                (
+                    this.OutpatientSubstance == other.OutpatientSubstance ||
+                    this.OutpatientSubstance != null &&
+                    this.OutpatientSubstance.Equals(other.OutpatientSubstance)
                 ) && 
                 (
                     this.PlanMarket == other.PlanMarket ||
@@ -734,9 +954,24 @@ namespace IO.Vericred.Model
                     this.PreferredBrandDrugs.Equals(other.PreferredBrandDrugs)
                 ) && 
                 (
+                    this.PrenatalPostnatalCare == other.PrenatalPostnatalCare ||
+                    this.PrenatalPostnatalCare != null &&
+                    this.PrenatalPostnatalCare.Equals(other.PrenatalPostnatalCare)
+                ) && 
+                (
                     this.PreventativeCare == other.PreventativeCare ||
                     this.PreventativeCare != null &&
                     this.PreventativeCare.Equals(other.PreventativeCare)
+                ) && 
+                (
+                    this.PremiumSubsidized == other.PremiumSubsidized ||
+                    this.PremiumSubsidized != null &&
+                    this.PremiumSubsidized.Equals(other.PremiumSubsidized)
+                ) && 
+                (
+                    this.Premium == other.Premium ||
+                    this.Premium != null &&
+                    this.Premium.Equals(other.Premium)
                 ) && 
                 (
                     this.PrimaryCarePhysician == other.PrimaryCarePhysician ||
@@ -747,6 +982,11 @@ namespace IO.Vericred.Model
                     this.RehabilitationServices == other.RehabilitationServices ||
                     this.RehabilitationServices != null &&
                     this.RehabilitationServices.Equals(other.RehabilitationServices)
+                ) && 
+                (
+                    this.SkilledNursing == other.SkilledNursing ||
+                    this.SkilledNursing != null &&
+                    this.SkilledNursing.Equals(other.SkilledNursing)
                 ) && 
                 (
                     this.Specialist == other.Specialist ||
@@ -790,6 +1030,8 @@ namespace IO.Vericred.Model
                     hash = hash * 59 + this.ChildDental.GetHashCode();
                 if (this.ChildEyewear != null)
                     hash = hash * 59 + this.ChildEyewear.GetHashCode();
+                if (this.ChildEyeExam != null)
+                    hash = hash * 59 + this.ChildEyeExam.GetHashCode();
                 if (this.CustomerServicePhoneNumber != null)
                     hash = hash * 59 + this.CustomerServicePhoneNumber.GetHashCode();
                 if (this.DurableMedicalEquipment != null)
@@ -798,6 +1040,10 @@ namespace IO.Vericred.Model
                     hash = hash * 59 + this.DiagnosticTest.GetHashCode();
                 if (this.DrugFormularyUrl != null)
                     hash = hash * 59 + this.DrugFormularyUrl.GetHashCode();
+                if (this.EffectiveDate != null)
+                    hash = hash * 59 + this.EffectiveDate.GetHashCode();
+                if (this.ExpirationDate != null)
+                    hash = hash * 59 + this.ExpirationDate.GetHashCode();
                 if (this.EmergencyRoom != null)
                     hash = hash * 59 + this.EmergencyRoom.GetHashCode();
                 if (this.FamilyDrugDeductible != null)
@@ -810,12 +1056,20 @@ namespace IO.Vericred.Model
                     hash = hash * 59 + this.FamilyMedicalMoop.GetHashCode();
                 if (this.GenericDrugs != null)
                     hash = hash * 59 + this.GenericDrugs.GetHashCode();
+                if (this.HabilitationServices != null)
+                    hash = hash * 59 + this.HabilitationServices.GetHashCode();
                 if (this.HiosIssuerId != null)
                     hash = hash * 59 + this.HiosIssuerId.GetHashCode();
+                if (this.HomeHealthCare != null)
+                    hash = hash * 59 + this.HomeHealthCare.GetHashCode();
+                if (this.HospiceService != null)
+                    hash = hash * 59 + this.HospiceService.GetHashCode();
                 if (this.Id != null)
                     hash = hash * 59 + this.Id.GetHashCode();
                 if (this.Imaging != null)
                     hash = hash * 59 + this.Imaging.GetHashCode();
+                if (this.InNetworkIds != null)
+                    hash = hash * 59 + this.InNetworkIds.GetHashCode();
                 if (this.IndividualDrugDeductible != null)
                     hash = hash * 59 + this.IndividualDrugDeductible.GetHashCode();
                 if (this.IndividualDrugMoop != null)
@@ -824,10 +1078,16 @@ namespace IO.Vericred.Model
                     hash = hash * 59 + this.IndividualMedicalDeductible.GetHashCode();
                 if (this.IndividualMedicalMoop != null)
                     hash = hash * 59 + this.IndividualMedicalMoop.GetHashCode();
+                if (this.InpatientBirth != null)
+                    hash = hash * 59 + this.InpatientBirth.GetHashCode();
                 if (this.InpatientFacility != null)
                     hash = hash * 59 + this.InpatientFacility.GetHashCode();
+                if (this.InpatientMentalHealth != null)
+                    hash = hash * 59 + this.InpatientMentalHealth.GetHashCode();
                 if (this.InpatientPhysician != null)
                     hash = hash * 59 + this.InpatientPhysician.GetHashCode();
+                if (this.InpatientSubstance != null)
+                    hash = hash * 59 + this.InpatientSubstance.GetHashCode();
                 if (this.Level != null)
                     hash = hash * 59 + this.Level.GetHashCode();
                 if (this.LogoUrl != null)
@@ -844,24 +1104,36 @@ namespace IO.Vericred.Model
                     hash = hash * 59 + this.OffMarket.GetHashCode();
                 if (this.OutOfNetworkCoverage != null)
                     hash = hash * 59 + this.OutOfNetworkCoverage.GetHashCode();
+                if (this.OutOfNetworkIds != null)
+                    hash = hash * 59 + this.OutOfNetworkIds.GetHashCode();
                 if (this.OutpatientFacility != null)
                     hash = hash * 59 + this.OutpatientFacility.GetHashCode();
                 if (this.OutpatientMentalHealth != null)
                     hash = hash * 59 + this.OutpatientMentalHealth.GetHashCode();
                 if (this.OutpatientPhysician != null)
                     hash = hash * 59 + this.OutpatientPhysician.GetHashCode();
+                if (this.OutpatientSubstance != null)
+                    hash = hash * 59 + this.OutpatientSubstance.GetHashCode();
                 if (this.PlanMarket != null)
                     hash = hash * 59 + this.PlanMarket.GetHashCode();
                 if (this.PlanType != null)
                     hash = hash * 59 + this.PlanType.GetHashCode();
                 if (this.PreferredBrandDrugs != null)
                     hash = hash * 59 + this.PreferredBrandDrugs.GetHashCode();
+                if (this.PrenatalPostnatalCare != null)
+                    hash = hash * 59 + this.PrenatalPostnatalCare.GetHashCode();
                 if (this.PreventativeCare != null)
                     hash = hash * 59 + this.PreventativeCare.GetHashCode();
+                if (this.PremiumSubsidized != null)
+                    hash = hash * 59 + this.PremiumSubsidized.GetHashCode();
+                if (this.Premium != null)
+                    hash = hash * 59 + this.Premium.GetHashCode();
                 if (this.PrimaryCarePhysician != null)
                     hash = hash * 59 + this.PrimaryCarePhysician.GetHashCode();
                 if (this.RehabilitationServices != null)
                     hash = hash * 59 + this.RehabilitationServices.GetHashCode();
+                if (this.SkilledNursing != null)
+                    hash = hash * 59 + this.SkilledNursing.GetHashCode();
                 if (this.Specialist != null)
                     hash = hash * 59 + this.Specialist.GetHashCode();
                 if (this.SpecialtyDrugs != null)

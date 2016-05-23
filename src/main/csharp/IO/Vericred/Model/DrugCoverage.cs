@@ -23,16 +23,16 @@ namespace IO.Vericred.Model
         /// Initializes a new instance of the <see cref="DrugCoverage" />class.
         /// </summary>
         /// <param name="PlanId">Health Insurance Oversight System id.</param>
-        /// <param name="NdcPackageCode">NDC package code.</param>
+        /// <param name="DrugPackageId">NDC package code.</param>
         /// <param name="Tier">Tier Name.</param>
         /// <param name="QuantityLimit">Quantity limit exists.</param>
         /// <param name="PriorAuthorization">Prior authorization required.</param>
         /// <param name="StepTherapy">Step Treatment required.</param>
 
-        public DrugCoverage(string PlanId = null, string NdcPackageCode = null, string Tier = null, bool? QuantityLimit = null, bool? PriorAuthorization = null, bool? StepTherapy = null)
+        public DrugCoverage(string PlanId = null, string DrugPackageId = null, string Tier = null, bool? QuantityLimit = null, bool? PriorAuthorization = null, bool? StepTherapy = null)
         {
             this.PlanId = PlanId;
-            this.NdcPackageCode = NdcPackageCode;
+            this.DrugPackageId = DrugPackageId;
             this.Tier = Tier;
             this.QuantityLimit = QuantityLimit;
             this.PriorAuthorization = PriorAuthorization;
@@ -52,8 +52,8 @@ namespace IO.Vericred.Model
         /// NDC package code
         /// </summary>
         /// <value>NDC package code</value>
-        [DataMember(Name="ndc_package_code", EmitDefaultValue=false)]
-        public string NdcPackageCode { get; set; }
+        [DataMember(Name="drug_package_id", EmitDefaultValue=false)]
+        public string DrugPackageId { get; set; }
     
         /// <summary>
         /// Tier Name
@@ -92,7 +92,7 @@ namespace IO.Vericred.Model
             var sb = new StringBuilder();
             sb.Append("class DrugCoverage {\n");
             sb.Append("  PlanId: ").Append(PlanId).Append("\n");
-            sb.Append("  NdcPackageCode: ").Append(NdcPackageCode).Append("\n");
+            sb.Append("  DrugPackageId: ").Append(DrugPackageId).Append("\n");
             sb.Append("  Tier: ").Append(Tier).Append("\n");
             sb.Append("  QuantityLimit: ").Append(QuantityLimit).Append("\n");
             sb.Append("  PriorAuthorization: ").Append(PriorAuthorization).Append("\n");
@@ -139,9 +139,9 @@ namespace IO.Vericred.Model
                     this.PlanId.Equals(other.PlanId)
                 ) && 
                 (
-                    this.NdcPackageCode == other.NdcPackageCode ||
-                    this.NdcPackageCode != null &&
-                    this.NdcPackageCode.Equals(other.NdcPackageCode)
+                    this.DrugPackageId == other.DrugPackageId ||
+                    this.DrugPackageId != null &&
+                    this.DrugPackageId.Equals(other.DrugPackageId)
                 ) && 
                 (
                     this.Tier == other.Tier ||
@@ -178,8 +178,8 @@ namespace IO.Vericred.Model
                 // Suitable nullity checks etc, of course :)
                 if (this.PlanId != null)
                     hash = hash * 59 + this.PlanId.GetHashCode();
-                if (this.NdcPackageCode != null)
-                    hash = hash * 59 + this.NdcPackageCode.GetHashCode();
+                if (this.DrugPackageId != null)
+                    hash = hash * 59 + this.DrugPackageId.GetHashCode();
                 if (this.Tier != null)
                     hash = hash * 59 + this.Tier.GetHashCode();
                 if (this.QuantityLimit != null)

@@ -31,8 +31,11 @@ namespace IO.Vericred.Model
         /// <param name="Email">Primary email address to contact the provider..</param>
         /// <param name="Gender">Provider&#39;s gender (M or F).</param>
         /// <param name="FirstName">Given name for the provider..</param>
+        /// <param name="HiosIds">List of HIOS ids for this provider.</param>
         /// <param name="Id">National Provider Index (NPI) number.</param>
         /// <param name="LastName">Family name for the provider..</param>
+        /// <param name="Latitude">Latitude of provider.</param>
+        /// <param name="Longitude">Longitude of provider.</param>
         /// <param name="MiddleName">Middle name for the provider..</param>
         /// <param name="PersonalPhone">Personal contact phone for the provider..</param>
         /// <param name="Phone">Office phone for the provider.</param>
@@ -47,7 +50,7 @@ namespace IO.Vericred.Model
         /// <param name="Type">Type of NPI number (individual provider vs organization)..</param>
         /// <param name="ZipCode">Postal code for the provider&#39;s address (e.g. 11215).</param>
 
-        public Provider(bool? AcceptingChangeOfPayorPatients = null, bool? AcceptingMedicaidPatients = null, bool? AcceptingMedicarePatients = null, bool? AcceptingPrivatePatients = null, bool? AcceptingReferralPatients = null, string City = null, string Email = null, string Gender = null, string FirstName = null, int? Id = null, string LastName = null, string MiddleName = null, string PersonalPhone = null, string Phone = null, string PresentationName = null, string Specialty = null, string State = null, int? StateId = null, string StreetLine1 = null, string StreetLine2 = null, string Suffix = null, string Title = null, string Type = null, string ZipCode = null)
+        public Provider(bool? AcceptingChangeOfPayorPatients = null, bool? AcceptingMedicaidPatients = null, bool? AcceptingMedicarePatients = null, bool? AcceptingPrivatePatients = null, bool? AcceptingReferralPatients = null, string City = null, string Email = null, string Gender = null, string FirstName = null, List<string> HiosIds = null, int? Id = null, string LastName = null, double? Latitude = null, double? Longitude = null, string MiddleName = null, string PersonalPhone = null, string Phone = null, string PresentationName = null, string Specialty = null, string State = null, int? StateId = null, string StreetLine1 = null, string StreetLine2 = null, string Suffix = null, string Title = null, string Type = null, string ZipCode = null)
         {
             this.AcceptingChangeOfPayorPatients = AcceptingChangeOfPayorPatients;
             this.AcceptingMedicaidPatients = AcceptingMedicaidPatients;
@@ -58,8 +61,11 @@ namespace IO.Vericred.Model
             this.Email = Email;
             this.Gender = Gender;
             this.FirstName = FirstName;
+            this.HiosIds = HiosIds;
             this.Id = Id;
             this.LastName = LastName;
+            this.Latitude = Latitude;
+            this.Longitude = Longitude;
             this.MiddleName = MiddleName;
             this.PersonalPhone = PersonalPhone;
             this.Phone = Phone;
@@ -141,6 +147,13 @@ namespace IO.Vericred.Model
         public string FirstName { get; set; }
     
         /// <summary>
+        /// List of HIOS ids for this provider
+        /// </summary>
+        /// <value>List of HIOS ids for this provider</value>
+        [DataMember(Name="hios_ids", EmitDefaultValue=false)]
+        public List<string> HiosIds { get; set; }
+    
+        /// <summary>
         /// National Provider Index (NPI) number
         /// </summary>
         /// <value>National Provider Index (NPI) number</value>
@@ -153,6 +166,20 @@ namespace IO.Vericred.Model
         /// <value>Family name for the provider.</value>
         [DataMember(Name="last_name", EmitDefaultValue=false)]
         public string LastName { get; set; }
+    
+        /// <summary>
+        /// Latitude of provider
+        /// </summary>
+        /// <value>Latitude of provider</value>
+        [DataMember(Name="latitude", EmitDefaultValue=false)]
+        public double? Latitude { get; set; }
+    
+        /// <summary>
+        /// Longitude of provider
+        /// </summary>
+        /// <value>Longitude of provider</value>
+        [DataMember(Name="longitude", EmitDefaultValue=false)]
+        public double? Longitude { get; set; }
     
         /// <summary>
         /// Middle name for the provider.
@@ -262,8 +289,11 @@ namespace IO.Vericred.Model
             sb.Append("  Email: ").Append(Email).Append("\n");
             sb.Append("  Gender: ").Append(Gender).Append("\n");
             sb.Append("  FirstName: ").Append(FirstName).Append("\n");
+            sb.Append("  HiosIds: ").Append(HiosIds).Append("\n");
             sb.Append("  Id: ").Append(Id).Append("\n");
             sb.Append("  LastName: ").Append(LastName).Append("\n");
+            sb.Append("  Latitude: ").Append(Latitude).Append("\n");
+            sb.Append("  Longitude: ").Append(Longitude).Append("\n");
             sb.Append("  MiddleName: ").Append(MiddleName).Append("\n");
             sb.Append("  PersonalPhone: ").Append(PersonalPhone).Append("\n");
             sb.Append("  Phone: ").Append(Phone).Append("\n");
@@ -359,6 +389,11 @@ namespace IO.Vericred.Model
                     this.FirstName.Equals(other.FirstName)
                 ) && 
                 (
+                    this.HiosIds == other.HiosIds ||
+                    this.HiosIds != null &&
+                    this.HiosIds.SequenceEqual(other.HiosIds)
+                ) && 
+                (
                     this.Id == other.Id ||
                     this.Id != null &&
                     this.Id.Equals(other.Id)
@@ -367,6 +402,16 @@ namespace IO.Vericred.Model
                     this.LastName == other.LastName ||
                     this.LastName != null &&
                     this.LastName.Equals(other.LastName)
+                ) && 
+                (
+                    this.Latitude == other.Latitude ||
+                    this.Latitude != null &&
+                    this.Latitude.Equals(other.Latitude)
+                ) && 
+                (
+                    this.Longitude == other.Longitude ||
+                    this.Longitude != null &&
+                    this.Longitude.Equals(other.Longitude)
                 ) && 
                 (
                     this.MiddleName == other.MiddleName ||
@@ -464,10 +509,16 @@ namespace IO.Vericred.Model
                     hash = hash * 59 + this.Gender.GetHashCode();
                 if (this.FirstName != null)
                     hash = hash * 59 + this.FirstName.GetHashCode();
+                if (this.HiosIds != null)
+                    hash = hash * 59 + this.HiosIds.GetHashCode();
                 if (this.Id != null)
                     hash = hash * 59 + this.Id.GetHashCode();
                 if (this.LastName != null)
                     hash = hash * 59 + this.LastName.GetHashCode();
+                if (this.Latitude != null)
+                    hash = hash * 59 + this.Latitude.GetHashCode();
+                if (this.Longitude != null)
+                    hash = hash * 59 + this.Longitude.GetHashCode();
                 if (this.MiddleName != null)
                     hash = hash * 59 + this.MiddleName.GetHashCode();
                 if (this.PersonalPhone != null)

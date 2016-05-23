@@ -15,37 +15,46 @@ namespace IO.Vericred.Model
     /// 
     /// </summary>
     [DataContract]
-    public partial class RatingArea :  IEquatable<RatingArea>
+    public partial class PlanCountyBulk :  IEquatable<PlanCountyBulk>
     { 
     
         /// <summary>
-        /// Initializes a new instance of the <see cref="RatingArea" /> class.
-        /// Initializes a new instance of the <see cref="RatingArea" />class.
+        /// Initializes a new instance of the <see cref="PlanCountyBulk" /> class.
+        /// Initializes a new instance of the <see cref="PlanCountyBulk" />class.
         /// </summary>
-        /// <param name="Id">Name of the Rating Area.</param>
-        /// <param name="StateId">State Code.</param>
+        /// <param name="Id">Primary key.</param>
+        /// <param name="PlanId">Foreign key to plan.</param>
+        /// <param name="CountyId">Foreign key to county.</param>
 
-        public RatingArea(string Id = null, string StateId = null)
+        public PlanCountyBulk(int? Id = null, int? PlanId = null, int? CountyId = null)
         {
             this.Id = Id;
-            this.StateId = StateId;
+            this.PlanId = PlanId;
+            this.CountyId = CountyId;
             
         }
 
     
         /// <summary>
-        /// Name of the Rating Area
+        /// Primary key
         /// </summary>
-        /// <value>Name of the Rating Area</value>
+        /// <value>Primary key</value>
         [DataMember(Name="id", EmitDefaultValue=false)]
-        public string Id { get; set; }
+        public int? Id { get; set; }
     
         /// <summary>
-        /// State Code
+        /// Foreign key to plan
         /// </summary>
-        /// <value>State Code</value>
-        [DataMember(Name="state_id", EmitDefaultValue=false)]
-        public string StateId { get; set; }
+        /// <value>Foreign key to plan</value>
+        [DataMember(Name="plan_id", EmitDefaultValue=false)]
+        public int? PlanId { get; set; }
+    
+        /// <summary>
+        /// Foreign key to county
+        /// </summary>
+        /// <value>Foreign key to county</value>
+        [DataMember(Name="county_id", EmitDefaultValue=false)]
+        public int? CountyId { get; set; }
     
         /// <summary>
         /// Returns the string presentation of the object
@@ -54,9 +63,10 @@ namespace IO.Vericred.Model
         public override string ToString()
         {
             var sb = new StringBuilder();
-            sb.Append("class RatingArea {\n");
+            sb.Append("class PlanCountyBulk {\n");
             sb.Append("  Id: ").Append(Id).Append("\n");
-            sb.Append("  StateId: ").Append(StateId).Append("\n");
+            sb.Append("  PlanId: ").Append(PlanId).Append("\n");
+            sb.Append("  CountyId: ").Append(CountyId).Append("\n");
             sb.Append("}\n");
             return sb.ToString();
         }
@@ -78,15 +88,15 @@ namespace IO.Vericred.Model
         public override bool Equals(object obj)
         {
             // credit: http://stackoverflow.com/a/10454552/677735
-            return this.Equals(obj as RatingArea);
+            return this.Equals(obj as PlanCountyBulk);
         }
 
         /// <summary>
-        /// Returns true if RatingArea instances are equal
+        /// Returns true if PlanCountyBulk instances are equal
         /// </summary>
-        /// <param name="other">Instance of RatingArea to be compared</param>
+        /// <param name="other">Instance of PlanCountyBulk to be compared</param>
         /// <returns>Boolean</returns>
-        public bool Equals(RatingArea other)
+        public bool Equals(PlanCountyBulk other)
         {
             // credit: http://stackoverflow.com/a/10454552/677735
             if (other == null)
@@ -99,9 +109,14 @@ namespace IO.Vericred.Model
                     this.Id.Equals(other.Id)
                 ) && 
                 (
-                    this.StateId == other.StateId ||
-                    this.StateId != null &&
-                    this.StateId.Equals(other.StateId)
+                    this.PlanId == other.PlanId ||
+                    this.PlanId != null &&
+                    this.PlanId.Equals(other.PlanId)
+                ) && 
+                (
+                    this.CountyId == other.CountyId ||
+                    this.CountyId != null &&
+                    this.CountyId.Equals(other.CountyId)
                 );
         }
 
@@ -118,8 +133,10 @@ namespace IO.Vericred.Model
                 // Suitable nullity checks etc, of course :)
                 if (this.Id != null)
                     hash = hash * 59 + this.Id.GetHashCode();
-                if (this.StateId != null)
-                    hash = hash * 59 + this.StateId.GetHashCode();
+                if (this.PlanId != null)
+                    hash = hash * 59 + this.PlanId.GetHashCode();
+                if (this.CountyId != null)
+                    hash = hash * 59 + this.CountyId.GetHashCode();
                 return hash;
             }
         }

@@ -11,82 +11,94 @@ namespace IO.Vericred.Api
     /// <summary>
     /// Represents a collection of functions to interact with the API endpoints
     /// </summary>
-    public interface IProvidersApi
+    public interface IDrugsApi
     {
         #region Synchronous Operations
 
         /// <exception cref="IO.Vericred.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="npi">NPI number</param>
+        /// <param name="ndcPackageCode">NDC package code</param>
+        /// <param name="audience">Two-character state code</param>
+        /// <param name="stateCode">Two-character state code</param>
         /// <param name="vericredApiKey">API Key (optional)</param>
-        /// <returns>ProviderResponse</returns>
-        ProviderResponse GetProvider (string npi, string vericredApiKey = null);
+        /// <returns>DrugCoverageResponse</returns>
+        DrugCoverageResponse GetDrugCoverages (string ndcPackageCode, string audience, string stateCode, string vericredApiKey = null);
 
 
 
         /// <exception cref="IO.Vericred.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="npi">NPI number</param>
+        /// <param name="ndcPackageCode">NDC package code</param>
+        /// <param name="audience">Two-character state code</param>
+        /// <param name="stateCode">Two-character state code</param>
         /// <param name="vericredApiKey">API Key (optional)</param>
-        /// <returns>ApiResponse of ProviderResponse</returns>
-        ApiResponse<ProviderResponse> GetProviderWithHttpInfo (string npi, string vericredApiKey = null);
+        /// <returns>ApiResponse of DrugCoverageResponse</returns>
+        ApiResponse<DrugCoverageResponse> GetDrugCoveragesWithHttpInfo (string ndcPackageCode, string audience, string stateCode, string vericredApiKey = null);
 
         /// <exception cref="IO.Vericred.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="body"> (optional)</param>
-        /// <returns>ProvidersSearchResponse</returns>
-        ProvidersSearchResponse GetProviders (RequestProvidersSearch body = null);
+        /// <param name="searchTerm">Full or partial proprietary name of drug</param>
+        /// <param name="vericredApiKey">API Key (optional)</param>
+        /// <returns>DrugSearchResponse</returns>
+        DrugSearchResponse ListDrugs (string searchTerm, string vericredApiKey = null);
 
 
 
         /// <exception cref="IO.Vericred.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="body"> (optional)</param>
-        /// <returns>ApiResponse of ProvidersSearchResponse</returns>
-        ApiResponse<ProvidersSearchResponse> GetProvidersWithHttpInfo (RequestProvidersSearch body = null);
+        /// <param name="searchTerm">Full or partial proprietary name of drug</param>
+        /// <param name="vericredApiKey">API Key (optional)</param>
+        /// <returns>ApiResponse of DrugSearchResponse</returns>
+        ApiResponse<DrugSearchResponse> ListDrugsWithHttpInfo (string searchTerm, string vericredApiKey = null);
         #endregion Synchronous Operations
         #region Asynchronous Operations
 
 
         /// <exception cref="IO.Vericred.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="npi">NPI number</param>
+        /// <param name="ndcPackageCode">NDC package code</param>
+        /// <param name="audience">Two-character state code</param>
+        /// <param name="stateCode">Two-character state code</param>
         /// <param name="vericredApiKey">API Key (optional)</param>
-        /// <returns>Task of ProviderResponse</returns>
-        System.Threading.Tasks.Task<ProviderResponse> GetProviderAsync (string npi, string vericredApiKey = null);
+        /// <returns>Task of DrugCoverageResponse</returns>
+        System.Threading.Tasks.Task<DrugCoverageResponse> GetDrugCoveragesAsync (string ndcPackageCode, string audience, string stateCode, string vericredApiKey = null);
 
         /// <summary>
-        /// Find a Provider
+        /// Search for DrugCoverages
         /// </summary>
 
         /// <exception cref="IO.Vericred.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="npi">NPI number</param>
+        /// <param name="ndcPackageCode">NDC package code</param>
+        /// <param name="audience">Two-character state code</param>
+        /// <param name="stateCode">Two-character state code</param>
         /// <param name="vericredApiKey">API Key (optional)</param>
-        /// <returns>Task of ApiResponse (ProviderResponse)</returns>
-        System.Threading.Tasks.Task<ApiResponse<ProviderResponse>> GetProviderAsyncWithHttpInfo (string npi, string vericredApiKey = null);
+        /// <returns>Task of ApiResponse (DrugCoverageResponse)</returns>
+        System.Threading.Tasks.Task<ApiResponse<DrugCoverageResponse>> GetDrugCoveragesAsyncWithHttpInfo (string ndcPackageCode, string audience, string stateCode, string vericredApiKey = null);
 
 
         /// <exception cref="IO.Vericred.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="body"> (optional)</param>
-        /// <returns>Task of ProvidersSearchResponse</returns>
-        System.Threading.Tasks.Task<ProvidersSearchResponse> GetProvidersAsync (RequestProvidersSearch body = null);
+        /// <param name="searchTerm">Full or partial proprietary name of drug</param>
+        /// <param name="vericredApiKey">API Key (optional)</param>
+        /// <returns>Task of DrugSearchResponse</returns>
+        System.Threading.Tasks.Task<DrugSearchResponse> ListDrugsAsync (string searchTerm, string vericredApiKey = null);
 
         /// <summary>
-        /// Find Providers
+        /// Drug Search
         /// </summary>
 
         /// <exception cref="IO.Vericred.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="body"> (optional)</param>
-        /// <returns>Task of ApiResponse (ProvidersSearchResponse)</returns>
-        System.Threading.Tasks.Task<ApiResponse<ProvidersSearchResponse>> GetProvidersAsyncWithHttpInfo (RequestProvidersSearch body = null);
+        /// <param name="searchTerm">Full or partial proprietary name of drug</param>
+        /// <param name="vericredApiKey">API Key (optional)</param>
+        /// <returns>Task of ApiResponse (DrugSearchResponse)</returns>
+        System.Threading.Tasks.Task<ApiResponse<DrugSearchResponse>> ListDrugsAsyncWithHttpInfo (string searchTerm, string vericredApiKey = null);
         #endregion Asynchronous Operations
     }
 
     /// <summary>
     /// Represents a collection of functions to interact with the API endpoints
     /// </summary>
-    public class ProvidersApi : IProvidersApi
+    public class DrugsApi : IDrugsApi
     {
         /// <summary>
-        /// Initializes a new instance of the <see cref="ProvidersApi"/> class.
+        /// Initializes a new instance of the <see cref="DrugsApi"/> class.
         /// </summary>
         /// <returns></returns>
-        public ProvidersApi(String basePath)
+        public DrugsApi(String basePath)
         {
             this.Configuration = new Configuration(new ApiClient(basePath));
 
@@ -98,12 +110,12 @@ namespace IO.Vericred.Api
         }
 
         /// <summary>
-        /// Initializes a new instance of the <see cref="ProvidersApi"/> class
+        /// Initializes a new instance of the <see cref="DrugsApi"/> class
         /// using Configuration object
         /// </summary>
         /// <param name="configuration">An instance of Configuration</param>
         /// <returns></returns>
-        public ProvidersApi(Configuration configuration = null)
+        public DrugsApi(Configuration configuration = null)
         {
             if (configuration == null) // use the default one in Configuration
                 this.Configuration = Configuration.Default;
@@ -165,32 +177,42 @@ namespace IO.Vericred.Api
         }
 
         /// <summary>
-        /// Find a Provider To retrieve a specific provider, just perform a GET using his NPI number
+        /// Search for DrugCoverages Drug Coverages are the specific tier level, quantity limit, prior authorization and step therapy for a given Drug/Plan combination. This endpoint returns all DrugCoverages for a given Drug
         /// </summary>
         /// <exception cref="IO.Vericred.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="npi">NPI number</param>
+        /// <param name="ndcPackageCode">NDC package code</param>
+        /// <param name="audience">Two-character state code</param>
+        /// <param name="stateCode">Two-character state code</param>
         /// <param name="vericredApiKey">API Key (optional)</param>
-        /// <returns>ProviderResponse</returns>
-        public ProviderResponse GetProvider (string npi, string vericredApiKey = null)
+        /// <returns>DrugCoverageResponse</returns>
+        public DrugCoverageResponse GetDrugCoverages (string ndcPackageCode, string audience, string stateCode, string vericredApiKey = null)
         {
-             ApiResponse<ProviderResponse> localVarResponse = GetProviderWithHttpInfo(npi, vericredApiKey);
+             ApiResponse<DrugCoverageResponse> localVarResponse = GetDrugCoveragesWithHttpInfo(ndcPackageCode, audience, stateCode, vericredApiKey);
              return localVarResponse.Data;
         }
 
         /// <summary>
-        /// Find a Provider To retrieve a specific provider, just perform a GET using his NPI number
+        /// Search for DrugCoverages Drug Coverages are the specific tier level, quantity limit, prior authorization and step therapy for a given Drug/Plan combination. This endpoint returns all DrugCoverages for a given Drug
         /// </summary>
         /// <exception cref="IO.Vericred.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="npi">NPI number</param>
+        /// <param name="ndcPackageCode">NDC package code</param>
+        /// <param name="audience">Two-character state code</param>
+        /// <param name="stateCode">Two-character state code</param>
         /// <param name="vericredApiKey">API Key (optional)</param>
-        /// <returns>ApiResponse of ProviderResponse</returns>
-        public ApiResponse< ProviderResponse > GetProviderWithHttpInfo (string npi, string vericredApiKey = null)
+        /// <returns>ApiResponse of DrugCoverageResponse</returns>
+        public ApiResponse< DrugCoverageResponse > GetDrugCoveragesWithHttpInfo (string ndcPackageCode, string audience, string stateCode, string vericredApiKey = null)
         {
-            // verify the required parameter 'npi' is set
-            if (npi == null)
-                throw new ApiException(400, "Missing required parameter 'npi' when calling ProvidersApi->GetProvider");
+            // verify the required parameter 'ndcPackageCode' is set
+            if (ndcPackageCode == null)
+                throw new ApiException(400, "Missing required parameter 'ndcPackageCode' when calling DrugsApi->GetDrugCoverages");
+            // verify the required parameter 'audience' is set
+            if (audience == null)
+                throw new ApiException(400, "Missing required parameter 'audience' when calling DrugsApi->GetDrugCoverages");
+            // verify the required parameter 'stateCode' is set
+            if (stateCode == null)
+                throw new ApiException(400, "Missing required parameter 'stateCode' when calling DrugsApi->GetDrugCoverages");
 
-            var localVarPath = "/providers/{npi}";
+            var localVarPath = "/drug_packages/{ndc_package_code}/coverages";
             var localVarPathParams = new Dictionary<String, String>();
             var localVarQueryParams = new Dictionary<String, String>();
             var localVarHeaderParams = new Dictionary<String, String>(Configuration.DefaultHeader);
@@ -213,7 +235,9 @@ namespace IO.Vericred.Api
             // set "format" to json by default
             // e.g. /pet/{petId}.{format} becomes /pet/{petId}.json
             localVarPathParams.Add("format", "json");
-            if (npi != null) localVarPathParams.Add("npi", Configuration.ApiClient.ParameterToString(npi)); // path parameter
+            if (ndcPackageCode != null) localVarPathParams.Add("ndc_package_code", Configuration.ApiClient.ParameterToString(ndcPackageCode)); // path parameter
+            if (audience != null) localVarQueryParams.Add("audience", Configuration.ApiClient.ParameterToString(audience)); // query parameter
+            if (stateCode != null) localVarQueryParams.Add("state_code", Configuration.ApiClient.ParameterToString(stateCode)); // query parameter
             if (vericredApiKey != null) localVarHeaderParams.Add("Vericred-Api-Key", Configuration.ApiClient.ParameterToString(vericredApiKey)); // header parameter
 
 
@@ -225,40 +249,50 @@ namespace IO.Vericred.Api
             int localVarStatusCode = (int) localVarResponse.StatusCode;
 
             if (localVarStatusCode >= 400)
-                throw new ApiException (localVarStatusCode, "Error calling GetProvider: " + localVarResponse.Content, localVarResponse.Content);
+                throw new ApiException (localVarStatusCode, "Error calling GetDrugCoverages: " + localVarResponse.Content, localVarResponse.Content);
             else if (localVarStatusCode == 0)
-                throw new ApiException (localVarStatusCode, "Error calling GetProvider: " + localVarResponse.ErrorMessage, localVarResponse.ErrorMessage);
+                throw new ApiException (localVarStatusCode, "Error calling GetDrugCoverages: " + localVarResponse.ErrorMessage, localVarResponse.ErrorMessage);
 
-            return new ApiResponse<ProviderResponse>(localVarStatusCode,
+            return new ApiResponse<DrugCoverageResponse>(localVarStatusCode,
                 localVarResponse.Headers.ToDictionary(x => x.Name, x => x.Value.ToString()),
-                (ProviderResponse) Configuration.ApiClient.Deserialize(localVarResponse, typeof(ProviderResponse)));
+                (DrugCoverageResponse) Configuration.ApiClient.Deserialize(localVarResponse, typeof(DrugCoverageResponse)));
             
         }
 
 
         /// <exception cref="IO.Vericred.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="npi">NPI number</param>
+        /// <param name="ndcPackageCode">NDC package code</param>
+        /// <param name="audience">Two-character state code</param>
+        /// <param name="stateCode">Two-character state code</param>
         /// <param name="vericredApiKey">API Key (optional)</param>
-        /// <returns>Task of ProviderResponse</returns>
-        public async System.Threading.Tasks.Task<ProviderResponse> GetProviderAsync (string npi, string vericredApiKey = null)
+        /// <returns>Task of DrugCoverageResponse</returns>
+        public async System.Threading.Tasks.Task<DrugCoverageResponse> GetDrugCoveragesAsync (string ndcPackageCode, string audience, string stateCode, string vericredApiKey = null)
         {
-             ApiResponse<ProviderResponse> localVarResponse = await GetProviderAsyncWithHttpInfo(npi, vericredApiKey);
+             ApiResponse<DrugCoverageResponse> localVarResponse = await GetDrugCoveragesAsyncWithHttpInfo(ndcPackageCode, audience, stateCode, vericredApiKey);
              return localVarResponse.Data;
 
         }
 
 
         /// <exception cref="IO.Vericred.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="npi">NPI number</param>
+        /// <param name="ndcPackageCode">NDC package code</param>
+        /// <param name="audience">Two-character state code</param>
+        /// <param name="stateCode">Two-character state code</param>
         /// <param name="vericredApiKey">API Key (optional)</param>
-        /// <returns>Task of ApiResponse (ProviderResponse)</returns>
-        public async System.Threading.Tasks.Task<ApiResponse<ProviderResponse>> GetProviderAsyncWithHttpInfo (string npi, string vericredApiKey = null)
+        /// <returns>Task of ApiResponse (DrugCoverageResponse)</returns>
+        public async System.Threading.Tasks.Task<ApiResponse<DrugCoverageResponse>> GetDrugCoveragesAsyncWithHttpInfo (string ndcPackageCode, string audience, string stateCode, string vericredApiKey = null)
         {
-            // verify the required parameter 'npi' is set
-            if (npi == null)
-                throw new ApiException(400, "Missing required parameter 'npi' when calling ProvidersApi->GetProvider");
+            // verify the required parameter 'ndcPackageCode' is set
+            if (ndcPackageCode == null)
+                throw new ApiException(400, "Missing required parameter 'ndcPackageCode' when calling DrugsApi->GetDrugCoverages");
+            // verify the required parameter 'audience' is set
+            if (audience == null)
+                throw new ApiException(400, "Missing required parameter 'audience' when calling DrugsApi->GetDrugCoverages");
+            // verify the required parameter 'stateCode' is set
+            if (stateCode == null)
+                throw new ApiException(400, "Missing required parameter 'stateCode' when calling DrugsApi->GetDrugCoverages");
 
-            var localVarPath = "/providers/{npi}";
+            var localVarPath = "/drug_packages/{ndc_package_code}/coverages";
             var localVarPathParams = new Dictionary<String, String>();
             var localVarQueryParams = new Dictionary<String, String>();
             var localVarHeaderParams = new Dictionary<String, String>(Configuration.DefaultHeader);
@@ -281,7 +315,9 @@ namespace IO.Vericred.Api
             // set "format" to json by default
             // e.g. /pet/{petId}.{format} becomes /pet/{petId}.json
             localVarPathParams.Add("format", "json");
-            if (npi != null) localVarPathParams.Add("npi", Configuration.ApiClient.ParameterToString(npi)); // path parameter
+            if (ndcPackageCode != null) localVarPathParams.Add("ndc_package_code", Configuration.ApiClient.ParameterToString(ndcPackageCode)); // path parameter
+            if (audience != null) localVarQueryParams.Add("audience", Configuration.ApiClient.ParameterToString(audience)); // query parameter
+            if (stateCode != null) localVarQueryParams.Add("state_code", Configuration.ApiClient.ParameterToString(stateCode)); // query parameter
             if (vericredApiKey != null) localVarHeaderParams.Add("Vericred-Api-Key", Configuration.ApiClient.ParameterToString(vericredApiKey)); // header parameter
 
 
@@ -293,38 +329,43 @@ namespace IO.Vericred.Api
             int localVarStatusCode = (int) localVarResponse.StatusCode;
 
             if (localVarStatusCode >= 400)
-                throw new ApiException (localVarStatusCode, "Error calling GetProvider: " + localVarResponse.Content, localVarResponse.Content);
+                throw new ApiException (localVarStatusCode, "Error calling GetDrugCoverages: " + localVarResponse.Content, localVarResponse.Content);
             else if (localVarStatusCode == 0)
-                throw new ApiException (localVarStatusCode, "Error calling GetProvider: " + localVarResponse.ErrorMessage, localVarResponse.ErrorMessage);
+                throw new ApiException (localVarStatusCode, "Error calling GetDrugCoverages: " + localVarResponse.ErrorMessage, localVarResponse.ErrorMessage);
 
-            return new ApiResponse<ProviderResponse>(localVarStatusCode,
+            return new ApiResponse<DrugCoverageResponse>(localVarStatusCode,
                 localVarResponse.Headers.ToDictionary(x => x.Name, x => x.Value.ToString()),
-                (ProviderResponse) Configuration.ApiClient.Deserialize(localVarResponse, typeof(ProviderResponse)));
+                (DrugCoverageResponse) Configuration.ApiClient.Deserialize(localVarResponse, typeof(DrugCoverageResponse)));
             
         }
 
         /// <summary>
-        /// Find Providers All &#x60;Provider&#x60; searches require a &#x60;zip_code&#x60;, which we use for weighting the search results to favor &#x60;Provider&#x60;s that are near the user.  For example, we would want &quot;Dr. John Smith&quot; who is 5 miles away to appear before &quot;Dr. John Smith&quot; who is 100 miles away.  The weighting also allows for non-exact matches.  In our prior example, we would want &quot;Dr. Jon Smith&quot; who is 2 miles away to appear before the exact match &quot;Dr. John Smith&quot; who is 100 miles away because it is more likely that the user just entered an incorrect name.  The free text search also supports Specialty name search and &quot;body part&quot; Specialty name search.  So, searching &quot;John Smith nose&quot; would return &quot;Dr. John Smith&quot;, the ENT Specialist before &quot;Dr. John Smith&quot; the Internist. 
+        /// Drug Search Search for drugs by proprietary name
         /// </summary>
         /// <exception cref="IO.Vericred.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="body"> (optional)</param>
-        /// <returns>ProvidersSearchResponse</returns>
-        public ProvidersSearchResponse GetProviders (RequestProvidersSearch body = null)
+        /// <param name="searchTerm">Full or partial proprietary name of drug</param>
+        /// <param name="vericredApiKey">API Key (optional)</param>
+        /// <returns>DrugSearchResponse</returns>
+        public DrugSearchResponse ListDrugs (string searchTerm, string vericredApiKey = null)
         {
-             ApiResponse<ProvidersSearchResponse> localVarResponse = GetProvidersWithHttpInfo(body);
+             ApiResponse<DrugSearchResponse> localVarResponse = ListDrugsWithHttpInfo(searchTerm, vericredApiKey);
              return localVarResponse.Data;
         }
 
         /// <summary>
-        /// Find Providers All &#x60;Provider&#x60; searches require a &#x60;zip_code&#x60;, which we use for weighting the search results to favor &#x60;Provider&#x60;s that are near the user.  For example, we would want &quot;Dr. John Smith&quot; who is 5 miles away to appear before &quot;Dr. John Smith&quot; who is 100 miles away.  The weighting also allows for non-exact matches.  In our prior example, we would want &quot;Dr. Jon Smith&quot; who is 2 miles away to appear before the exact match &quot;Dr. John Smith&quot; who is 100 miles away because it is more likely that the user just entered an incorrect name.  The free text search also supports Specialty name search and &quot;body part&quot; Specialty name search.  So, searching &quot;John Smith nose&quot; would return &quot;Dr. John Smith&quot;, the ENT Specialist before &quot;Dr. John Smith&quot; the Internist. 
+        /// Drug Search Search for drugs by proprietary name
         /// </summary>
         /// <exception cref="IO.Vericred.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="body"> (optional)</param>
-        /// <returns>ApiResponse of ProvidersSearchResponse</returns>
-        public ApiResponse< ProvidersSearchResponse > GetProvidersWithHttpInfo (RequestProvidersSearch body = null)
+        /// <param name="searchTerm">Full or partial proprietary name of drug</param>
+        /// <param name="vericredApiKey">API Key (optional)</param>
+        /// <returns>ApiResponse of DrugSearchResponse</returns>
+        public ApiResponse< DrugSearchResponse > ListDrugsWithHttpInfo (string searchTerm, string vericredApiKey = null)
         {
+            // verify the required parameter 'searchTerm' is set
+            if (searchTerm == null)
+                throw new ApiException(400, "Missing required parameter 'searchTerm' when calling DrugsApi->ListDrugs");
 
-            var localVarPath = "/providers/search";
+            var localVarPath = "/drugs";
             var localVarPathParams = new Dictionary<String, String>();
             var localVarQueryParams = new Dictionary<String, String>();
             var localVarHeaderParams = new Dictionary<String, String>(Configuration.DefaultHeader);
@@ -334,11 +375,13 @@ namespace IO.Vericred.Api
 
             // to determine the Content-Type header
             String[] localVarHttpContentTypes = new String[] {
+                "application/json"
             };
             String localVarHttpContentType = Configuration.ApiClient.SelectHeaderContentType(localVarHttpContentTypes);
 
             // to determine the Accept header
             String[] localVarHttpHeaderAccepts = new String[] {
+                "application/json"
             };
             String localVarHttpHeaderAccept = Configuration.ApiClient.SelectHeaderAccept(localVarHttpHeaderAccepts);
             if (localVarHttpHeaderAccept != null)
@@ -347,53 +390,52 @@ namespace IO.Vericred.Api
             // set "format" to json by default
             // e.g. /pet/{petId}.{format} becomes /pet/{petId}.json
             localVarPathParams.Add("format", "json");
-            if (body.GetType() != typeof(byte[]))
-            {
-                localVarPostBody = Configuration.ApiClient.Serialize(body); // http body (model) parameter
-            }
-            else
-            {
-                localVarPostBody = body; // byte array
-            }
+            if (searchTerm != null) localVarQueryParams.Add("search_term", Configuration.ApiClient.ParameterToString(searchTerm)); // query parameter
+            if (vericredApiKey != null) localVarHeaderParams.Add("Vericred-Api-Key", Configuration.ApiClient.ParameterToString(vericredApiKey)); // header parameter
 
 
             // make the HTTP request
             IRestResponse localVarResponse = (IRestResponse) Configuration.ApiClient.CallApi(localVarPath,
-                Method.POST, localVarQueryParams, localVarPostBody, localVarHeaderParams, localVarFormParams, localVarFileParams,
+                Method.GET, localVarQueryParams, localVarPostBody, localVarHeaderParams, localVarFormParams, localVarFileParams,
                 localVarPathParams, localVarHttpContentType);
 
             int localVarStatusCode = (int) localVarResponse.StatusCode;
 
             if (localVarStatusCode >= 400)
-                throw new ApiException (localVarStatusCode, "Error calling GetProviders: " + localVarResponse.Content, localVarResponse.Content);
+                throw new ApiException (localVarStatusCode, "Error calling ListDrugs: " + localVarResponse.Content, localVarResponse.Content);
             else if (localVarStatusCode == 0)
-                throw new ApiException (localVarStatusCode, "Error calling GetProviders: " + localVarResponse.ErrorMessage, localVarResponse.ErrorMessage);
+                throw new ApiException (localVarStatusCode, "Error calling ListDrugs: " + localVarResponse.ErrorMessage, localVarResponse.ErrorMessage);
 
-            return new ApiResponse<ProvidersSearchResponse>(localVarStatusCode,
+            return new ApiResponse<DrugSearchResponse>(localVarStatusCode,
                 localVarResponse.Headers.ToDictionary(x => x.Name, x => x.Value.ToString()),
-                (ProvidersSearchResponse) Configuration.ApiClient.Deserialize(localVarResponse, typeof(ProvidersSearchResponse)));
+                (DrugSearchResponse) Configuration.ApiClient.Deserialize(localVarResponse, typeof(DrugSearchResponse)));
             
         }
 
 
         /// <exception cref="IO.Vericred.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="body"> (optional)</param>
-        /// <returns>Task of ProvidersSearchResponse</returns>
-        public async System.Threading.Tasks.Task<ProvidersSearchResponse> GetProvidersAsync (RequestProvidersSearch body = null)
+        /// <param name="searchTerm">Full or partial proprietary name of drug</param>
+        /// <param name="vericredApiKey">API Key (optional)</param>
+        /// <returns>Task of DrugSearchResponse</returns>
+        public async System.Threading.Tasks.Task<DrugSearchResponse> ListDrugsAsync (string searchTerm, string vericredApiKey = null)
         {
-             ApiResponse<ProvidersSearchResponse> localVarResponse = await GetProvidersAsyncWithHttpInfo(body);
+             ApiResponse<DrugSearchResponse> localVarResponse = await ListDrugsAsyncWithHttpInfo(searchTerm, vericredApiKey);
              return localVarResponse.Data;
 
         }
 
 
         /// <exception cref="IO.Vericred.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="body"> (optional)</param>
-        /// <returns>Task of ApiResponse (ProvidersSearchResponse)</returns>
-        public async System.Threading.Tasks.Task<ApiResponse<ProvidersSearchResponse>> GetProvidersAsyncWithHttpInfo (RequestProvidersSearch body = null)
+        /// <param name="searchTerm">Full or partial proprietary name of drug</param>
+        /// <param name="vericredApiKey">API Key (optional)</param>
+        /// <returns>Task of ApiResponse (DrugSearchResponse)</returns>
+        public async System.Threading.Tasks.Task<ApiResponse<DrugSearchResponse>> ListDrugsAsyncWithHttpInfo (string searchTerm, string vericredApiKey = null)
         {
+            // verify the required parameter 'searchTerm' is set
+            if (searchTerm == null)
+                throw new ApiException(400, "Missing required parameter 'searchTerm' when calling DrugsApi->ListDrugs");
 
-            var localVarPath = "/providers/search";
+            var localVarPath = "/drugs";
             var localVarPathParams = new Dictionary<String, String>();
             var localVarQueryParams = new Dictionary<String, String>();
             var localVarHeaderParams = new Dictionary<String, String>(Configuration.DefaultHeader);
@@ -403,11 +445,13 @@ namespace IO.Vericred.Api
 
             // to determine the Content-Type header
             String[] localVarHttpContentTypes = new String[] {
+                "application/json"
             };
             String localVarHttpContentType = Configuration.ApiClient.SelectHeaderContentType(localVarHttpContentTypes);
 
             // to determine the Accept header
             String[] localVarHttpHeaderAccepts = new String[] {
+                "application/json"
             };
             String localVarHttpHeaderAccept = Configuration.ApiClient.SelectHeaderAccept(localVarHttpHeaderAccepts);
             if (localVarHttpHeaderAccept != null)
@@ -416,31 +460,25 @@ namespace IO.Vericred.Api
             // set "format" to json by default
             // e.g. /pet/{petId}.{format} becomes /pet/{petId}.json
             localVarPathParams.Add("format", "json");
-            if (body.GetType() != typeof(byte[]))
-            {
-                localVarPostBody = Configuration.ApiClient.Serialize(body); // http body (model) parameter
-            }
-            else
-            {
-                localVarPostBody = body; // byte array
-            }
+            if (searchTerm != null) localVarQueryParams.Add("search_term", Configuration.ApiClient.ParameterToString(searchTerm)); // query parameter
+            if (vericredApiKey != null) localVarHeaderParams.Add("Vericred-Api-Key", Configuration.ApiClient.ParameterToString(vericredApiKey)); // header parameter
 
 
             // make the HTTP request
             IRestResponse localVarResponse = (IRestResponse) await Configuration.ApiClient.CallApiAsync(localVarPath,
-                Method.POST, localVarQueryParams, localVarPostBody, localVarHeaderParams, localVarFormParams, localVarFileParams,
+                Method.GET, localVarQueryParams, localVarPostBody, localVarHeaderParams, localVarFormParams, localVarFileParams,
                 localVarPathParams, localVarHttpContentType);
 
             int localVarStatusCode = (int) localVarResponse.StatusCode;
 
             if (localVarStatusCode >= 400)
-                throw new ApiException (localVarStatusCode, "Error calling GetProviders: " + localVarResponse.Content, localVarResponse.Content);
+                throw new ApiException (localVarStatusCode, "Error calling ListDrugs: " + localVarResponse.Content, localVarResponse.Content);
             else if (localVarStatusCode == 0)
-                throw new ApiException (localVarStatusCode, "Error calling GetProviders: " + localVarResponse.ErrorMessage, localVarResponse.ErrorMessage);
+                throw new ApiException (localVarStatusCode, "Error calling ListDrugs: " + localVarResponse.ErrorMessage, localVarResponse.ErrorMessage);
 
-            return new ApiResponse<ProvidersSearchResponse>(localVarStatusCode,
+            return new ApiResponse<DrugSearchResponse>(localVarStatusCode,
                 localVarResponse.Headers.ToDictionary(x => x.Name, x => x.Value.ToString()),
-                (ProvidersSearchResponse) Configuration.ApiClient.Deserialize(localVarResponse, typeof(ProvidersSearchResponse)));
+                (DrugSearchResponse) Configuration.ApiClient.Deserialize(localVarResponse, typeof(DrugSearchResponse)));
             
         }
 

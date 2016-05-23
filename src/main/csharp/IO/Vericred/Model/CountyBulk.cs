@@ -15,35 +15,44 @@ namespace IO.Vericred.Model
     /// 
     /// </summary>
     [DataContract]
-    public partial class RatingArea :  IEquatable<RatingArea>
+    public partial class CountyBulk :  IEquatable<CountyBulk>
     { 
     
         /// <summary>
-        /// Initializes a new instance of the <see cref="RatingArea" /> class.
-        /// Initializes a new instance of the <see cref="RatingArea" />class.
+        /// Initializes a new instance of the <see cref="CountyBulk" /> class.
+        /// Initializes a new instance of the <see cref="CountyBulk" />class.
         /// </summary>
-        /// <param name="Id">Name of the Rating Area.</param>
-        /// <param name="StateId">State Code.</param>
+        /// <param name="Id">FIPs code for the county.</param>
+        /// <param name="Name">Name of the county.</param>
+        /// <param name="StateId">State code.</param>
 
-        public RatingArea(string Id = null, string StateId = null)
+        public CountyBulk(string Id = null, string Name = null, string StateId = null)
         {
             this.Id = Id;
+            this.Name = Name;
             this.StateId = StateId;
             
         }
 
     
         /// <summary>
-        /// Name of the Rating Area
+        /// FIPs code for the county
         /// </summary>
-        /// <value>Name of the Rating Area</value>
+        /// <value>FIPs code for the county</value>
         [DataMember(Name="id", EmitDefaultValue=false)]
         public string Id { get; set; }
     
         /// <summary>
-        /// State Code
+        /// Name of the county
         /// </summary>
-        /// <value>State Code</value>
+        /// <value>Name of the county</value>
+        [DataMember(Name="name", EmitDefaultValue=false)]
+        public string Name { get; set; }
+    
+        /// <summary>
+        /// State code
+        /// </summary>
+        /// <value>State code</value>
         [DataMember(Name="state_id", EmitDefaultValue=false)]
         public string StateId { get; set; }
     
@@ -54,8 +63,9 @@ namespace IO.Vericred.Model
         public override string ToString()
         {
             var sb = new StringBuilder();
-            sb.Append("class RatingArea {\n");
+            sb.Append("class CountyBulk {\n");
             sb.Append("  Id: ").Append(Id).Append("\n");
+            sb.Append("  Name: ").Append(Name).Append("\n");
             sb.Append("  StateId: ").Append(StateId).Append("\n");
             sb.Append("}\n");
             return sb.ToString();
@@ -78,15 +88,15 @@ namespace IO.Vericred.Model
         public override bool Equals(object obj)
         {
             // credit: http://stackoverflow.com/a/10454552/677735
-            return this.Equals(obj as RatingArea);
+            return this.Equals(obj as CountyBulk);
         }
 
         /// <summary>
-        /// Returns true if RatingArea instances are equal
+        /// Returns true if CountyBulk instances are equal
         /// </summary>
-        /// <param name="other">Instance of RatingArea to be compared</param>
+        /// <param name="other">Instance of CountyBulk to be compared</param>
         /// <returns>Boolean</returns>
-        public bool Equals(RatingArea other)
+        public bool Equals(CountyBulk other)
         {
             // credit: http://stackoverflow.com/a/10454552/677735
             if (other == null)
@@ -97,6 +107,11 @@ namespace IO.Vericred.Model
                     this.Id == other.Id ||
                     this.Id != null &&
                     this.Id.Equals(other.Id)
+                ) && 
+                (
+                    this.Name == other.Name ||
+                    this.Name != null &&
+                    this.Name.Equals(other.Name)
                 ) && 
                 (
                     this.StateId == other.StateId ||
@@ -118,6 +133,8 @@ namespace IO.Vericred.Model
                 // Suitable nullity checks etc, of course :)
                 if (this.Id != null)
                     hash = hash * 59 + this.Id.GetHashCode();
+                if (this.Name != null)
+                    hash = hash * 59 + this.Name.GetHashCode();
                 if (this.StateId != null)
                     hash = hash * 59 + this.StateId.GetHashCode();
                 return hash;

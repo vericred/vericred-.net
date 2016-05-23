@@ -15,37 +15,28 @@ namespace IO.Vericred.Model
     /// 
     /// </summary>
     [DataContract]
-    public partial class RatingArea :  IEquatable<RatingArea>
+    public partial class RequestPlanFindApplicant :  IEquatable<RequestPlanFindApplicant>
     { 
     
         /// <summary>
-        /// Initializes a new instance of the <see cref="RatingArea" /> class.
-        /// Initializes a new instance of the <see cref="RatingArea" />class.
+        /// Initializes a new instance of the <see cref="RequestPlanFindApplicant" /> class.
+        /// Initializes a new instance of the <see cref="RequestPlanFindApplicant" />class.
         /// </summary>
-        /// <param name="Id">Name of the Rating Area.</param>
-        /// <param name="StateId">State Code.</param>
+        /// <param name="Age">Age of applicant to search for.</param>
 
-        public RatingArea(string Id = null, string StateId = null)
+        public RequestPlanFindApplicant(int? Age = null)
         {
-            this.Id = Id;
-            this.StateId = StateId;
+            this.Age = Age;
             
         }
 
     
         /// <summary>
-        /// Name of the Rating Area
+        /// Age of applicant to search for
         /// </summary>
-        /// <value>Name of the Rating Area</value>
-        [DataMember(Name="id", EmitDefaultValue=false)]
-        public string Id { get; set; }
-    
-        /// <summary>
-        /// State Code
-        /// </summary>
-        /// <value>State Code</value>
-        [DataMember(Name="state_id", EmitDefaultValue=false)]
-        public string StateId { get; set; }
+        /// <value>Age of applicant to search for</value>
+        [DataMember(Name="age", EmitDefaultValue=false)]
+        public int? Age { get; set; }
     
         /// <summary>
         /// Returns the string presentation of the object
@@ -54,9 +45,8 @@ namespace IO.Vericred.Model
         public override string ToString()
         {
             var sb = new StringBuilder();
-            sb.Append("class RatingArea {\n");
-            sb.Append("  Id: ").Append(Id).Append("\n");
-            sb.Append("  StateId: ").Append(StateId).Append("\n");
+            sb.Append("class RequestPlanFindApplicant {\n");
+            sb.Append("  Age: ").Append(Age).Append("\n");
             sb.Append("}\n");
             return sb.ToString();
         }
@@ -78,15 +68,15 @@ namespace IO.Vericred.Model
         public override bool Equals(object obj)
         {
             // credit: http://stackoverflow.com/a/10454552/677735
-            return this.Equals(obj as RatingArea);
+            return this.Equals(obj as RequestPlanFindApplicant);
         }
 
         /// <summary>
-        /// Returns true if RatingArea instances are equal
+        /// Returns true if RequestPlanFindApplicant instances are equal
         /// </summary>
-        /// <param name="other">Instance of RatingArea to be compared</param>
+        /// <param name="other">Instance of RequestPlanFindApplicant to be compared</param>
         /// <returns>Boolean</returns>
-        public bool Equals(RatingArea other)
+        public bool Equals(RequestPlanFindApplicant other)
         {
             // credit: http://stackoverflow.com/a/10454552/677735
             if (other == null)
@@ -94,14 +84,9 @@ namespace IO.Vericred.Model
 
             return 
                 (
-                    this.Id == other.Id ||
-                    this.Id != null &&
-                    this.Id.Equals(other.Id)
-                ) && 
-                (
-                    this.StateId == other.StateId ||
-                    this.StateId != null &&
-                    this.StateId.Equals(other.StateId)
+                    this.Age == other.Age ||
+                    this.Age != null &&
+                    this.Age.Equals(other.Age)
                 );
         }
 
@@ -116,10 +101,8 @@ namespace IO.Vericred.Model
             {
                 int hash = 41;
                 // Suitable nullity checks etc, of course :)
-                if (this.Id != null)
-                    hash = hash * 59 + this.Id.GetHashCode();
-                if (this.StateId != null)
-                    hash = hash * 59 + this.StateId.GetHashCode();
+                if (this.Age != null)
+                    hash = hash * 59 + this.Age.GetHashCode();
                 return hash;
             }
         }

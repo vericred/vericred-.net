@@ -24,7 +24,7 @@ namespace IO.Vericred.Model
         /// </summary>
         /// <param name="Id">Primary key.</param>
         /// <param name="Dob">Date of Birth.</param>
-        /// <param name="MemberId">Foreign key to members.</param>
+        /// <param name="MemberId">Member token.</param>
         /// <param name="Name">Full name of the Applicant.</param>
         /// <param name="Relationship">Relationship of the Applicant to the Member.</param>
         /// <param name="Smoker">Does the Applicant smoke?.</param>
@@ -58,9 +58,9 @@ namespace IO.Vericred.Model
         public DateTime? Dob { get; set; }
     
         /// <summary>
-        /// Foreign key to members
+        /// Member token
         /// </summary>
-        /// <value>Foreign key to members</value>
+        /// <value>Member token</value>
         [DataMember(Name="member_id", EmitDefaultValue=false)]
         public string MemberId { get; set; }
     

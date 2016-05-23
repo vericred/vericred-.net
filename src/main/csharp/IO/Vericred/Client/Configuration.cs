@@ -275,7 +275,7 @@ namespace IO.Vericred.Client
                      .GetExecutingAssembly()
                      .GetReferencedAssemblies()
                      .Where(x => x.Name == "System.Core").First().Version.ToString()  + "\n";
-            report += "    Version of the API: \n";
+            report += "    Version of the API: 1.0.0\n";
             report += "    SDK Package Version: 0.0.1\n";
 
             return report;

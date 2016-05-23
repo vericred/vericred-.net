@@ -4,15 +4,15 @@ All URIs are relative to *https://api.vericred.com/*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
-[**ZipCountiesGet**](ZipCountiesApi.md#zipcountiesget) | **GET** /zip_counties | Find Zip Counties by Zip Code
+[**GetZipCounties**](ZipCountiesApi.md#getzipcounties) | **GET** /zip_counties | Search for Zip Counties
 
 
-# **ZipCountiesGet**
-> InlineResponse2002 ZipCountiesGet (string zipPrefix)
+# **GetZipCounties**
+> ZipCountyResponse GetZipCounties (string zipPrefix, string vericredApiKey = null)
 
-Find Zip Counties by Zip Code
+Search for Zip Counties
 
-### Finding Zip Code and Fips Code  Our `Plan` endpoints require a zip code and a fips (county) code.  This is because plan pricing requires both of these elements.  Users are unlikely to know their fips code, so we provide this endpoint to look up a `ZipCounty` by zip code and return both the selected zip and fips codes.  
+Our `Plan` endpoints require a zip code and a fips (county) code.  This is because plan pricing requires both of these elements.  Users are unlikely to know their fips code, so we provide this endpoint to look up a `ZipCounty` by zip code and return both the selected zip and fips codes.
 
 ### Example
 ```csharp
@@ -24,23 +24,24 @@ using IO.Vericred.Model;
 
 namespace Example
 {
-    public class ZipCountiesGetExample
+    public class GetZipCountiesExample
     {
         public void main()
         {
             
             var apiInstance = new ZipCountiesApi();
-            var zipPrefix = zipPrefix_example;  // string | Partial five-digit Zip
+            var zipPrefix = 1002;  // string | Partial five-digit Zip
+            var vericredApiKey = api-doc-key;  // string | API Key (optional) 
 
             try
             {
-                // Find Zip Counties by Zip Code
-                InlineResponse2002 result = apiInstance.ZipCountiesGet(zipPrefix);
+                // Search for Zip Counties
+                ZipCountyResponse result = apiInstance.GetZipCounties(zipPrefix, vericredApiKey);
                 Debug.WriteLine(result);
             }
             catch (Exception e)
             {
-                Debug.Print("Exception when calling ZipCountiesApi.ZipCountiesGet: " + e.Message );
+                Debug.Print("Exception when calling ZipCountiesApi.GetZipCounties: " + e.Message );
             }
         }
     }
@@ -52,10 +53,11 @@ namespace Example
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **zipPrefix** | **string**| Partial five-digit Zip | 
+ **vericredApiKey** | **string**| API Key | [optional] 
 
 ### Return type
 
-[**InlineResponse2002**](InlineResponse2002.md)
+[**ZipCountyResponse**](ZipCountyResponse.md)
 
 ### Authorization
 

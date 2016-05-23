@@ -1,12 +1,12 @@
 # IO.Vericred - the C# library for the Vericred API
 
-Vericred's API allows you to search for Health Plans that a specific doctor accepts.  ## Getting Started  Visit our [Developer Portal](https://vericred.3scale.net/access_code?access_code=vericred&cms_token=3545ca52af07bde85b7c0c3aa9d1985e) to create an account.  Once you have created an account, you can create one Application for Production and another for our Sandbox (select the appropriate Plan when you create the Application).  ## Authentication  To authenticate, pass the API Key you created in the Developer Portal as a `Vericred-Api-Key` header.  `curl -H 'Vericred-Api-Key: YOUR_KEY' "https://api.vericred.com/providers?search_term=Foo&zip_code=11215"`  ## Versioning  Vericred's API default to the latest version.  However, if you need a specific version, you can request it with an `Accept-Version` header.  The current version is `v3`.  Previous versions are `v1` and `v2`.  `curl -H 'Vericred-Api-Key: YOUR_KEY' -H 'Accept-Version: v2' "https://api.vericred.com/providers?search_term=Foo&zip_code=11215"`  ## Pagination  Most endpoints are not paginated.  It will be noted in the documentation if/when an endpoint is paginated.  When pagination is present, a `meta` stanza will be present in the response with the total number of records  ``` {   things: [{ id: 1 }, { id: 2 }],   meta: { total: 500 } } ```  ## Sideloading  When we return multiple levels of an object graph (e.g. `Provider`s and their `State`s we sideload the associated data.  In this example, we would provide an Array of `State`s and a `state_id` for each provider.  This is done primarily to reduce the payload size since many of the `Provider`s will share a `State`  ``` {   providers: [{ id: 1, state_id: 1}, { id: 2, state_id: 1 }],   states: [{ id: 1, code: 'NY' }] } ```  If you need the second level of the object graph, you can just match the corresponding id.  ## Selecting specific data  All endpoints allow you to specify which fields you would like to return. This allows you to limit the response to contain only the data you need.  For example, let's take a request that returns the following JSON by default  ``` {   provider: {     id: 1,     name: 'John',     phone: '1234567890',     field_we_dont_care_about: 'value_we_dont_care_about'   },   states: [{     id: 1,     name: 'New York',     code: 'NY',     field_we_dont_care_about: 'value_we_dont_care_about'   }] } ```  To limit our results to only return the fields we care about, we specify the `select` query string parameter for the corresponding fields in the JSON document.  In this case, we want to select `name` and `phone` from the `provider` key, so we would add the parameters `select=provider.name,provider.phone`. We also want the `name` and `code` from the `states` key, so we would add the parameters `select=states.name,staes.code`.  The id field of each document is always returned whether or not it is requested.  Our final request would be `GET /providers/12345?select=provider.name,provider.phone,states.name,states.code`  The response would be  ``` {   provider: {     id: 1,     name: 'John',     phone: '1234567890'   },   states: [{     id: 1,     name: 'New York',     code: 'NY'   }] } ```  
+Vericred's API allows you to search for Health Plans that a specific doctor accepts.  ## Getting Started  Visit our [Developer Portal](https://vericred.3scale.net) to create an account.  Once you have created an account, you can create one Application for Production and another for our Sandbox (select the appropriate Plan when you create the Application).  ## Authentication  To authenticate, pass the API Key you created in the Developer Portal as a `Vericred-Api-Key` header.  `curl -H 'Vericred-Api-Key: YOUR_KEY' "https://api.vericred.com/providers?search_term=Foo&zip_code=11215"`  ## Versioning  Vericred's API default to the latest version.  However, if you need a specific version, you can request it with an `Accept-Version` header.  The current version is `v3`.  Previous versions are `v1` and `v2`.  `curl -H 'Vericred-Api-Key: YOUR_KEY' -H 'Accept-Version: v2' "https://api.vericred.com/providers?search_term=Foo&zip_code=11215"`  ## Pagination  Most endpoints are not paginated.  It will be noted in the documentation if/when an endpoint is paginated.  When pagination is present, a `meta` stanza will be present in the response with the total number of records  ``` {   things: [{ id: 1 }, { id: 2 }],   meta: { total: 500 } } ```  ## Sideloading  When we return multiple levels of an object graph (e.g. `Provider`s and their `State`s we sideload the associated data.  In this example, we would provide an Array of `State`s and a `state_id` for each provider.  This is done primarily to reduce the payload size since many of the `Provider`s will share a `State`  ``` {   providers: [{ id: 1, state_id: 1}, { id: 2, state_id: 1 }],   states: [{ id: 1, code: 'NY' }] } ```  If you need the second level of the object graph, you can just match the corresponding id.  ## Selecting specific data  All endpoints allow you to specify which fields you would like to return. This allows you to limit the response to contain only the data you need.  For example, let's take a request that returns the following JSON by default  ``` {   provider: {     id: 1,     name: 'John',     phone: '1234567890',     field_we_dont_care_about: 'value_we_dont_care_about'   },   states: [{     id: 1,     name: 'New York',     code: 'NY',     field_we_dont_care_about: 'value_we_dont_care_about'   }] } ```  To limit our results to only return the fields we care about, we specify the `select` query string parameter for the corresponding fields in the JSON document.  In this case, we want to select `name` and `phone` from the `provider` key, so we would add the parameters `select=provider.name,provider.phone`. We also want the `name` and `code` from the `states` key, so we would add the parameters `select=states.name,staes.code`.  The id field of each document is always returned whether or not it is requested.  Our final request would be `GET /providers/12345?select=provider.name,provider.phone,states.name,states.code`  The response would be  ``` {   provider: {     id: 1,     name: 'John',     phone: '1234567890'   },   states: [{     id: 1,     name: 'New York',     code: 'NY'   }] } ```  
 
 This C# SDK is automatically generated by the [Swagger Codegen](https://github.com/swagger-api/swagger-codegen) project:
 
-- API version: 
+- API version: 1.0.0
 - SDK version: 0.0.1
-- Build date: 2016-05-09T15:44:34.479-04:00
+- Build date: 2016-05-23T16:44:11.509-04:00
 - Build package: class io.swagger.codegen.languages.CSharpClientCodegen
 
 ## Frameworks supported
@@ -53,18 +53,21 @@ namespace Example
         public void main()
         {
             
-            var apiInstance = new DrugCoverageApi();
-            var ndc = ndc_example;  // string | NDC for a drug
+            var apiInstance = new DrugsApi();
+            var ndcPackageCode = 12345-4321-11;  // string | NDC package code
+            var audience = individual;  // string | Two-character state code
+            var stateCode = NY;  // string | Two-character state code
+            var vericredApiKey = api-doc-key;  // string | API Key (optional) 
 
             try
             {
-                // Find Drug Coverages for a given NDC
-                List<DrugCoverage> result = apiInstance.DrugsNdcCoveragesGet(ndc);
+                // Search for DrugCoverages
+                DrugCoverageResponse result = apiInstance.GetDrugCoverages(ndcPackageCode, audience, stateCode, vericredApiKey);
                 Debug.WriteLine(result);
             }
             catch (Exception e)
             {
-                Debug.Print("Exception when calling DrugCoverageApi.DrugsNdcCoveragesGet: " + e.Message );
+                Debug.Print("Exception when calling DrugsApi.GetDrugCoverages: " + e.Message );
             }
         }
     }
@@ -77,11 +80,12 @@ All URIs are relative to *https://api.vericred.com/*
 
 Class | Method | HTTP request | Description
 ------------ | ------------- | ------------- | -------------
-*DrugCoverageApi* | [**DrugsNdcCoveragesGet**](docs/DrugCoverageApi.md#drugsndccoveragesget) | **GET** /drugs/{ndc}/coverages | Find Drug Coverages for a given NDC
-*PlansApi* | [**PlansFindPost**](docs/PlansApi.md#plansfindpost) | **POST** /plans/find | Find a set of plans for a Zip Code and County
-*ProvidersApi* | [**ProvidersGet**](docs/ProvidersApi.md#providersget) | **GET** /providers | Find providers by term and zip code
-*ProvidersApi* | [**ProvidersNpiGet**](docs/ProvidersApi.md#providersnpiget) | **GET** /providers/{npi} | Find a specific Provider
-*ZipCountiesApi* | [**ZipCountiesGet**](docs/ZipCountiesApi.md#zipcountiesget) | **GET** /zip_counties | Find Zip Counties by Zip Code
+*DrugsApi* | [**GetDrugCoverages**](docs/DrugsApi.md#getdrugcoverages) | **GET** /drug_packages/{ndc_package_code}/coverages | Search for DrugCoverages
+*DrugsApi* | [**ListDrugs**](docs/DrugsApi.md#listdrugs) | **GET** /drugs | Drug Search
+*PlansApi* | [**FindPlans**](docs/PlansApi.md#findplans) | **POST** /plans/search | Find Plans
+*ProvidersApi* | [**GetProvider**](docs/ProvidersApi.md#getprovider) | **GET** /providers/{npi} | Find a Provider
+*ProvidersApi* | [**GetProviders**](docs/ProvidersApi.md#getproviders) | **POST** /providers/search | Find Providers
+*ZipCountiesApi* | [**GetZipCounties**](docs/ZipCountiesApi.md#getzipcounties) | **GET** /zip_counties | Search for Zip Counties
 
 
 ## Documentation for Models
@@ -90,21 +94,33 @@ Class | Method | HTTP request | Description
  - [IO.Vericred.Model.Carrier](docs/Carrier.md)
  - [IO.Vericred.Model.CarrierSubsidiary](docs/CarrierSubsidiary.md)
  - [IO.Vericred.Model.County](docs/County.md)
+ - [IO.Vericred.Model.CountyBulk](docs/CountyBulk.md)
  - [IO.Vericred.Model.Drug](docs/Drug.md)
  - [IO.Vericred.Model.DrugCoverage](docs/DrugCoverage.md)
- - [IO.Vericred.Model.InlineResponse200](docs/InlineResponse200.md)
- - [IO.Vericred.Model.InlineResponse2001](docs/InlineResponse2001.md)
- - [IO.Vericred.Model.InlineResponse2002](docs/InlineResponse2002.md)
+ - [IO.Vericred.Model.DrugCoverageResponse](docs/DrugCoverageResponse.md)
+ - [IO.Vericred.Model.DrugPackage](docs/DrugPackage.md)
+ - [IO.Vericred.Model.DrugSearchResponse](docs/DrugSearchResponse.md)
+ - [IO.Vericred.Model.Meta](docs/Meta.md)
+ - [IO.Vericred.Model.ModelBase](docs/ModelBase.md)
  - [IO.Vericred.Model.Plan](docs/Plan.md)
  - [IO.Vericred.Model.PlanCounty](docs/PlanCounty.md)
+ - [IO.Vericred.Model.PlanCountyBulk](docs/PlanCountyBulk.md)
+ - [IO.Vericred.Model.PlanSearchResponse](docs/PlanSearchResponse.md)
  - [IO.Vericred.Model.PlanSearchResult](docs/PlanSearchResult.md)
  - [IO.Vericred.Model.Pricing](docs/Pricing.md)
  - [IO.Vericred.Model.Provider](docs/Provider.md)
- - [IO.Vericred.Model.Query](docs/Query.md)
+ - [IO.Vericred.Model.ProvidersSearchResponse](docs/ProvidersSearchResponse.md)
  - [IO.Vericred.Model.RatingArea](docs/RatingArea.md)
+ - [IO.Vericred.Model.RequestPlanFind](docs/RequestPlanFind.md)
+ - [IO.Vericred.Model.RequestPlanFindApplicant](docs/RequestPlanFindApplicant.md)
+ - [IO.Vericred.Model.RequestPlanFindProvider](docs/RequestPlanFindProvider.md)
+ - [IO.Vericred.Model.RequestProvidersSearch](docs/RequestProvidersSearch.md)
  - [IO.Vericred.Model.State](docs/State.md)
  - [IO.Vericred.Model.ZipCode](docs/ZipCode.md)
+ - [IO.Vericred.Model.ZipCountiesResponse](docs/ZipCountiesResponse.md)
  - [IO.Vericred.Model.ZipCounty](docs/ZipCounty.md)
+ - [IO.Vericred.Model.ZipCountyBulk](docs/ZipCountyBulk.md)
+ - [IO.Vericred.Model.ZipCountyResponse](docs/ZipCountyResponse.md)
 
 
 ## Documentation for Authorization

@@ -1,10 +1,9 @@
-# IO.Vericred.Model.RatingArea
+# IO.Vericred.Model.RequestPlanFindProvider
 ## Properties
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Id** | **string** | Name of the Rating Area | [optional] 
-**StateId** | **string** | State Code | [optional] 
+**Npi** | **int?** | NPI of provider to search for | [optional] 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

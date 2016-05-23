@@ -4,7 +4,7 @@
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **PlanId** | **string** | Health Insurance Oversight System id | [optional] 
-**NdcPackageCode** | **string** | NDC package code | [optional] 
+**DrugPackageId** | **string** | NDC package code | [optional] 
 **Tier** | **string** | Tier Name | [optional] 
 **QuantityLimit** | **bool?** | Quantity limit exists | [optional] 
 **PriorAuthorization** | **bool?** | Prior authorization required | [optional] 

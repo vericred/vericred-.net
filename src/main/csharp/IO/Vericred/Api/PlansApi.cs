@@ -16,33 +16,33 @@ namespace IO.Vericred.Api
         #region Synchronous Operations
 
         /// <exception cref="IO.Vericred.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="query">Plan query</param>
-        /// <returns>List&lt;Plan&gt;</returns>
-        List<Plan> PlansFindPost (Query query);
+        /// <param name="body"> (optional)</param>
+        /// <returns>PlanSearchResponse</returns>
+        PlanSearchResponse FindPlans (RequestPlanFind body = null);
 
 
 
         /// <exception cref="IO.Vericred.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="query">Plan query</param>
-        /// <returns>ApiResponse of List&lt;Plan&gt;</returns>
-        ApiResponse<List<Plan>> PlansFindPostWithHttpInfo (Query query);
+        /// <param name="body"> (optional)</param>
+        /// <returns>ApiResponse of PlanSearchResponse</returns>
+        ApiResponse<PlanSearchResponse> FindPlansWithHttpInfo (RequestPlanFind body = null);
         #endregion Synchronous Operations
         #region Asynchronous Operations
 
 
         /// <exception cref="IO.Vericred.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="query">Plan query</param>
-        /// <returns>Task of List&lt;Plan&gt;</returns>
-        System.Threading.Tasks.Task<List<Plan>> PlansFindPostAsync (Query query);
+        /// <param name="body"> (optional)</param>
+        /// <returns>Task of PlanSearchResponse</returns>
+        System.Threading.Tasks.Task<PlanSearchResponse> FindPlansAsync (RequestPlanFind body = null);
 
         /// <summary>
-        /// Find a set of plans for a Zip Code and County
+        /// Find Plans
         /// </summary>
 
         /// <exception cref="IO.Vericred.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="query">Plan query</param>
-        /// <returns>Task of ApiResponse (List&lt;Plan&gt;)</returns>
-        System.Threading.Tasks.Task<ApiResponse<List<Plan>>> PlansFindPostAsyncWithHttpInfo (Query query);
+        /// <param name="body"> (optional)</param>
+        /// <returns>Task of ApiResponse (PlanSearchResponse)</returns>
+        System.Threading.Tasks.Task<ApiResponse<PlanSearchResponse>> FindPlansAsyncWithHttpInfo (RequestPlanFind body = null);
         #endregion Asynchronous Operations
     }
 
@@ -134,30 +134,27 @@ namespace IO.Vericred.Api
         }
 
         /// <summary>
-        /// Find a set of plans for a Zip Code and County ### Location Information  Searching for a set of plans requires a &#x60;zip_code&#x60; and &#x60;fips_code&#x60; code.  These are used to determine pricing and availabity of health plans.  Optionally, you may provide a list of Applicants or Providers  ### Applicants  This is a list of people who will be covered by the plan.  We use this list to calculate the premium.  You must include &#x60;age&#x60; and can include &#x60;smoker&#x60;, which also factors into pricing in some states.  Applicants *must* include an age.  If smoker is omitted, its value is assumed to be false.  #### Multiple Applicants  To get pricing for multiple applicants, just append multiple sets of data to the URL with the age and smoking status of each applicant next to each other.  For example, given two applicants - one age 32 and a non-smoker and one age 29 and a smoker, you could use the following request  &#x60;GET /plans?zip_code&#x3D;07451&amp;fips_code&#x3D;33025&amp;applicants[][age]&#x3D;32&amp;applicants[][age]&#x3D;29&amp;applicants[][smoker]&#x3D;true&#x60;  It would also be acceptible to include &#x60;applicants[][smoker]&#x3D;false&#x60; after the first applicant&#39;s age.  ### Providers  We identify Providers (Doctors) by their National Practitioner Index number (NPI).  If you pass a list of Providers, keyed by their NPI number, we will return a list of which Providers are in and out of network for each plan returned.  For example, if we had two providers with the NPI numbers &#x60;12345&#x60; and &#x60;23456&#x60; you would make the following request  &#x60;GET /plans?zip_code&#x3D;07451&amp;fips_code&#x3D;33025&amp;providers[][npi]&#x3D;12345&amp;providers[][npi]&#x3D;23456&#x60;  ### Enrollment Date  To calculate plan pricing and availability, we default to the current date as the enrollment date.  To specify a date in the future (or the past), pass a string with the format &#x60;YYYY-MM-DD&#x60; in the &#x60;enrollment_date&#x60; parameter.  &#x60;GET /plans?zip_code&#x3D;07451&amp;fips_code&#x3D;33025&amp;enrollment_date&#x3D;2016-01-01&#x60;  ### Subsidy  On-marketplace plans are eligible for a subsidy based on the &#x60;household_size&#x60; and &#x60;household_income&#x60; of the applicants.  If you pass those values, we will calculate the &#x60;subsidized_premium&#x60; and return it for each plan.  If no values are provided, the &#x60;subsidized_premium&#x60; will be the same as the &#x60;premium&#x60;  &#x60;GET /plans?zip_code&#x3D;07451&amp;fips_code&#x3D;33025&amp;household_size&#x3D;4&amp;household_income&#x3D;40000&#x60;  
+        /// Find Plans ### Location Information  Searching for a set of plans requires a &#x60;zip_code&#x60; and &#x60;fips_code&#x60; code.  These are used to determine pricing and availabity of health plans.  Optionally, you may provide a list of Applicants or Providers  ### Applicants  This is a list of people who will be covered by the plan.  We use this list to calculate the premium.  You must include &#x60;age&#x60; and can include &#x60;smoker&#x60;, which also factors into pricing in some states.  Applicants *must* include an age.  If smoker is omitted, its value is assumed to be false.  #### Multiple Applicants To get pricing for multiple applicants, just append multiple sets of data to the URL with the age and smoking status of each applicant next to each other.  For example, given two applicants - one age 32 and a non-smoker and one age 29 and a smoker, you could use the following request  &#x60;GET /plans?zip_code&#x3D;07451&amp;fips_code&#x3D;33025&amp;applicants[][age]&#x3D;32&amp;applicants[][age]&#x3D;29&amp;applicants[][smoker]&#x3D;true&#x60;  It would also be acceptible to include &#x60;applicants[][smoker]&#x3D;false&#x60; after the first applicant&#39;s age.  ### Providers  We identify Providers (Doctors) by their National Practitioner Index number (NPI).  If you pass a list of Providers, keyed by their NPI number, we will return a list of which Providers are in and out of network for each plan returned.  For example, if we had two providers with the NPI numbers &#x60;12345&#x60; and &#x60;23456&#x60; you would make the following request  &#x60;GET /plans?zip_code&#x3D;07451&amp;fips_code&#x3D;33025&amp;providers[][npi]&#x3D;12345&amp;providers[][npi]&#x3D;23456&#x60;  ### Enrollment Date  To calculate plan pricing and availability, we default to the current date as the enrollment date.  To specify a date in the future (or the past), pass a string with the format &#x60;YYYY-MM-DD&#x60; in the &#x60;enrollment_date&#x60; parameter.  &#x60;GET /plans?zip_code&#x3D;07451&amp;fips_code&#x3D;33025&amp;enrollment_date&#x3D;2016-01-01&#x60;  ### Subsidy  On-marketplace plans are eligible for a subsidy based on the &#x60;household_size&#x60; and &#x60;household_income&#x60; of the applicants.  If you pass those values, we will calculate the &#x60;subsidized_premium&#x60; and return it for each plan.  If no values are provided, the &#x60;subsidized_premium&#x60; will be the same as the &#x60;premium&#x60;  &#x60;GET /plans?zip_code&#x3D;07451&amp;fips_code&#x3D;33025&amp;household_size&#x3D;4&amp;household_income&#x3D;40000&#x60; 
         /// </summary>
         /// <exception cref="IO.Vericred.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="query">Plan query</param>
-        /// <returns>List&lt;Plan&gt;</returns>
-        public List<Plan> PlansFindPost (Query query)
+        /// <param name="body"> (optional)</param>
+        /// <returns>PlanSearchResponse</returns>
+        public PlanSearchResponse FindPlans (RequestPlanFind body = null)
         {
-             ApiResponse<List<Plan>> localVarResponse = PlansFindPostWithHttpInfo(query);
+             ApiResponse<PlanSearchResponse> localVarResponse = FindPlansWithHttpInfo(body);
              return localVarResponse.Data;
         }
 
         /// <summary>
-        /// Find a set of plans for a Zip Code and County ### Location Information  Searching for a set of plans requires a &#x60;zip_code&#x60; and &#x60;fips_code&#x60; code.  These are used to determine pricing and availabity of health plans.  Optionally, you may provide a list of Applicants or Providers  ### Applicants  This is a list of people who will be covered by the plan.  We use this list to calculate the premium.  You must include &#x60;age&#x60; and can include &#x60;smoker&#x60;, which also factors into pricing in some states.  Applicants *must* include an age.  If smoker is omitted, its value is assumed to be false.  #### Multiple Applicants  To get pricing for multiple applicants, just append multiple sets of data to the URL with the age and smoking status of each applicant next to each other.  For example, given two applicants - one age 32 and a non-smoker and one age 29 and a smoker, you could use the following request  &#x60;GET /plans?zip_code&#x3D;07451&amp;fips_code&#x3D;33025&amp;applicants[][age]&#x3D;32&amp;applicants[][age]&#x3D;29&amp;applicants[][smoker]&#x3D;true&#x60;  It would also be acceptible to include &#x60;applicants[][smoker]&#x3D;false&#x60; after the first applicant&#39;s age.  ### Providers  We identify Providers (Doctors) by their National Practitioner Index number (NPI).  If you pass a list of Providers, keyed by their NPI number, we will return a list of which Providers are in and out of network for each plan returned.  For example, if we had two providers with the NPI numbers &#x60;12345&#x60; and &#x60;23456&#x60; you would make the following request  &#x60;GET /plans?zip_code&#x3D;07451&amp;fips_code&#x3D;33025&amp;providers[][npi]&#x3D;12345&amp;providers[][npi]&#x3D;23456&#x60;  ### Enrollment Date  To calculate plan pricing and availability, we default to the current date as the enrollment date.  To specify a date in the future (or the past), pass a string with the format &#x60;YYYY-MM-DD&#x60; in the &#x60;enrollment_date&#x60; parameter.  &#x60;GET /plans?zip_code&#x3D;07451&amp;fips_code&#x3D;33025&amp;enrollment_date&#x3D;2016-01-01&#x60;  ### Subsidy  On-marketplace plans are eligible for a subsidy based on the &#x60;household_size&#x60; and &#x60;household_income&#x60; of the applicants.  If you pass those values, we will calculate the &#x60;subsidized_premium&#x60; and return it for each plan.  If no values are provided, the &#x60;subsidized_premium&#x60; will be the same as the &#x60;premium&#x60;  &#x60;GET /plans?zip_code&#x3D;07451&amp;fips_code&#x3D;33025&amp;household_size&#x3D;4&amp;household_income&#x3D;40000&#x60;  
+        /// Find Plans ### Location Information  Searching for a set of plans requires a &#x60;zip_code&#x60; and &#x60;fips_code&#x60; code.  These are used to determine pricing and availabity of health plans.  Optionally, you may provide a list of Applicants or Providers  ### Applicants  This is a list of people who will be covered by the plan.  We use this list to calculate the premium.  You must include &#x60;age&#x60; and can include &#x60;smoker&#x60;, which also factors into pricing in some states.  Applicants *must* include an age.  If smoker is omitted, its value is assumed to be false.  #### Multiple Applicants To get pricing for multiple applicants, just append multiple sets of data to the URL with the age and smoking status of each applicant next to each other.  For example, given two applicants - one age 32 and a non-smoker and one age 29 and a smoker, you could use the following request  &#x60;GET /plans?zip_code&#x3D;07451&amp;fips_code&#x3D;33025&amp;applicants[][age]&#x3D;32&amp;applicants[][age]&#x3D;29&amp;applicants[][smoker]&#x3D;true&#x60;  It would also be acceptible to include &#x60;applicants[][smoker]&#x3D;false&#x60; after the first applicant&#39;s age.  ### Providers  We identify Providers (Doctors) by their National Practitioner Index number (NPI).  If you pass a list of Providers, keyed by their NPI number, we will return a list of which Providers are in and out of network for each plan returned.  For example, if we had two providers with the NPI numbers &#x60;12345&#x60; and &#x60;23456&#x60; you would make the following request  &#x60;GET /plans?zip_code&#x3D;07451&amp;fips_code&#x3D;33025&amp;providers[][npi]&#x3D;12345&amp;providers[][npi]&#x3D;23456&#x60;  ### Enrollment Date  To calculate plan pricing and availability, we default to the current date as the enrollment date.  To specify a date in the future (or the past), pass a string with the format &#x60;YYYY-MM-DD&#x60; in the &#x60;enrollment_date&#x60; parameter.  &#x60;GET /plans?zip_code&#x3D;07451&amp;fips_code&#x3D;33025&amp;enrollment_date&#x3D;2016-01-01&#x60;  ### Subsidy  On-marketplace plans are eligible for a subsidy based on the &#x60;household_size&#x60; and &#x60;household_income&#x60; of the applicants.  If you pass those values, we will calculate the &#x60;subsidized_premium&#x60; and return it for each plan.  If no values are provided, the &#x60;subsidized_premium&#x60; will be the same as the &#x60;premium&#x60;  &#x60;GET /plans?zip_code&#x3D;07451&amp;fips_code&#x3D;33025&amp;household_size&#x3D;4&amp;household_income&#x3D;40000&#x60; 
         /// </summary>
         /// <exception cref="IO.Vericred.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="query">Plan query</param>
-        /// <returns>ApiResponse of List&lt;Plan&gt;</returns>
-        public ApiResponse< List<Plan> > PlansFindPostWithHttpInfo (Query query)
+        /// <param name="body"> (optional)</param>
+        /// <returns>ApiResponse of PlanSearchResponse</returns>
+        public ApiResponse< PlanSearchResponse > FindPlansWithHttpInfo (RequestPlanFind body = null)
         {
-            // verify the required parameter 'query' is set
-            if (query == null)
-                throw new ApiException(400, "Missing required parameter 'query' when calling PlansApi->PlansFindPost");
 
-            var localVarPath = "/plans/find";
+            var localVarPath = "/plans/search";
             var localVarPathParams = new Dictionary<String, String>();
             var localVarQueryParams = new Dictionary<String, String>();
             var localVarHeaderParams = new Dictionary<String, String>(Configuration.DefaultHeader);
@@ -180,13 +177,13 @@ namespace IO.Vericred.Api
             // set "format" to json by default
             // e.g. /pet/{petId}.{format} becomes /pet/{petId}.json
             localVarPathParams.Add("format", "json");
-            if (query.GetType() != typeof(byte[]))
+            if (body.GetType() != typeof(byte[]))
             {
-                localVarPostBody = Configuration.ApiClient.Serialize(query); // http body (model) parameter
+                localVarPostBody = Configuration.ApiClient.Serialize(body); // http body (model) parameter
             }
             else
             {
-                localVarPostBody = query; // byte array
+                localVarPostBody = body; // byte array
             }
 
 
@@ -198,38 +195,35 @@ namespace IO.Vericred.Api
             int localVarStatusCode = (int) localVarResponse.StatusCode;
 
             if (localVarStatusCode >= 400)
-                throw new ApiException (localVarStatusCode, "Error calling PlansFindPost: " + localVarResponse.Content, localVarResponse.Content);
+                throw new ApiException (localVarStatusCode, "Error calling FindPlans: " + localVarResponse.Content, localVarResponse.Content);
             else if (localVarStatusCode == 0)
-                throw new ApiException (localVarStatusCode, "Error calling PlansFindPost: " + localVarResponse.ErrorMessage, localVarResponse.ErrorMessage);
+                throw new ApiException (localVarStatusCode, "Error calling FindPlans: " + localVarResponse.ErrorMessage, localVarResponse.ErrorMessage);
 
-            return new ApiResponse<List<Plan>>(localVarStatusCode,
+            return new ApiResponse<PlanSearchResponse>(localVarStatusCode,
                 localVarResponse.Headers.ToDictionary(x => x.Name, x => x.Value.ToString()),
-                (List<Plan>) Configuration.ApiClient.Deserialize(localVarResponse, typeof(List<Plan>)));
+                (PlanSearchResponse) Configuration.ApiClient.Deserialize(localVarResponse, typeof(PlanSearchResponse)));
             
         }
 
 
         /// <exception cref="IO.Vericred.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="query">Plan query</param>
-        /// <returns>Task of List&lt;Plan&gt;</returns>
-        public async System.Threading.Tasks.Task<List<Plan>> PlansFindPostAsync (Query query)
+        /// <param name="body"> (optional)</param>
+        /// <returns>Task of PlanSearchResponse</returns>
+        public async System.Threading.Tasks.Task<PlanSearchResponse> FindPlansAsync (RequestPlanFind body = null)
         {
-             ApiResponse<List<Plan>> localVarResponse = await PlansFindPostAsyncWithHttpInfo(query);
+             ApiResponse<PlanSearchResponse> localVarResponse = await FindPlansAsyncWithHttpInfo(body);
              return localVarResponse.Data;
 
         }
 
 
         /// <exception cref="IO.Vericred.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="query">Plan query</param>
-        /// <returns>Task of ApiResponse (List&lt;Plan&gt;)</returns>
-        public async System.Threading.Tasks.Task<ApiResponse<List<Plan>>> PlansFindPostAsyncWithHttpInfo (Query query)
+        /// <param name="body"> (optional)</param>
+        /// <returns>Task of ApiResponse (PlanSearchResponse)</returns>
+        public async System.Threading.Tasks.Task<ApiResponse<PlanSearchResponse>> FindPlansAsyncWithHttpInfo (RequestPlanFind body = null)
         {
-            // verify the required parameter 'query' is set
-            if (query == null)
-                throw new ApiException(400, "Missing required parameter 'query' when calling PlansApi->PlansFindPost");
 
-            var localVarPath = "/plans/find";
+            var localVarPath = "/plans/search";
             var localVarPathParams = new Dictionary<String, String>();
             var localVarQueryParams = new Dictionary<String, String>();
             var localVarHeaderParams = new Dictionary<String, String>(Configuration.DefaultHeader);
@@ -252,13 +246,13 @@ namespace IO.Vericred.Api
             // set "format" to json by default
             // e.g. /pet/{petId}.{format} becomes /pet/{petId}.json
             localVarPathParams.Add("format", "json");
-            if (query.GetType() != typeof(byte[]))
+            if (body.GetType() != typeof(byte[]))
             {
-                localVarPostBody = Configuration.ApiClient.Serialize(query); // http body (model) parameter
+                localVarPostBody = Configuration.ApiClient.Serialize(body); // http body (model) parameter
             }
             else
             {
-                localVarPostBody = query; // byte array
+                localVarPostBody = body; // byte array
             }
 
 
@@ -270,13 +264,13 @@ namespace IO.Vericred.Api
             int localVarStatusCode = (int) localVarResponse.StatusCode;
 
             if (localVarStatusCode >= 400)
-                throw new ApiException (localVarStatusCode, "Error calling PlansFindPost: " + localVarResponse.Content, localVarResponse.Content);
+                throw new ApiException (localVarStatusCode, "Error calling FindPlans: " + localVarResponse.Content, localVarResponse.Content);
             else if (localVarStatusCode == 0)
-                throw new ApiException (localVarStatusCode, "Error calling PlansFindPost: " + localVarResponse.ErrorMessage, localVarResponse.ErrorMessage);
+                throw new ApiException (localVarStatusCode, "Error calling FindPlans: " + localVarResponse.ErrorMessage, localVarResponse.ErrorMessage);
 
-            return new ApiResponse<List<Plan>>(localVarStatusCode,
+            return new ApiResponse<PlanSearchResponse>(localVarStatusCode,
                 localVarResponse.Headers.ToDictionary(x => x.Name, x => x.Value.ToString()),
-                (List<Plan>) Configuration.ApiClient.Deserialize(localVarResponse, typeof(List<Plan>)));
+                (PlanSearchResponse) Configuration.ApiClient.Deserialize(localVarResponse, typeof(PlanSearchResponse)));
             
         }
 
