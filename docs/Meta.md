@@ -1,10 +1,9 @@
-# IO.Vericred.Model.RatingArea
+# IO.Vericred.Model.Meta
 ## Properties
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Id** | **string** | Name of the Rating Area | [optional] 
-**StateId** | **string** | State Code | [optional] 
+**Total** | **int?** | Number of entities returned | [optional] 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

@@ -15,37 +15,37 @@ namespace IO.Vericred.Model
     /// 
     /// </summary>
     [DataContract]
-    public partial class RatingArea :  IEquatable<RatingArea>
+    public partial class DrugPackage :  IEquatable<DrugPackage>
     { 
     
         /// <summary>
-        /// Initializes a new instance of the <see cref="RatingArea" /> class.
-        /// Initializes a new instance of the <see cref="RatingArea" />class.
+        /// Initializes a new instance of the <see cref="DrugPackage" /> class.
+        /// Initializes a new instance of the <see cref="DrugPackage" />class.
         /// </summary>
-        /// <param name="Id">Name of the Rating Area.</param>
-        /// <param name="StateId">State Code.</param>
+        /// <param name="Id">National Drug Code ID (Package).</param>
+        /// <param name="Description">Package description.</param>
 
-        public RatingArea(string Id = null, string StateId = null)
+        public DrugPackage(string Id = null, string Description = null)
         {
             this.Id = Id;
-            this.StateId = StateId;
+            this.Description = Description;
             
         }
 
     
         /// <summary>
-        /// Name of the Rating Area
+        /// National Drug Code ID (Package)
         /// </summary>
-        /// <value>Name of the Rating Area</value>
+        /// <value>National Drug Code ID (Package)</value>
         [DataMember(Name="id", EmitDefaultValue=false)]
         public string Id { get; set; }
     
         /// <summary>
-        /// State Code
+        /// Package description
         /// </summary>
-        /// <value>State Code</value>
-        [DataMember(Name="state_id", EmitDefaultValue=false)]
-        public string StateId { get; set; }
+        /// <value>Package description</value>
+        [DataMember(Name="description", EmitDefaultValue=false)]
+        public string Description { get; set; }
     
         /// <summary>
         /// Returns the string presentation of the object
@@ -54,9 +54,9 @@ namespace IO.Vericred.Model
         public override string ToString()
         {
             var sb = new StringBuilder();
-            sb.Append("class RatingArea {\n");
+            sb.Append("class DrugPackage {\n");
             sb.Append("  Id: ").Append(Id).Append("\n");
-            sb.Append("  StateId: ").Append(StateId).Append("\n");
+            sb.Append("  Description: ").Append(Description).Append("\n");
             sb.Append("}\n");
             return sb.ToString();
         }
@@ -78,15 +78,15 @@ namespace IO.Vericred.Model
         public override bool Equals(object obj)
         {
             // credit: http://stackoverflow.com/a/10454552/677735
-            return this.Equals(obj as RatingArea);
+            return this.Equals(obj as DrugPackage);
         }
 
         /// <summary>
-        /// Returns true if RatingArea instances are equal
+        /// Returns true if DrugPackage instances are equal
         /// </summary>
-        /// <param name="other">Instance of RatingArea to be compared</param>
+        /// <param name="other">Instance of DrugPackage to be compared</param>
         /// <returns>Boolean</returns>
-        public bool Equals(RatingArea other)
+        public bool Equals(DrugPackage other)
         {
             // credit: http://stackoverflow.com/a/10454552/677735
             if (other == null)
@@ -99,9 +99,9 @@ namespace IO.Vericred.Model
                     this.Id.Equals(other.Id)
                 ) && 
                 (
-                    this.StateId == other.StateId ||
-                    this.StateId != null &&
-                    this.StateId.Equals(other.StateId)
+                    this.Description == other.Description ||
+                    this.Description != null &&
+                    this.Description.Equals(other.Description)
                 );
         }
 
@@ -118,8 +118,8 @@ namespace IO.Vericred.Model
                 // Suitable nullity checks etc, of course :)
                 if (this.Id != null)
                     hash = hash * 59 + this.Id.GetHashCode();
-                if (this.StateId != null)
-                    hash = hash * 59 + this.StateId.GetHashCode();
+                if (this.Description != null)
+                    hash = hash * 59 + this.Description.GetHashCode();
                 return hash;
             }
         }

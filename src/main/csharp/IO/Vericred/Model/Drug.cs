@@ -22,15 +22,17 @@ namespace IO.Vericred.Model
         /// Initializes a new instance of the <see cref="Drug" /> class.
         /// Initializes a new instance of the <see cref="Drug" />class.
         /// </summary>
-        /// <param name="Ndc">National Drug Code ID.</param>
+        /// <param name="Id">National Drug Code ID.</param>
         /// <param name="ProprietaryName">Proprietary name of drug.</param>
         /// <param name="NonProprietaryName">Non-proprietary name of drug.</param>
+        /// <param name="DrugPackageIds">Array of drug package Ids.</param>
 
-        public Drug(string Ndc = null, string ProprietaryName = null, string NonProprietaryName = null)
+        public Drug(string Id = null, string ProprietaryName = null, string NonProprietaryName = null, List<string> DrugPackageIds = null)
         {
-            this.Ndc = Ndc;
+            this.Id = Id;
             this.ProprietaryName = ProprietaryName;
             this.NonProprietaryName = NonProprietaryName;
+            this.DrugPackageIds = DrugPackageIds;
             
         }
 
@@ -39,8 +41,8 @@ namespace IO.Vericred.Model
         /// National Drug Code ID
         /// </summary>
         /// <value>National Drug Code ID</value>
-        [DataMember(Name="ndc", EmitDefaultValue=false)]
-        public string Ndc { get; set; }
+        [DataMember(Name="id", EmitDefaultValue=false)]
+        public string Id { get; set; }
     
         /// <summary>
         /// Proprietary name of drug
@@ -57,6 +59,13 @@ namespace IO.Vericred.Model
         public string NonProprietaryName { get; set; }
     
         /// <summary>
+        /// Array of drug package Ids
+        /// </summary>
+        /// <value>Array of drug package Ids</value>
+        [DataMember(Name="drug_package_ids", EmitDefaultValue=false)]
+        public List<string> DrugPackageIds { get; set; }
+    
+        /// <summary>
         /// Returns the string presentation of the object
         /// </summary>
         /// <returns>String presentation of the object</returns>
@@ -64,9 +73,10 @@ namespace IO.Vericred.Model
         {
             var sb = new StringBuilder();
             sb.Append("class Drug {\n");
-            sb.Append("  Ndc: ").Append(Ndc).Append("\n");
+            sb.Append("  Id: ").Append(Id).Append("\n");
             sb.Append("  ProprietaryName: ").Append(ProprietaryName).Append("\n");
             sb.Append("  NonProprietaryName: ").Append(NonProprietaryName).Append("\n");
+            sb.Append("  DrugPackageIds: ").Append(DrugPackageIds).Append("\n");
             sb.Append("}\n");
             return sb.ToString();
         }
@@ -104,9 +114,9 @@ namespace IO.Vericred.Model
 
             return 
                 (
-                    this.Ndc == other.Ndc ||
-                    this.Ndc != null &&
-                    this.Ndc.Equals(other.Ndc)
+                    this.Id == other.Id ||
+                    this.Id != null &&
+                    this.Id.Equals(other.Id)
                 ) && 
                 (
                     this.ProprietaryName == other.ProprietaryName ||
@@ -117,6 +127,11 @@ namespace IO.Vericred.Model
                     this.NonProprietaryName == other.NonProprietaryName ||
                     this.NonProprietaryName != null &&
                     this.NonProprietaryName.Equals(other.NonProprietaryName)
+                ) && 
+                (
+                    this.DrugPackageIds == other.DrugPackageIds ||
+                    this.DrugPackageIds != null &&
+                    this.DrugPackageIds.SequenceEqual(other.DrugPackageIds)
                 );
         }
 
@@ -131,12 +146,14 @@ namespace IO.Vericred.Model
             {
                 int hash = 41;
                 // Suitable nullity checks etc, of course :)
-                if (this.Ndc != null)
-                    hash = hash * 59 + this.Ndc.GetHashCode();
+                if (this.Id != null)
+                    hash = hash * 59 + this.Id.GetHashCode();
                 if (this.ProprietaryName != null)
                     hash = hash * 59 + this.ProprietaryName.GetHashCode();
                 if (this.NonProprietaryName != null)
                     hash = hash * 59 + this.NonProprietaryName.GetHashCode();
+                if (this.DrugPackageIds != null)
+                    hash = hash * 59 + this.DrugPackageIds.GetHashCode();
                 return hash;
             }
         }

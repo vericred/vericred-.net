@@ -27,8 +27,8 @@ namespace IO.Vericred.Model
         /// <param name="Name">Human-readable name.</param>
         /// <param name="StateCode">Two-character state code.</param>
         /// <param name="StateId">state relationship.</param>
-        /// <param name="StateLive">Is the state containing this county active for consumers? *deprecated in favor of last_date_for_individual.</param>
-        /// <param name="StateLiveForBusiness">Is the state containing this county active for business? *deprecated in favor of last_date_for_shop.</param>
+        /// <param name="StateLive">Is the state containing this county active for consumers?(deprecated in favor of last_date_for_individual).</param>
+        /// <param name="StateLiveForBusiness">Is the state containing this county active for business?(deprecated in favor of last_date_for_shop).</param>
 
         public County(int? Id = null, string FipsCode = null, string Name = null, string StateCode = null, int? StateId = null, bool? StateLive = null, bool? StateLiveForBusiness = null)
         {
@@ -79,16 +79,16 @@ namespace IO.Vericred.Model
         public int? StateId { get; set; }
     
         /// <summary>
-        /// Is the state containing this county active for consumers? *deprecated in favor of last_date_for_individual
+        /// Is the state containing this county active for consumers?(deprecated in favor of last_date_for_individual)
         /// </summary>
-        /// <value>Is the state containing this county active for consumers? *deprecated in favor of last_date_for_individual</value>
+        /// <value>Is the state containing this county active for consumers?(deprecated in favor of last_date_for_individual)</value>
         [DataMember(Name="state_live", EmitDefaultValue=false)]
         public bool? StateLive { get; set; }
     
         /// <summary>
-        /// Is the state containing this county active for business? *deprecated in favor of last_date_for_shop
+        /// Is the state containing this county active for business?(deprecated in favor of last_date_for_shop)
         /// </summary>
-        /// <value>Is the state containing this county active for business? *deprecated in favor of last_date_for_shop</value>
+        /// <value>Is the state containing this county active for business?(deprecated in favor of last_date_for_shop)</value>
         [DataMember(Name="state_live_for_business", EmitDefaultValue=false)]
         public bool? StateLiveForBusiness { get; set; }
     

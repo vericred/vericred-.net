@@ -1,10 +1,10 @@
-# IO.Vericred.Model.RatingArea
+# IO.Vericred.Model.DrugPackage
 ## Properties
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Id** | **string** | Name of the Rating Area | [optional] 
-**StateId** | **string** | State Code | [optional] 
+**Id** | **string** | National Drug Code ID (Package) | [optional] 
+**Description** | **string** | Package description | [optional] 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

@@ -1,10 +1,11 @@
-# IO.Vericred.Model.RatingArea
+# IO.Vericred.Model.PlanSearchResponse
 ## Properties
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Id** | **string** | Name of the Rating Area | [optional] 
-**StateId** | **string** | State Code | [optional] 
+**Meta** | [**Meta**](Meta.md) | Metadata for query | [optional] 
+**Plans** | [**List&lt;Plan&gt;**](Plan.md) | Plan search results | [optional] 
+**Coverages** | [**List&lt;Drug&gt;**](Drug.md) | null | [optional] 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 
