@@ -15,22 +15,20 @@ namespace IO.Vericred.Model
     /// 
     /// </summary>
     [DataContract]
-    public partial class ProvidersSearchResponse :  IEquatable<ProvidersSearchResponse>
+    public partial class NetworkSearchResponse :  IEquatable<NetworkSearchResponse>
     { 
     
         /// <summary>
-        /// Initializes a new instance of the <see cref="ProvidersSearchResponse" /> class.
-        /// Initializes a new instance of the <see cref="ProvidersSearchResponse" />class.
+        /// Initializes a new instance of the <see cref="NetworkSearchResponse" /> class.
+        /// Initializes a new instance of the <see cref="NetworkSearchResponse" />class.
         /// </summary>
         /// <param name="Meta">Metadata for query.</param>
-        /// <param name="Providers">Providers that fit the requested criterion..</param>
-        /// <param name="States">States that fit the requested criterion..</param>
+        /// <param name="Networks">Networks that fit the requested criterion..</param>
 
-        public ProvidersSearchResponse(Meta Meta = null, List<Provider> Providers = null, List<State> States = null)
+        public NetworkSearchResponse(Meta Meta = null, List<Network> Networks = null)
         {
             this.Meta = Meta;
-            this.Providers = Providers;
-            this.States = States;
+            this.Networks = Networks;
             
         }
 
@@ -43,18 +41,11 @@ namespace IO.Vericred.Model
         public Meta Meta { get; set; }
     
         /// <summary>
-        /// Providers that fit the requested criterion.
+        /// Networks that fit the requested criterion.
         /// </summary>
-        /// <value>Providers that fit the requested criterion.</value>
-        [DataMember(Name="providers", EmitDefaultValue=false)]
-        public List<Provider> Providers { get; set; }
-    
-        /// <summary>
-        /// States that fit the requested criterion.
-        /// </summary>
-        /// <value>States that fit the requested criterion.</value>
-        [DataMember(Name="states", EmitDefaultValue=false)]
-        public List<State> States { get; set; }
+        /// <value>Networks that fit the requested criterion.</value>
+        [DataMember(Name="networks", EmitDefaultValue=false)]
+        public List<Network> Networks { get; set; }
     
         /// <summary>
         /// Returns the string presentation of the object
@@ -63,10 +54,9 @@ namespace IO.Vericred.Model
         public override string ToString()
         {
             var sb = new StringBuilder();
-            sb.Append("class ProvidersSearchResponse {\n");
+            sb.Append("class NetworkSearchResponse {\n");
             sb.Append("  Meta: ").Append(Meta).Append("\n");
-            sb.Append("  Providers: ").Append(Providers).Append("\n");
-            sb.Append("  States: ").Append(States).Append("\n");
+            sb.Append("  Networks: ").Append(Networks).Append("\n");
             sb.Append("}\n");
             return sb.ToString();
         }
@@ -88,15 +78,15 @@ namespace IO.Vericred.Model
         public override bool Equals(object obj)
         {
             // credit: http://stackoverflow.com/a/10454552/677735
-            return this.Equals(obj as ProvidersSearchResponse);
+            return this.Equals(obj as NetworkSearchResponse);
         }
 
         /// <summary>
-        /// Returns true if ProvidersSearchResponse instances are equal
+        /// Returns true if NetworkSearchResponse instances are equal
         /// </summary>
-        /// <param name="other">Instance of ProvidersSearchResponse to be compared</param>
+        /// <param name="other">Instance of NetworkSearchResponse to be compared</param>
         /// <returns>Boolean</returns>
-        public bool Equals(ProvidersSearchResponse other)
+        public bool Equals(NetworkSearchResponse other)
         {
             // credit: http://stackoverflow.com/a/10454552/677735
             if (other == null)
@@ -109,14 +99,9 @@ namespace IO.Vericred.Model
                     this.Meta.Equals(other.Meta)
                 ) && 
                 (
-                    this.Providers == other.Providers ||
-                    this.Providers != null &&
-                    this.Providers.SequenceEqual(other.Providers)
-                ) && 
-                (
-                    this.States == other.States ||
-                    this.States != null &&
-                    this.States.SequenceEqual(other.States)
+                    this.Networks == other.Networks ||
+                    this.Networks != null &&
+                    this.Networks.SequenceEqual(other.Networks)
                 );
         }
 
@@ -133,10 +118,8 @@ namespace IO.Vericred.Model
                 // Suitable nullity checks etc, of course :)
                 if (this.Meta != null)
                     hash = hash * 59 + this.Meta.GetHashCode();
-                if (this.Providers != null)
-                    hash = hash * 59 + this.Providers.GetHashCode();
-                if (this.States != null)
-                    hash = hash * 59 + this.States.GetHashCode();
+                if (this.Networks != null)
+                    hash = hash * 59 + this.Networks.GetHashCode();
                 return hash;
             }
         }
