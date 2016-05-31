@@ -1,11 +1,10 @@
-# IO.Vericred.Model.ProvidersSearchResponse
+# IO.Vericred.Model.NetworkSearchResponse
 ## Properties
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **Meta** | [**Meta**](Meta.md) | Metadata for query | [optional] 
-**Providers** | [**List&lt;Provider&gt;**](Provider.md) | Providers that fit the requested criterion. | [optional] 
-**States** | [**List&lt;State&gt;**](State.md) | States that fit the requested criterion. | [optional] 
+**Networks** | [**List&lt;Network&gt;**](Network.md) | Networks that fit the requested criterion. | [optional] 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

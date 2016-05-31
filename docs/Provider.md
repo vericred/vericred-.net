@@ -18,6 +18,7 @@ Name | Type | Description | Notes
 **Latitude** | **double?** | Latitude of provider | [optional] 
 **Longitude** | **double?** | Longitude of provider | [optional] 
 **MiddleName** | **string** | Middle name for the provider. | [optional] 
+**NetworkIds** | **List&lt;int?&gt;** | Array of network ids | [optional] 
 **PersonalPhone** | **string** | Personal contact phone for the provider. | [optional] 
 **Phone** | **string** | Office phone for the provider | [optional] 
 **PresentationName** | **string** | Preferred name for display (e.g. Dr. Francis White may prefer Dr. Frank White) | [optional] 

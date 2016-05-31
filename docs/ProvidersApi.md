@@ -9,7 +9,7 @@ Method | HTTP request | Description
 
 
 # **GetProvider**
-> ProviderResponse GetProvider (string npi, string vericredApiKey = null)
+> Provider GetProvider (string npi, string vericredApiKey = null)
 
 Find a Provider
 
@@ -37,7 +37,7 @@ namespace Example
             try
             {
                 // Find a Provider
-                ProviderResponse result = apiInstance.GetProvider(npi, vericredApiKey);
+                Provider result = apiInstance.GetProvider(npi, vericredApiKey);
                 Debug.WriteLine(result);
             }
             catch (Exception e)
@@ -58,7 +58,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**ProviderResponse**](ProviderResponse.md)
+[**Provider**](Provider.md)
 
 ### Authorization
 

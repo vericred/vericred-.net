@@ -37,6 +37,7 @@ namespace IO.Vericred.Model
         /// <param name="Latitude">Latitude of provider.</param>
         /// <param name="Longitude">Longitude of provider.</param>
         /// <param name="MiddleName">Middle name for the provider..</param>
+        /// <param name="NetworkIds">Array of network ids.</param>
         /// <param name="PersonalPhone">Personal contact phone for the provider..</param>
         /// <param name="Phone">Office phone for the provider.</param>
         /// <param name="PresentationName">Preferred name for display (e.g. Dr. Francis White may prefer Dr. Frank White).</param>
@@ -50,7 +51,7 @@ namespace IO.Vericred.Model
         /// <param name="Type">Type of NPI number (individual provider vs organization)..</param>
         /// <param name="ZipCode">Postal code for the provider&#39;s address (e.g. 11215).</param>
 
-        public Provider(bool? AcceptingChangeOfPayorPatients = null, bool? AcceptingMedicaidPatients = null, bool? AcceptingMedicarePatients = null, bool? AcceptingPrivatePatients = null, bool? AcceptingReferralPatients = null, string City = null, string Email = null, string Gender = null, string FirstName = null, List<string> HiosIds = null, int? Id = null, string LastName = null, double? Latitude = null, double? Longitude = null, string MiddleName = null, string PersonalPhone = null, string Phone = null, string PresentationName = null, string Specialty = null, string State = null, int? StateId = null, string StreetLine1 = null, string StreetLine2 = null, string Suffix = null, string Title = null, string Type = null, string ZipCode = null)
+        public Provider(bool? AcceptingChangeOfPayorPatients = null, bool? AcceptingMedicaidPatients = null, bool? AcceptingMedicarePatients = null, bool? AcceptingPrivatePatients = null, bool? AcceptingReferralPatients = null, string City = null, string Email = null, string Gender = null, string FirstName = null, List<string> HiosIds = null, int? Id = null, string LastName = null, double? Latitude = null, double? Longitude = null, string MiddleName = null, List<int?> NetworkIds = null, string PersonalPhone = null, string Phone = null, string PresentationName = null, string Specialty = null, string State = null, int? StateId = null, string StreetLine1 = null, string StreetLine2 = null, string Suffix = null, string Title = null, string Type = null, string ZipCode = null)
         {
             this.AcceptingChangeOfPayorPatients = AcceptingChangeOfPayorPatients;
             this.AcceptingMedicaidPatients = AcceptingMedicaidPatients;
@@ -67,6 +68,7 @@ namespace IO.Vericred.Model
             this.Latitude = Latitude;
             this.Longitude = Longitude;
             this.MiddleName = MiddleName;
+            this.NetworkIds = NetworkIds;
             this.PersonalPhone = PersonalPhone;
             this.Phone = Phone;
             this.PresentationName = PresentationName;
@@ -189,6 +191,13 @@ namespace IO.Vericred.Model
         public string MiddleName { get; set; }
     
         /// <summary>
+        /// Array of network ids
+        /// </summary>
+        /// <value>Array of network ids</value>
+        [DataMember(Name="network_ids", EmitDefaultValue=false)]
+        public List<int?> NetworkIds { get; set; }
+    
+        /// <summary>
         /// Personal contact phone for the provider.
         /// </summary>
         /// <value>Personal contact phone for the provider.</value>
@@ -295,6 +304,7 @@ namespace IO.Vericred.Model
             sb.Append("  Latitude: ").Append(Latitude).Append("\n");
             sb.Append("  Longitude: ").Append(Longitude).Append("\n");
             sb.Append("  MiddleName: ").Append(MiddleName).Append("\n");
+            sb.Append("  NetworkIds: ").Append(NetworkIds).Append("\n");
             sb.Append("  PersonalPhone: ").Append(PersonalPhone).Append("\n");
             sb.Append("  Phone: ").Append(Phone).Append("\n");
             sb.Append("  PresentationName: ").Append(PresentationName).Append("\n");
@@ -419,6 +429,11 @@ namespace IO.Vericred.Model
                     this.MiddleName.Equals(other.MiddleName)
                 ) && 
                 (
+                    this.NetworkIds == other.NetworkIds ||
+                    this.NetworkIds != null &&
+                    this.NetworkIds.SequenceEqual(other.NetworkIds)
+                ) && 
+                (
                     this.PersonalPhone == other.PersonalPhone ||
                     this.PersonalPhone != null &&
                     this.PersonalPhone.Equals(other.PersonalPhone)
@@ -521,6 +536,8 @@ namespace IO.Vericred.Model
                     hash = hash * 59 + this.Longitude.GetHashCode();
                 if (this.MiddleName != null)
                     hash = hash * 59 + this.MiddleName.GetHashCode();
+                if (this.NetworkIds != null)
+                    hash = hash * 59 + this.NetworkIds.GetHashCode();
                 if (this.PersonalPhone != null)
                     hash = hash * 59 + this.PersonalPhone.GetHashCode();
                 if (this.Phone != null)
