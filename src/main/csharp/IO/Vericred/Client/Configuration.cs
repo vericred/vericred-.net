@@ -36,7 +36,7 @@ namespace IO.Vericred.Client
                              string tempFolderPath = null,
                              string dateTimeFormat = null,
                              int timeout = 100000,
-                             string userAgent = "Swagger-Codegen/0.0.2/csharp"
+                             string userAgent = "Swagger-Codegen/0.0.3/csharp"
                             )
         {
             setApiClientUsingDefault(apiClient);
@@ -71,7 +71,7 @@ namespace IO.Vericred.Client
         /// Version of the package.
         /// </summary>
         /// <value>Version of the package.</value>
-        public const string Version = "0.0.2";
+        public const string Version = "0.0.3";
 
         /// <summary>
         /// Gets or sets the default Configuration.
@@ -276,7 +276,7 @@ namespace IO.Vericred.Client
                      .GetReferencedAssemblies()
                      .Where(x => x.Name == "System.Core").First().Version.ToString()  + "\n";
             report += "    Version of the API: 1.0.0\n";
-            report += "    SDK Package Version: 0.0.2\n";
+            report += "    SDK Package Version: 0.0.3\n";
 
             return report;
         }
