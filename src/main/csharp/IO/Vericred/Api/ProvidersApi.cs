@@ -18,16 +18,16 @@ namespace IO.Vericred.Api
         /// <exception cref="IO.Vericred.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="npi">NPI number</param>
         /// <param name="vericredApiKey">API Key (optional)</param>
-        /// <returns>Provider</returns>
-        Provider GetProvider (string npi, string vericredApiKey = null);
+        /// <returns>ProviderShowResponse</returns>
+        ProviderShowResponse GetProvider (string npi, string vericredApiKey = null);
 
 
 
         /// <exception cref="IO.Vericred.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="npi">NPI number</param>
         /// <param name="vericredApiKey">API Key (optional)</param>
-        /// <returns>ApiResponse of Provider</returns>
-        ApiResponse<Provider> GetProviderWithHttpInfo (string npi, string vericredApiKey = null);
+        /// <returns>ApiResponse of ProviderShowResponse</returns>
+        ApiResponse<ProviderShowResponse> GetProviderWithHttpInfo (string npi, string vericredApiKey = null);
 
         /// <exception cref="IO.Vericred.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="body"> (optional)</param>
@@ -47,8 +47,8 @@ namespace IO.Vericred.Api
         /// <exception cref="IO.Vericred.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="npi">NPI number</param>
         /// <param name="vericredApiKey">API Key (optional)</param>
-        /// <returns>Task of Provider</returns>
-        System.Threading.Tasks.Task<Provider> GetProviderAsync (string npi, string vericredApiKey = null);
+        /// <returns>Task of ProviderShowResponse</returns>
+        System.Threading.Tasks.Task<ProviderShowResponse> GetProviderAsync (string npi, string vericredApiKey = null);
 
         /// <summary>
         /// Find a Provider
@@ -57,8 +57,8 @@ namespace IO.Vericred.Api
         /// <exception cref="IO.Vericred.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="npi">NPI number</param>
         /// <param name="vericredApiKey">API Key (optional)</param>
-        /// <returns>Task of ApiResponse (Provider)</returns>
-        System.Threading.Tasks.Task<ApiResponse<Provider>> GetProviderAsyncWithHttpInfo (string npi, string vericredApiKey = null);
+        /// <returns>Task of ApiResponse (ProviderShowResponse)</returns>
+        System.Threading.Tasks.Task<ApiResponse<ProviderShowResponse>> GetProviderAsyncWithHttpInfo (string npi, string vericredApiKey = null);
 
 
         /// <exception cref="IO.Vericred.Client.ApiException">Thrown when fails to make API call</exception>
@@ -170,10 +170,10 @@ namespace IO.Vericred.Api
         /// <exception cref="IO.Vericred.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="npi">NPI number</param>
         /// <param name="vericredApiKey">API Key (optional)</param>
-        /// <returns>Provider</returns>
-        public Provider GetProvider (string npi, string vericredApiKey = null)
+        /// <returns>ProviderShowResponse</returns>
+        public ProviderShowResponse GetProvider (string npi, string vericredApiKey = null)
         {
-             ApiResponse<Provider> localVarResponse = GetProviderWithHttpInfo(npi, vericredApiKey);
+             ApiResponse<ProviderShowResponse> localVarResponse = GetProviderWithHttpInfo(npi, vericredApiKey);
              return localVarResponse.Data;
         }
 
@@ -183,8 +183,8 @@ namespace IO.Vericred.Api
         /// <exception cref="IO.Vericred.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="npi">NPI number</param>
         /// <param name="vericredApiKey">API Key (optional)</param>
-        /// <returns>ApiResponse of Provider</returns>
-        public ApiResponse< Provider > GetProviderWithHttpInfo (string npi, string vericredApiKey = null)
+        /// <returns>ApiResponse of ProviderShowResponse</returns>
+        public ApiResponse< ProviderShowResponse > GetProviderWithHttpInfo (string npi, string vericredApiKey = null)
         {
             // verify the required parameter 'npi' is set
             if (npi == null)
@@ -229,9 +229,9 @@ namespace IO.Vericred.Api
             else if (localVarStatusCode == 0)
                 throw new ApiException (localVarStatusCode, "Error calling GetProvider: " + localVarResponse.ErrorMessage, localVarResponse.ErrorMessage);
 
-            return new ApiResponse<Provider>(localVarStatusCode,
+            return new ApiResponse<ProviderShowResponse>(localVarStatusCode,
                 localVarResponse.Headers.ToDictionary(x => x.Name, x => x.Value.ToString()),
-                (Provider) Configuration.ApiClient.Deserialize(localVarResponse, typeof(Provider)));
+                (ProviderShowResponse) Configuration.ApiClient.Deserialize(localVarResponse, typeof(ProviderShowResponse)));
             
         }
 
@@ -239,10 +239,10 @@ namespace IO.Vericred.Api
         /// <exception cref="IO.Vericred.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="npi">NPI number</param>
         /// <param name="vericredApiKey">API Key (optional)</param>
-        /// <returns>Task of Provider</returns>
-        public async System.Threading.Tasks.Task<Provider> GetProviderAsync (string npi, string vericredApiKey = null)
+        /// <returns>Task of ProviderShowResponse</returns>
+        public async System.Threading.Tasks.Task<ProviderShowResponse> GetProviderAsync (string npi, string vericredApiKey = null)
         {
-             ApiResponse<Provider> localVarResponse = await GetProviderAsyncWithHttpInfo(npi, vericredApiKey);
+             ApiResponse<ProviderShowResponse> localVarResponse = await GetProviderAsyncWithHttpInfo(npi, vericredApiKey);
              return localVarResponse.Data;
 
         }
@@ -251,8 +251,8 @@ namespace IO.Vericred.Api
         /// <exception cref="IO.Vericred.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="npi">NPI number</param>
         /// <param name="vericredApiKey">API Key (optional)</param>
-        /// <returns>Task of ApiResponse (Provider)</returns>
-        public async System.Threading.Tasks.Task<ApiResponse<Provider>> GetProviderAsyncWithHttpInfo (string npi, string vericredApiKey = null)
+        /// <returns>Task of ApiResponse (ProviderShowResponse)</returns>
+        public async System.Threading.Tasks.Task<ApiResponse<ProviderShowResponse>> GetProviderAsyncWithHttpInfo (string npi, string vericredApiKey = null)
         {
             // verify the required parameter 'npi' is set
             if (npi == null)
@@ -297,9 +297,9 @@ namespace IO.Vericred.Api
             else if (localVarStatusCode == 0)
                 throw new ApiException (localVarStatusCode, "Error calling GetProvider: " + localVarResponse.ErrorMessage, localVarResponse.ErrorMessage);
 
-            return new ApiResponse<Provider>(localVarStatusCode,
+            return new ApiResponse<ProviderShowResponse>(localVarStatusCode,
                 localVarResponse.Headers.ToDictionary(x => x.Name, x => x.Value.ToString()),
-                (Provider) Configuration.ApiClient.Deserialize(localVarResponse, typeof(Provider)));
+                (ProviderShowResponse) Configuration.ApiClient.Deserialize(localVarResponse, typeof(ProviderShowResponse)));
             
         }
 
