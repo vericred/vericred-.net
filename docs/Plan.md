@@ -4,6 +4,7 @@
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **AdultDental** | **bool?** | Does the plan provide dental coverage for adults? | [optional] 
+**Age29Rider** | **bool?** |  | [optional] 
 **Ambulance** | **string** | Benefits string for ambulance coverage | [optional] 
 **BenefitsSummaryUrl** | **string** | Link to the summary of benefits and coverage (SBC) document. | [optional] 
 **BuyLink** | **string** | Link to a location to purchase the plan. | [optional] 
@@ -14,6 +15,7 @@ Name | Type | Description | Notes
 **CustomerServicePhoneNumber** | **string** | Phone number to contact the insurance carrier | [optional] 
 **DurableMedicalEquipment** | **string** | Benefits summary for durable medical equipment | [optional] 
 **DiagnosticTest** | **string** | Diagnostic tests benefit summary | [optional] 
+**DpRider** | **bool?** | Is this a domestic plan? | [optional] 
 **DrugFormularyUrl** | **string** | Link to the summary of drug benefits for the plan | [optional] 
 **EffectiveDate** | **string** | Effective date of coverage. | [optional] 
 **ExpirationDate** | **string** | Expiration date of coverage. | [optional] 
@@ -22,6 +24,7 @@ Name | Type | Description | Notes
 **FamilyDrugMoop** | **string** | Maximum out-of-pocket for drugs when a family is on the plan | [optional] 
 **FamilyMedicalDeductible** | **string** | Deductible when a family is on the plan | [optional] 
 **FamilyMedicalMoop** | **string** | Maximum out-of-pocket when a family is on the plan | [optional] 
+**FpRider** | **bool?** | Is this a family plan? | [optional] 
 **GenericDrugs** | **string** | Cost for generic drugs | [optional] 
 **HabilitationServices** | **string** | Habilitation services benefits summary | [optional] 
 **HiosIssuerId** | **string** |  | [optional] 

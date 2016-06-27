@@ -23,6 +23,7 @@ namespace IO.Vericred.Model
         /// Initializes a new instance of the <see cref="PlanSearchResult" />class.
         /// </summary>
         /// <param name="AdultDental">Does the plan provide dental coverage for adults?.</param>
+        /// <param name="Age29Rider">.</param>
         /// <param name="Ambulance">Benefits string for ambulance coverage.</param>
         /// <param name="BenefitsSummaryUrl">Link to the summary of benefits and coverage (SBC) document..</param>
         /// <param name="BuyLink">Link to a location to purchase the plan..</param>
@@ -33,6 +34,7 @@ namespace IO.Vericred.Model
         /// <param name="CustomerServicePhoneNumber">Phone number to contact the insurance carrier.</param>
         /// <param name="DurableMedicalEquipment">Benefits summary for durable medical equipment.</param>
         /// <param name="DiagnosticTest">Diagnostic tests benefit summary.</param>
+        /// <param name="DpRider">Is this a domestic plan?.</param>
         /// <param name="DrugFormularyUrl">Link to the summary of drug benefits for the plan.</param>
         /// <param name="EffectiveDate">Effective date of coverage..</param>
         /// <param name="ExpirationDate">Expiration date of coverage..</param>
@@ -41,6 +43,7 @@ namespace IO.Vericred.Model
         /// <param name="FamilyDrugMoop">Maximum out-of-pocket for drugs when a family is on the plan.</param>
         /// <param name="FamilyMedicalDeductible">Deductible when a family is on the plan.</param>
         /// <param name="FamilyMedicalMoop">Maximum out-of-pocket when a family is on the plan.</param>
+        /// <param name="FpRider">Is this a family plan?.</param>
         /// <param name="GenericDrugs">Cost for generic drugs.</param>
         /// <param name="HabilitationServices">Habilitation services benefits summary.</param>
         /// <param name="HiosIssuerId">.</param>
@@ -88,9 +91,10 @@ namespace IO.Vericred.Model
         /// <param name="EmployeePremium">Cumulative premium amount for employees.</param>
         /// <param name="DependentPremium">Cumulative premium amount for dependents.</param>
 
-        public PlanSearchResult(bool? AdultDental = null, string Ambulance = null, string BenefitsSummaryUrl = null, string BuyLink = null, string CarrierName = null, bool? ChildDental = null, string ChildEyewear = null, string ChildEyeExam = null, string CustomerServicePhoneNumber = null, string DurableMedicalEquipment = null, string DiagnosticTest = null, string DrugFormularyUrl = null, string EffectiveDate = null, string ExpirationDate = null, string EmergencyRoom = null, string FamilyDrugDeductible = null, string FamilyDrugMoop = null, string FamilyMedicalDeductible = null, string FamilyMedicalMoop = null, string GenericDrugs = null, string HabilitationServices = null, string HiosIssuerId = null, string HomeHealthCare = null, string HospiceService = null, string Id = null, string Imaging = null, List<int?> InNetworkIds = null, string IndividualDrugDeductible = null, string IndividualDrugMoop = null, string IndividualMedicalDeductible = null, string IndividualMedicalMoop = null, string InpatientBirth = null, string InpatientFacility = null, string InpatientMentalHealth = null, string InpatientPhysician = null, string InpatientSubstance = null, string Level = null, string LogoUrl = null, string Name = null, string NonPreferredBrandDrugs = null, bool? OnMarket = null, bool? OffMarket = null, bool? OutOfNetworkCoverage = null, List<int?> OutOfNetworkIds = null, string OutpatientFacility = null, string OutpatientMentalHealth = null, string OutpatientPhysician = null, string OutpatientSubstance = null, string PlanMarket = null, string PlanType = null, string PreferredBrandDrugs = null, string PrenatalPostnatalCare = null, string PreventativeCare = null, double? PremiumSubsidized = null, double? Premium = null, string PrimaryCarePhysician = null, string RehabilitationServices = null, string SkilledNursing = null, string Specialist = null, string SpecialtyDrugs = null, string UrgentCare = null, int? MatchPercentage = null, int? PerfectMatchPercentage = null, double? EmployeePremium = null, double? DependentPremium = null)
+        public PlanSearchResult(bool? AdultDental = null, bool? Age29Rider = null, string Ambulance = null, string BenefitsSummaryUrl = null, string BuyLink = null, string CarrierName = null, bool? ChildDental = null, string ChildEyewear = null, string ChildEyeExam = null, string CustomerServicePhoneNumber = null, string DurableMedicalEquipment = null, string DiagnosticTest = null, bool? DpRider = null, string DrugFormularyUrl = null, string EffectiveDate = null, string ExpirationDate = null, string EmergencyRoom = null, string FamilyDrugDeductible = null, string FamilyDrugMoop = null, string FamilyMedicalDeductible = null, string FamilyMedicalMoop = null, bool? FpRider = null, string GenericDrugs = null, string HabilitationServices = null, string HiosIssuerId = null, string HomeHealthCare = null, string HospiceService = null, string Id = null, string Imaging = null, List<int?> InNetworkIds = null, string IndividualDrugDeductible = null, string IndividualDrugMoop = null, string IndividualMedicalDeductible = null, string IndividualMedicalMoop = null, string InpatientBirth = null, string InpatientFacility = null, string InpatientMentalHealth = null, string InpatientPhysician = null, string InpatientSubstance = null, string Level = null, string LogoUrl = null, string Name = null, string NonPreferredBrandDrugs = null, bool? OnMarket = null, bool? OffMarket = null, bool? OutOfNetworkCoverage = null, List<int?> OutOfNetworkIds = null, string OutpatientFacility = null, string OutpatientMentalHealth = null, string OutpatientPhysician = null, string OutpatientSubstance = null, string PlanMarket = null, string PlanType = null, string PreferredBrandDrugs = null, string PrenatalPostnatalCare = null, string PreventativeCare = null, double? PremiumSubsidized = null, double? Premium = null, string PrimaryCarePhysician = null, string RehabilitationServices = null, string SkilledNursing = null, string Specialist = null, string SpecialtyDrugs = null, string UrgentCare = null, int? MatchPercentage = null, int? PerfectMatchPercentage = null, double? EmployeePremium = null, double? DependentPremium = null)
         {
             this.AdultDental = AdultDental;
+            this.Age29Rider = Age29Rider;
             this.Ambulance = Ambulance;
             this.BenefitsSummaryUrl = BenefitsSummaryUrl;
             this.BuyLink = BuyLink;
@@ -101,6 +105,7 @@ namespace IO.Vericred.Model
             this.CustomerServicePhoneNumber = CustomerServicePhoneNumber;
             this.DurableMedicalEquipment = DurableMedicalEquipment;
             this.DiagnosticTest = DiagnosticTest;
+            this.DpRider = DpRider;
             this.DrugFormularyUrl = DrugFormularyUrl;
             this.EffectiveDate = EffectiveDate;
             this.ExpirationDate = ExpirationDate;
@@ -109,6 +114,7 @@ namespace IO.Vericred.Model
             this.FamilyDrugMoop = FamilyDrugMoop;
             this.FamilyMedicalDeductible = FamilyMedicalDeductible;
             this.FamilyMedicalMoop = FamilyMedicalMoop;
+            this.FpRider = FpRider;
             this.GenericDrugs = GenericDrugs;
             this.HabilitationServices = HabilitationServices;
             this.HiosIssuerId = HiosIssuerId;
@@ -165,6 +171,13 @@ namespace IO.Vericred.Model
         /// <value>Does the plan provide dental coverage for adults?</value>
         [DataMember(Name="adult_dental", EmitDefaultValue=false)]
         public bool? AdultDental { get; set; }
+    
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <value></value>
+        [DataMember(Name="age29_rider", EmitDefaultValue=false)]
+        public bool? Age29Rider { get; set; }
     
         /// <summary>
         /// Benefits string for ambulance coverage
@@ -237,6 +250,13 @@ namespace IO.Vericred.Model
         public string DiagnosticTest { get; set; }
     
         /// <summary>
+        /// Is this a domestic plan?
+        /// </summary>
+        /// <value>Is this a domestic plan?</value>
+        [DataMember(Name="dp_rider", EmitDefaultValue=false)]
+        public bool? DpRider { get; set; }
+    
+        /// <summary>
         /// Link to the summary of drug benefits for the plan
         /// </summary>
         /// <value>Link to the summary of drug benefits for the plan</value>
@@ -291,6 +311,13 @@ namespace IO.Vericred.Model
         /// <value>Maximum out-of-pocket when a family is on the plan</value>
         [DataMember(Name="family_medical_moop", EmitDefaultValue=false)]
         public string FamilyMedicalMoop { get; set; }
+    
+        /// <summary>
+        /// Is this a family plan?
+        /// </summary>
+        /// <value>Is this a family plan?</value>
+        [DataMember(Name="fp_rider", EmitDefaultValue=false)]
+        public bool? FpRider { get; set; }
     
         /// <summary>
         /// Cost for generic drugs
@@ -623,6 +650,7 @@ namespace IO.Vericred.Model
             var sb = new StringBuilder();
             sb.Append("class PlanSearchResult {\n");
             sb.Append("  AdultDental: ").Append(AdultDental).Append("\n");
+            sb.Append("  Age29Rider: ").Append(Age29Rider).Append("\n");
             sb.Append("  Ambulance: ").Append(Ambulance).Append("\n");
             sb.Append("  BenefitsSummaryUrl: ").Append(BenefitsSummaryUrl).Append("\n");
             sb.Append("  BuyLink: ").Append(BuyLink).Append("\n");
@@ -633,6 +661,7 @@ namespace IO.Vericred.Model
             sb.Append("  CustomerServicePhoneNumber: ").Append(CustomerServicePhoneNumber).Append("\n");
             sb.Append("  DurableMedicalEquipment: ").Append(DurableMedicalEquipment).Append("\n");
             sb.Append("  DiagnosticTest: ").Append(DiagnosticTest).Append("\n");
+            sb.Append("  DpRider: ").Append(DpRider).Append("\n");
             sb.Append("  DrugFormularyUrl: ").Append(DrugFormularyUrl).Append("\n");
             sb.Append("  EffectiveDate: ").Append(EffectiveDate).Append("\n");
             sb.Append("  ExpirationDate: ").Append(ExpirationDate).Append("\n");
@@ -641,6 +670,7 @@ namespace IO.Vericred.Model
             sb.Append("  FamilyDrugMoop: ").Append(FamilyDrugMoop).Append("\n");
             sb.Append("  FamilyMedicalDeductible: ").Append(FamilyMedicalDeductible).Append("\n");
             sb.Append("  FamilyMedicalMoop: ").Append(FamilyMedicalMoop).Append("\n");
+            sb.Append("  FpRider: ").Append(FpRider).Append("\n");
             sb.Append("  GenericDrugs: ").Append(GenericDrugs).Append("\n");
             sb.Append("  HabilitationServices: ").Append(HabilitationServices).Append("\n");
             sb.Append("  HiosIssuerId: ").Append(HiosIssuerId).Append("\n");
@@ -729,6 +759,11 @@ namespace IO.Vericred.Model
                     this.AdultDental.Equals(other.AdultDental)
                 ) && 
                 (
+                    this.Age29Rider == other.Age29Rider ||
+                    this.Age29Rider != null &&
+                    this.Age29Rider.Equals(other.Age29Rider)
+                ) && 
+                (
                     this.Ambulance == other.Ambulance ||
                     this.Ambulance != null &&
                     this.Ambulance.Equals(other.Ambulance)
@@ -779,6 +814,11 @@ namespace IO.Vericred.Model
                     this.DiagnosticTest.Equals(other.DiagnosticTest)
                 ) && 
                 (
+                    this.DpRider == other.DpRider ||
+                    this.DpRider != null &&
+                    this.DpRider.Equals(other.DpRider)
+                ) && 
+                (
                     this.DrugFormularyUrl == other.DrugFormularyUrl ||
                     this.DrugFormularyUrl != null &&
                     this.DrugFormularyUrl.Equals(other.DrugFormularyUrl)
@@ -817,6 +857,11 @@ namespace IO.Vericred.Model
                     this.FamilyMedicalMoop == other.FamilyMedicalMoop ||
                     this.FamilyMedicalMoop != null &&
                     this.FamilyMedicalMoop.Equals(other.FamilyMedicalMoop)
+                ) && 
+                (
+                    this.FpRider == other.FpRider ||
+                    this.FpRider != null &&
+                    this.FpRider.Equals(other.FpRider)
                 ) && 
                 (
                     this.GenericDrugs == other.GenericDrugs ||
@@ -1063,6 +1108,8 @@ namespace IO.Vericred.Model
                 // Suitable nullity checks etc, of course :)
                 if (this.AdultDental != null)
                     hash = hash * 59 + this.AdultDental.GetHashCode();
+                if (this.Age29Rider != null)
+                    hash = hash * 59 + this.Age29Rider.GetHashCode();
                 if (this.Ambulance != null)
                     hash = hash * 59 + this.Ambulance.GetHashCode();
                 if (this.BenefitsSummaryUrl != null)
@@ -1083,6 +1130,8 @@ namespace IO.Vericred.Model
                     hash = hash * 59 + this.DurableMedicalEquipment.GetHashCode();
                 if (this.DiagnosticTest != null)
                     hash = hash * 59 + this.DiagnosticTest.GetHashCode();
+                if (this.DpRider != null)
+                    hash = hash * 59 + this.DpRider.GetHashCode();
                 if (this.DrugFormularyUrl != null)
                     hash = hash * 59 + this.DrugFormularyUrl.GetHashCode();
                 if (this.EffectiveDate != null)
@@ -1099,6 +1148,8 @@ namespace IO.Vericred.Model
                     hash = hash * 59 + this.FamilyMedicalDeductible.GetHashCode();
                 if (this.FamilyMedicalMoop != null)
                     hash = hash * 59 + this.FamilyMedicalMoop.GetHashCode();
+                if (this.FpRider != null)
+                    hash = hash * 59 + this.FpRider.GetHashCode();
                 if (this.GenericDrugs != null)
                     hash = hash * 59 + this.GenericDrugs.GetHashCode();
                 if (this.HabilitationServices != null)

@@ -22,25 +22,16 @@ namespace IO.Vericred.Model
         /// Initializes a new instance of the <see cref="PlanCountyBulk" /> class.
         /// Initializes a new instance of the <see cref="PlanCountyBulk" />class.
         /// </summary>
-        /// <param name="Id">Primary key.</param>
         /// <param name="PlanId">Foreign key to plan.</param>
         /// <param name="CountyId">Foreign key to county.</param>
 
-        public PlanCountyBulk(int? Id = null, int? PlanId = null, int? CountyId = null)
+        public PlanCountyBulk(int? PlanId = null, int? CountyId = null)
         {
-            this.Id = Id;
             this.PlanId = PlanId;
             this.CountyId = CountyId;
             
         }
 
-    
-        /// <summary>
-        /// Primary key
-        /// </summary>
-        /// <value>Primary key</value>
-        [DataMember(Name="id", EmitDefaultValue=false)]
-        public int? Id { get; set; }
     
         /// <summary>
         /// Foreign key to plan
@@ -64,7 +55,6 @@ namespace IO.Vericred.Model
         {
             var sb = new StringBuilder();
             sb.Append("class PlanCountyBulk {\n");
-            sb.Append("  Id: ").Append(Id).Append("\n");
             sb.Append("  PlanId: ").Append(PlanId).Append("\n");
             sb.Append("  CountyId: ").Append(CountyId).Append("\n");
             sb.Append("}\n");
@@ -104,11 +94,6 @@ namespace IO.Vericred.Model
 
             return 
                 (
-                    this.Id == other.Id ||
-                    this.Id != null &&
-                    this.Id.Equals(other.Id)
-                ) && 
-                (
                     this.PlanId == other.PlanId ||
                     this.PlanId != null &&
                     this.PlanId.Equals(other.PlanId)
@@ -131,8 +116,6 @@ namespace IO.Vericred.Model
             {
                 int hash = 41;
                 // Suitable nullity checks etc, of course :)
-                if (this.Id != null)
-                    hash = hash * 59 + this.Id.GetHashCode();
                 if (this.PlanId != null)
                     hash = hash * 59 + this.PlanId.GetHashCode();
                 if (this.CountyId != null)

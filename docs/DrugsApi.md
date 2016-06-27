@@ -9,7 +9,7 @@ Method | HTTP request | Description
 
 
 # **GetDrugCoverages**
-> DrugCoverageResponse GetDrugCoverages (string ndcPackageCode, string audience, string stateCode, string vericredApiKey = null)
+> DrugCoverageResponse GetDrugCoverages (string ndcPackageCode, string audience, string stateCode)
 
 Search for DrugCoverages
 
@@ -30,16 +30,20 @@ namespace Example
         public void main()
         {
             
+            // Configure API key authorization: Vericred-Api-Key
+            Configuration.Default.ApiKey.Add('Vericred-Api-Key', 'YOUR_API_KEY');
+            // Uncomment below to setup prefix (e.g. BEARER) for API key, if needed
+            // Configuration.Default.ApiKeyPrefix.Add('Vericred-Api-Key', 'BEARER');
+
             var apiInstance = new DrugsApi();
             var ndcPackageCode = 12345-4321-11;  // string | NDC package code
             var audience = individual;  // string | Two-character state code
             var stateCode = NY;  // string | Two-character state code
-            var vericredApiKey = api-doc-key;  // string | API Key (optional) 
 
             try
             {
                 // Search for DrugCoverages
-                DrugCoverageResponse result = apiInstance.GetDrugCoverages(ndcPackageCode, audience, stateCode, vericredApiKey);
+                DrugCoverageResponse result = apiInstance.GetDrugCoverages(ndcPackageCode, audience, stateCode);
                 Debug.WriteLine(result);
             }
             catch (Exception e)
@@ -58,7 +62,6 @@ Name | Type | Description  | Notes
  **ndcPackageCode** | **string**| NDC package code | 
  **audience** | **string**| Two-character state code | 
  **stateCode** | **string**| Two-character state code | 
- **vericredApiKey** | **string**| API Key | [optional] 
 
 ### Return type
 
@@ -66,7 +69,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-No authorization required
+[Vericred-Api-Key](../README.md#Vericred-Api-Key)
 
 ### HTTP request headers
 
@@ -76,7 +79,7 @@ No authorization required
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **ListDrugs**
-> DrugSearchResponse ListDrugs (string searchTerm, string vericredApiKey = null)
+> DrugSearchResponse ListDrugs (string searchTerm)
 
 Drug Search
 
@@ -97,14 +100,18 @@ namespace Example
         public void main()
         {
             
+            // Configure API key authorization: Vericred-Api-Key
+            Configuration.Default.ApiKey.Add('Vericred-Api-Key', 'YOUR_API_KEY');
+            // Uncomment below to setup prefix (e.g. BEARER) for API key, if needed
+            // Configuration.Default.ApiKeyPrefix.Add('Vericred-Api-Key', 'BEARER');
+
             var apiInstance = new DrugsApi();
             var searchTerm = Zyrtec;  // string | Full or partial proprietary name of drug
-            var vericredApiKey = api-doc-key;  // string | API Key (optional) 
 
             try
             {
                 // Drug Search
-                DrugSearchResponse result = apiInstance.ListDrugs(searchTerm, vericredApiKey);
+                DrugSearchResponse result = apiInstance.ListDrugs(searchTerm);
                 Debug.WriteLine(result);
             }
             catch (Exception e)
@@ -121,7 +128,6 @@ namespace Example
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **searchTerm** | **string**| Full or partial proprietary name of drug | 
- **vericredApiKey** | **string**| API Key | [optional] 
 
 ### Return type
 
@@ -129,7 +135,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-No authorization required
+[Vericred-Api-Key](../README.md#Vericred-Api-Key)
 
 ### HTTP request headers
 

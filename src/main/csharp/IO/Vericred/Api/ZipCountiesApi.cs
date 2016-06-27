@@ -17,26 +17,23 @@ namespace IO.Vericred.Api
 
         /// <exception cref="IO.Vericred.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="zipPrefix">Partial five-digit Zip</param>
-        /// <param name="vericredApiKey">API Key (optional)</param>
         /// <returns>ZipCountyResponse</returns>
-        ZipCountyResponse GetZipCounties (string zipPrefix, string vericredApiKey = null);
+        ZipCountyResponse GetZipCounties (string zipPrefix);
 
 
 
         /// <exception cref="IO.Vericred.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="zipPrefix">Partial five-digit Zip</param>
-        /// <param name="vericredApiKey">API Key (optional)</param>
         /// <returns>ApiResponse of ZipCountyResponse</returns>
-        ApiResponse<ZipCountyResponse> GetZipCountiesWithHttpInfo (string zipPrefix, string vericredApiKey = null);
+        ApiResponse<ZipCountyResponse> GetZipCountiesWithHttpInfo (string zipPrefix);
         #endregion Synchronous Operations
         #region Asynchronous Operations
 
 
         /// <exception cref="IO.Vericred.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="zipPrefix">Partial five-digit Zip</param>
-        /// <param name="vericredApiKey">API Key (optional)</param>
         /// <returns>Task of ZipCountyResponse</returns>
-        System.Threading.Tasks.Task<ZipCountyResponse> GetZipCountiesAsync (string zipPrefix, string vericredApiKey = null);
+        System.Threading.Tasks.Task<ZipCountyResponse> GetZipCountiesAsync (string zipPrefix);
 
         /// <summary>
         /// Search for Zip Counties
@@ -44,9 +41,8 @@ namespace IO.Vericred.Api
 
         /// <exception cref="IO.Vericred.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="zipPrefix">Partial five-digit Zip</param>
-        /// <param name="vericredApiKey">API Key (optional)</param>
         /// <returns>Task of ApiResponse (ZipCountyResponse)</returns>
-        System.Threading.Tasks.Task<ApiResponse<ZipCountyResponse>> GetZipCountiesAsyncWithHttpInfo (string zipPrefix, string vericredApiKey = null);
+        System.Threading.Tasks.Task<ApiResponse<ZipCountyResponse>> GetZipCountiesAsyncWithHttpInfo (string zipPrefix);
         #endregion Asynchronous Operations
     }
 
@@ -142,11 +138,10 @@ namespace IO.Vericred.Api
         /// </summary>
         /// <exception cref="IO.Vericred.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="zipPrefix">Partial five-digit Zip</param>
-        /// <param name="vericredApiKey">API Key (optional)</param>
         /// <returns>ZipCountyResponse</returns>
-        public ZipCountyResponse GetZipCounties (string zipPrefix, string vericredApiKey = null)
+        public ZipCountyResponse GetZipCounties (string zipPrefix)
         {
-             ApiResponse<ZipCountyResponse> localVarResponse = GetZipCountiesWithHttpInfo(zipPrefix, vericredApiKey);
+             ApiResponse<ZipCountyResponse> localVarResponse = GetZipCountiesWithHttpInfo(zipPrefix);
              return localVarResponse.Data;
         }
 
@@ -155,9 +150,8 @@ namespace IO.Vericred.Api
         /// </summary>
         /// <exception cref="IO.Vericred.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="zipPrefix">Partial five-digit Zip</param>
-        /// <param name="vericredApiKey">API Key (optional)</param>
         /// <returns>ApiResponse of ZipCountyResponse</returns>
-        public ApiResponse< ZipCountyResponse > GetZipCountiesWithHttpInfo (string zipPrefix, string vericredApiKey = null)
+        public ApiResponse< ZipCountyResponse > GetZipCountiesWithHttpInfo (string zipPrefix)
         {
             // verify the required parameter 'zipPrefix' is set
             if (zipPrefix == null)
@@ -187,7 +181,12 @@ namespace IO.Vericred.Api
             // e.g. /pet/{petId}.{format} becomes /pet/{petId}.json
             localVarPathParams.Add("format", "json");
             if (zipPrefix != null) localVarQueryParams.Add("zip_prefix", Configuration.ApiClient.ParameterToString(zipPrefix)); // query parameter
-            if (vericredApiKey != null) localVarHeaderParams.Add("Vericred-Api-Key", Configuration.ApiClient.ParameterToString(vericredApiKey)); // header parameter
+
+            // authentication (Vericred-Api-Key) required
+            if (!String.IsNullOrEmpty(Configuration.GetApiKeyWithPrefix("Vericred-Api-Key")))
+            {
+                localVarHeaderParams["Vericred-Api-Key"] = Configuration.GetApiKeyWithPrefix("Vericred-Api-Key");
+            }
 
 
             // make the HTTP request
@@ -211,11 +210,10 @@ namespace IO.Vericred.Api
 
         /// <exception cref="IO.Vericred.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="zipPrefix">Partial five-digit Zip</param>
-        /// <param name="vericredApiKey">API Key (optional)</param>
         /// <returns>Task of ZipCountyResponse</returns>
-        public async System.Threading.Tasks.Task<ZipCountyResponse> GetZipCountiesAsync (string zipPrefix, string vericredApiKey = null)
+        public async System.Threading.Tasks.Task<ZipCountyResponse> GetZipCountiesAsync (string zipPrefix)
         {
-             ApiResponse<ZipCountyResponse> localVarResponse = await GetZipCountiesAsyncWithHttpInfo(zipPrefix, vericredApiKey);
+             ApiResponse<ZipCountyResponse> localVarResponse = await GetZipCountiesAsyncWithHttpInfo(zipPrefix);
              return localVarResponse.Data;
 
         }
@@ -223,9 +221,8 @@ namespace IO.Vericred.Api
 
         /// <exception cref="IO.Vericred.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="zipPrefix">Partial five-digit Zip</param>
-        /// <param name="vericredApiKey">API Key (optional)</param>
         /// <returns>Task of ApiResponse (ZipCountyResponse)</returns>
-        public async System.Threading.Tasks.Task<ApiResponse<ZipCountyResponse>> GetZipCountiesAsyncWithHttpInfo (string zipPrefix, string vericredApiKey = null)
+        public async System.Threading.Tasks.Task<ApiResponse<ZipCountyResponse>> GetZipCountiesAsyncWithHttpInfo (string zipPrefix)
         {
             // verify the required parameter 'zipPrefix' is set
             if (zipPrefix == null)
@@ -255,8 +252,12 @@ namespace IO.Vericred.Api
             // e.g. /pet/{petId}.{format} becomes /pet/{petId}.json
             localVarPathParams.Add("format", "json");
             if (zipPrefix != null) localVarQueryParams.Add("zip_prefix", Configuration.ApiClient.ParameterToString(zipPrefix)); // query parameter
-            if (vericredApiKey != null) localVarHeaderParams.Add("Vericred-Api-Key", Configuration.ApiClient.ParameterToString(vericredApiKey)); // header parameter
 
+            // authentication (Vericred-Api-Key) required
+            if (!String.IsNullOrEmpty(Configuration.GetApiKeyWithPrefix("Vericred-Api-Key")))
+            {
+                localVarHeaderParams["Vericred-Api-Key"] = Configuration.GetApiKeyWithPrefix("Vericred-Api-Key");
+            }
 
             // make the HTTP request
             IRestResponse localVarResponse = (IRestResponse) await Configuration.ApiClient.CallApiAsync(localVarPath,

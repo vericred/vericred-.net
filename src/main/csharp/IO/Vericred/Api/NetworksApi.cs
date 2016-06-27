@@ -17,23 +17,29 @@ namespace IO.Vericred.Api
 
         /// <exception cref="IO.Vericred.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="carrierId">Carrier HIOS Issuer ID</param>
+        /// <param name="page">Page of paginated response (optional)</param>
+        /// <param name="perPage">Responses per page (optional)</param>
         /// <returns>NetworkSearchResponse</returns>
-        NetworkSearchResponse ListNetworks (string carrierId);
+        NetworkSearchResponse ListNetworks (string carrierId, int? page = null, int? perPage = null);
 
 
 
         /// <exception cref="IO.Vericred.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="carrierId">Carrier HIOS Issuer ID</param>
+        /// <param name="page">Page of paginated response (optional)</param>
+        /// <param name="perPage">Responses per page (optional)</param>
         /// <returns>ApiResponse of NetworkSearchResponse</returns>
-        ApiResponse<NetworkSearchResponse> ListNetworksWithHttpInfo (string carrierId);
+        ApiResponse<NetworkSearchResponse> ListNetworksWithHttpInfo (string carrierId, int? page = null, int? perPage = null);
         #endregion Synchronous Operations
         #region Asynchronous Operations
 
 
         /// <exception cref="IO.Vericred.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="carrierId">Carrier HIOS Issuer ID</param>
+        /// <param name="page">Page of paginated response (optional)</param>
+        /// <param name="perPage">Responses per page (optional)</param>
         /// <returns>Task of NetworkSearchResponse</returns>
-        System.Threading.Tasks.Task<NetworkSearchResponse> ListNetworksAsync (string carrierId);
+        System.Threading.Tasks.Task<NetworkSearchResponse> ListNetworksAsync (string carrierId, int? page = null, int? perPage = null);
 
         /// <summary>
         /// Networks
@@ -41,8 +47,10 @@ namespace IO.Vericred.Api
 
         /// <exception cref="IO.Vericred.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="carrierId">Carrier HIOS Issuer ID</param>
+        /// <param name="page">Page of paginated response (optional)</param>
+        /// <param name="perPage">Responses per page (optional)</param>
         /// <returns>Task of ApiResponse (NetworkSearchResponse)</returns>
-        System.Threading.Tasks.Task<ApiResponse<NetworkSearchResponse>> ListNetworksAsyncWithHttpInfo (string carrierId);
+        System.Threading.Tasks.Task<ApiResponse<NetworkSearchResponse>> ListNetworksAsyncWithHttpInfo (string carrierId, int? page = null, int? perPage = null);
         #endregion Asynchronous Operations
     }
 
@@ -134,24 +142,28 @@ namespace IO.Vericred.Api
         }
 
         /// <summary>
-        /// Networks A network is a list of the doctors, other health care providers, and hospitals that a plan has contracted with to provide medical care to its members.
+        /// Networks A network is a list of the doctors, other health care providers, and hospitals that a plan has contracted with to provide medical care to its members. This endpoint is paginated.
         /// </summary>
         /// <exception cref="IO.Vericred.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="carrierId">Carrier HIOS Issuer ID</param>
+        /// <param name="page">Page of paginated response (optional)</param>
+        /// <param name="perPage">Responses per page (optional)</param>
         /// <returns>NetworkSearchResponse</returns>
-        public NetworkSearchResponse ListNetworks (string carrierId)
+        public NetworkSearchResponse ListNetworks (string carrierId, int? page = null, int? perPage = null)
         {
-             ApiResponse<NetworkSearchResponse> localVarResponse = ListNetworksWithHttpInfo(carrierId);
+             ApiResponse<NetworkSearchResponse> localVarResponse = ListNetworksWithHttpInfo(carrierId, page, perPage);
              return localVarResponse.Data;
         }
 
         /// <summary>
-        /// Networks A network is a list of the doctors, other health care providers, and hospitals that a plan has contracted with to provide medical care to its members.
+        /// Networks A network is a list of the doctors, other health care providers, and hospitals that a plan has contracted with to provide medical care to its members. This endpoint is paginated.
         /// </summary>
         /// <exception cref="IO.Vericred.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="carrierId">Carrier HIOS Issuer ID</param>
+        /// <param name="page">Page of paginated response (optional)</param>
+        /// <param name="perPage">Responses per page (optional)</param>
         /// <returns>ApiResponse of NetworkSearchResponse</returns>
-        public ApiResponse< NetworkSearchResponse > ListNetworksWithHttpInfo (string carrierId)
+        public ApiResponse< NetworkSearchResponse > ListNetworksWithHttpInfo (string carrierId, int? page = null, int? perPage = null)
         {
             // verify the required parameter 'carrierId' is set
             if (carrierId == null)
@@ -183,6 +195,14 @@ namespace IO.Vericred.Api
             // e.g. /pet/{petId}.{format} becomes /pet/{petId}.json
             localVarPathParams.Add("format", "json");
             if (carrierId != null) localVarQueryParams.Add("carrier_id", Configuration.ApiClient.ParameterToString(carrierId)); // query parameter
+            if (page != null) localVarQueryParams.Add("page", Configuration.ApiClient.ParameterToString(page)); // query parameter
+            if (perPage != null) localVarQueryParams.Add("per_page", Configuration.ApiClient.ParameterToString(perPage)); // query parameter
+
+            // authentication (Vericred-Api-Key) required
+            if (!String.IsNullOrEmpty(Configuration.GetApiKeyWithPrefix("Vericred-Api-Key")))
+            {
+                localVarHeaderParams["Vericred-Api-Key"] = Configuration.GetApiKeyWithPrefix("Vericred-Api-Key");
+            }
 
 
             // make the HTTP request
@@ -206,10 +226,12 @@ namespace IO.Vericred.Api
 
         /// <exception cref="IO.Vericred.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="carrierId">Carrier HIOS Issuer ID</param>
+        /// <param name="page">Page of paginated response (optional)</param>
+        /// <param name="perPage">Responses per page (optional)</param>
         /// <returns>Task of NetworkSearchResponse</returns>
-        public async System.Threading.Tasks.Task<NetworkSearchResponse> ListNetworksAsync (string carrierId)
+        public async System.Threading.Tasks.Task<NetworkSearchResponse> ListNetworksAsync (string carrierId, int? page = null, int? perPage = null)
         {
-             ApiResponse<NetworkSearchResponse> localVarResponse = await ListNetworksAsyncWithHttpInfo(carrierId);
+             ApiResponse<NetworkSearchResponse> localVarResponse = await ListNetworksAsyncWithHttpInfo(carrierId, page, perPage);
              return localVarResponse.Data;
 
         }
@@ -217,8 +239,10 @@ namespace IO.Vericred.Api
 
         /// <exception cref="IO.Vericred.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="carrierId">Carrier HIOS Issuer ID</param>
+        /// <param name="page">Page of paginated response (optional)</param>
+        /// <param name="perPage">Responses per page (optional)</param>
         /// <returns>Task of ApiResponse (NetworkSearchResponse)</returns>
-        public async System.Threading.Tasks.Task<ApiResponse<NetworkSearchResponse>> ListNetworksAsyncWithHttpInfo (string carrierId)
+        public async System.Threading.Tasks.Task<ApiResponse<NetworkSearchResponse>> ListNetworksAsyncWithHttpInfo (string carrierId, int? page = null, int? perPage = null)
         {
             // verify the required parameter 'carrierId' is set
             if (carrierId == null)
@@ -250,7 +274,14 @@ namespace IO.Vericred.Api
             // e.g. /pet/{petId}.{format} becomes /pet/{petId}.json
             localVarPathParams.Add("format", "json");
             if (carrierId != null) localVarQueryParams.Add("carrier_id", Configuration.ApiClient.ParameterToString(carrierId)); // query parameter
+            if (page != null) localVarQueryParams.Add("page", Configuration.ApiClient.ParameterToString(page)); // query parameter
+            if (perPage != null) localVarQueryParams.Add("per_page", Configuration.ApiClient.ParameterToString(perPage)); // query parameter
 
+            // authentication (Vericred-Api-Key) required
+            if (!String.IsNullOrEmpty(Configuration.GetApiKeyWithPrefix("Vericred-Api-Key")))
+            {
+                localVarHeaderParams["Vericred-Api-Key"] = Configuration.GetApiKeyWithPrefix("Vericred-Api-Key");
+            }
 
             // make the HTTP request
             IRestResponse localVarResponse = (IRestResponse) await Configuration.ApiClient.CallApiAsync(localVarPath,
