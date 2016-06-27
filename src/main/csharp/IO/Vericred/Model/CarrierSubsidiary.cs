@@ -24,11 +24,13 @@ namespace IO.Vericred.Model
         /// </summary>
         /// <param name="Id">Primary key.</param>
         /// <param name="Name">Subsidiary name.</param>
+        /// <param name="AlternateName">Parent Carrier Name.</param>
 
-        public CarrierSubsidiary(int? Id = null, string Name = null)
+        public CarrierSubsidiary(int? Id = null, string Name = null, string AlternateName = null)
         {
             this.Id = Id;
             this.Name = Name;
+            this.AlternateName = AlternateName;
             
         }
 
@@ -48,6 +50,13 @@ namespace IO.Vericred.Model
         public string Name { get; set; }
     
         /// <summary>
+        /// Parent Carrier Name
+        /// </summary>
+        /// <value>Parent Carrier Name</value>
+        [DataMember(Name="alternate_name", EmitDefaultValue=false)]
+        public string AlternateName { get; set; }
+    
+        /// <summary>
         /// Returns the string presentation of the object
         /// </summary>
         /// <returns>String presentation of the object</returns>
@@ -57,6 +66,7 @@ namespace IO.Vericred.Model
             sb.Append("class CarrierSubsidiary {\n");
             sb.Append("  Id: ").Append(Id).Append("\n");
             sb.Append("  Name: ").Append(Name).Append("\n");
+            sb.Append("  AlternateName: ").Append(AlternateName).Append("\n");
             sb.Append("}\n");
             return sb.ToString();
         }
@@ -102,6 +112,11 @@ namespace IO.Vericred.Model
                     this.Name == other.Name ||
                     this.Name != null &&
                     this.Name.Equals(other.Name)
+                ) && 
+                (
+                    this.AlternateName == other.AlternateName ||
+                    this.AlternateName != null &&
+                    this.AlternateName.Equals(other.AlternateName)
                 );
         }
 
@@ -120,6 +135,8 @@ namespace IO.Vericred.Model
                     hash = hash * 59 + this.Id.GetHashCode();
                 if (this.Name != null)
                     hash = hash * 59 + this.Name.GetHashCode();
+                if (this.AlternateName != null)
+                    hash = hash * 59 + this.AlternateName.GetHashCode();
                 return hash;
             }
         }

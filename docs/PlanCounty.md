@@ -3,7 +3,6 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Id** | **int?** | Primary key | [optional] 
 **PlanId** | **int?** | Foreign key to plan | [optional] 
 **CountyId** | **int?** | Foreign key to county | [optional] 
 

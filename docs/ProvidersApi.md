@@ -9,7 +9,7 @@ Method | HTTP request | Description
 
 
 # **GetProvider**
-> ProviderShowResponse GetProvider (string npi, string vericredApiKey = null)
+> ProviderShowResponse GetProvider (string npi)
 
 Find a Provider
 
@@ -30,14 +30,18 @@ namespace Example
         public void main()
         {
             
+            // Configure API key authorization: Vericred-Api-Key
+            Configuration.Default.ApiKey.Add('Vericred-Api-Key', 'YOUR_API_KEY');
+            // Uncomment below to setup prefix (e.g. BEARER) for API key, if needed
+            // Configuration.Default.ApiKeyPrefix.Add('Vericred-Api-Key', 'BEARER');
+
             var apiInstance = new ProvidersApi();
             var npi = 1234567890;  // string | NPI number
-            var vericredApiKey = api-doc-key;  // string | API Key (optional) 
 
             try
             {
                 // Find a Provider
-                ProviderShowResponse result = apiInstance.GetProvider(npi, vericredApiKey);
+                ProviderShowResponse result = apiInstance.GetProvider(npi);
                 Debug.WriteLine(result);
             }
             catch (Exception e)
@@ -54,7 +58,6 @@ namespace Example
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **npi** | **string**| NPI number | 
- **vericredApiKey** | **string**| API Key | [optional] 
 
 ### Return type
 
@@ -62,7 +65,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-No authorization required
+[Vericred-Api-Key](../README.md#Vericred-Api-Key)
 
 ### HTTP request headers
 
@@ -93,6 +96,11 @@ namespace Example
         public void main()
         {
             
+            // Configure API key authorization: Vericred-Api-Key
+            Configuration.Default.ApiKey.Add('Vericred-Api-Key', 'YOUR_API_KEY');
+            // Uncomment below to setup prefix (e.g. BEARER) for API key, if needed
+            // Configuration.Default.ApiKeyPrefix.Add('Vericred-Api-Key', 'BEARER');
+
             var apiInstance = new ProvidersApi();
             var body = new RequestProvidersSearch(); // RequestProvidersSearch |  (optional) 
 
@@ -123,7 +131,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-No authorization required
+[Vericred-Api-Key](../README.md#Vericred-Api-Key)
 
 ### HTTP request headers
 

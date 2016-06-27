@@ -30,9 +30,12 @@ namespace IO.Vericred.Model
         /// <param name="HouseholdSize">Number of people living in household..</param>
         /// <param name="Market">Type of plan to search for..</param>
         /// <param name="Providers">List of providers to search for..</param>
+        /// <param name="Page">Selected page of paginated response..</param>
+        /// <param name="PerPage">Results per page of response..</param>
+        /// <param name="Sort">Sort responses by plan field..</param>
         /// <param name="ZipCode">5-digit zip code - this helps determine pricing..</param>
 
-        public RequestPlanFind(List<RequestPlanFindApplicant> Applicants = null, string EnrollmentDate = null, List<DrugPackage> DrugPackages = null, string FipsCode = null, int? HouseholdIncome = null, int? HouseholdSize = null, string Market = null, List<RequestPlanFindProvider> Providers = null, string ZipCode = null)
+        public RequestPlanFind(List<RequestPlanFindApplicant> Applicants = null, string EnrollmentDate = null, List<DrugPackage> DrugPackages = null, string FipsCode = null, int? HouseholdIncome = null, int? HouseholdSize = null, string Market = null, List<RequestPlanFindProvider> Providers = null, int? Page = null, int? PerPage = null, string Sort = null, string ZipCode = null)
         {
             this.Applicants = Applicants;
             this.EnrollmentDate = EnrollmentDate;
@@ -42,6 +45,9 @@ namespace IO.Vericred.Model
             this.HouseholdSize = HouseholdSize;
             this.Market = Market;
             this.Providers = Providers;
+            this.Page = Page;
+            this.PerPage = PerPage;
+            this.Sort = Sort;
             this.ZipCode = ZipCode;
             
         }
@@ -104,6 +110,27 @@ namespace IO.Vericred.Model
         public List<RequestPlanFindProvider> Providers { get; set; }
     
         /// <summary>
+        /// Selected page of paginated response.
+        /// </summary>
+        /// <value>Selected page of paginated response.</value>
+        [DataMember(Name="page", EmitDefaultValue=false)]
+        public int? Page { get; set; }
+    
+        /// <summary>
+        /// Results per page of response.
+        /// </summary>
+        /// <value>Results per page of response.</value>
+        [DataMember(Name="per_page", EmitDefaultValue=false)]
+        public int? PerPage { get; set; }
+    
+        /// <summary>
+        /// Sort responses by plan field.
+        /// </summary>
+        /// <value>Sort responses by plan field.</value>
+        [DataMember(Name="sort", EmitDefaultValue=false)]
+        public string Sort { get; set; }
+    
+        /// <summary>
         /// 5-digit zip code - this helps determine pricing.
         /// </summary>
         /// <value>5-digit zip code - this helps determine pricing.</value>
@@ -126,6 +153,9 @@ namespace IO.Vericred.Model
             sb.Append("  HouseholdSize: ").Append(HouseholdSize).Append("\n");
             sb.Append("  Market: ").Append(Market).Append("\n");
             sb.Append("  Providers: ").Append(Providers).Append("\n");
+            sb.Append("  Page: ").Append(Page).Append("\n");
+            sb.Append("  PerPage: ").Append(PerPage).Append("\n");
+            sb.Append("  Sort: ").Append(Sort).Append("\n");
             sb.Append("  ZipCode: ").Append(ZipCode).Append("\n");
             sb.Append("}\n");
             return sb.ToString();
@@ -204,6 +234,21 @@ namespace IO.Vericred.Model
                     this.Providers.SequenceEqual(other.Providers)
                 ) && 
                 (
+                    this.Page == other.Page ||
+                    this.Page != null &&
+                    this.Page.Equals(other.Page)
+                ) && 
+                (
+                    this.PerPage == other.PerPage ||
+                    this.PerPage != null &&
+                    this.PerPage.Equals(other.PerPage)
+                ) && 
+                (
+                    this.Sort == other.Sort ||
+                    this.Sort != null &&
+                    this.Sort.Equals(other.Sort)
+                ) && 
+                (
                     this.ZipCode == other.ZipCode ||
                     this.ZipCode != null &&
                     this.ZipCode.Equals(other.ZipCode)
@@ -237,6 +282,12 @@ namespace IO.Vericred.Model
                     hash = hash * 59 + this.Market.GetHashCode();
                 if (this.Providers != null)
                     hash = hash * 59 + this.Providers.GetHashCode();
+                if (this.Page != null)
+                    hash = hash * 59 + this.Page.GetHashCode();
+                if (this.PerPage != null)
+                    hash = hash * 59 + this.PerPage.GetHashCode();
+                if (this.Sort != null)
+                    hash = hash * 59 + this.Sort.GetHashCode();
                 if (this.ZipCode != null)
                     hash = hash * 59 + this.ZipCode.GetHashCode();
                 return hash;

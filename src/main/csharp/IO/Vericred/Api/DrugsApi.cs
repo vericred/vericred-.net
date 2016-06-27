@@ -19,9 +19,8 @@ namespace IO.Vericred.Api
         /// <param name="ndcPackageCode">NDC package code</param>
         /// <param name="audience">Two-character state code</param>
         /// <param name="stateCode">Two-character state code</param>
-        /// <param name="vericredApiKey">API Key (optional)</param>
         /// <returns>DrugCoverageResponse</returns>
-        DrugCoverageResponse GetDrugCoverages (string ndcPackageCode, string audience, string stateCode, string vericredApiKey = null);
+        DrugCoverageResponse GetDrugCoverages (string ndcPackageCode, string audience, string stateCode);
 
 
 
@@ -29,23 +28,20 @@ namespace IO.Vericred.Api
         /// <param name="ndcPackageCode">NDC package code</param>
         /// <param name="audience">Two-character state code</param>
         /// <param name="stateCode">Two-character state code</param>
-        /// <param name="vericredApiKey">API Key (optional)</param>
         /// <returns>ApiResponse of DrugCoverageResponse</returns>
-        ApiResponse<DrugCoverageResponse> GetDrugCoveragesWithHttpInfo (string ndcPackageCode, string audience, string stateCode, string vericredApiKey = null);
+        ApiResponse<DrugCoverageResponse> GetDrugCoveragesWithHttpInfo (string ndcPackageCode, string audience, string stateCode);
 
         /// <exception cref="IO.Vericred.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="searchTerm">Full or partial proprietary name of drug</param>
-        /// <param name="vericredApiKey">API Key (optional)</param>
         /// <returns>DrugSearchResponse</returns>
-        DrugSearchResponse ListDrugs (string searchTerm, string vericredApiKey = null);
+        DrugSearchResponse ListDrugs (string searchTerm);
 
 
 
         /// <exception cref="IO.Vericred.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="searchTerm">Full or partial proprietary name of drug</param>
-        /// <param name="vericredApiKey">API Key (optional)</param>
         /// <returns>ApiResponse of DrugSearchResponse</returns>
-        ApiResponse<DrugSearchResponse> ListDrugsWithHttpInfo (string searchTerm, string vericredApiKey = null);
+        ApiResponse<DrugSearchResponse> ListDrugsWithHttpInfo (string searchTerm);
         #endregion Synchronous Operations
         #region Asynchronous Operations
 
@@ -54,9 +50,8 @@ namespace IO.Vericred.Api
         /// <param name="ndcPackageCode">NDC package code</param>
         /// <param name="audience">Two-character state code</param>
         /// <param name="stateCode">Two-character state code</param>
-        /// <param name="vericredApiKey">API Key (optional)</param>
         /// <returns>Task of DrugCoverageResponse</returns>
-        System.Threading.Tasks.Task<DrugCoverageResponse> GetDrugCoveragesAsync (string ndcPackageCode, string audience, string stateCode, string vericredApiKey = null);
+        System.Threading.Tasks.Task<DrugCoverageResponse> GetDrugCoveragesAsync (string ndcPackageCode, string audience, string stateCode);
 
         /// <summary>
         /// Search for DrugCoverages
@@ -66,16 +61,14 @@ namespace IO.Vericred.Api
         /// <param name="ndcPackageCode">NDC package code</param>
         /// <param name="audience">Two-character state code</param>
         /// <param name="stateCode">Two-character state code</param>
-        /// <param name="vericredApiKey">API Key (optional)</param>
         /// <returns>Task of ApiResponse (DrugCoverageResponse)</returns>
-        System.Threading.Tasks.Task<ApiResponse<DrugCoverageResponse>> GetDrugCoveragesAsyncWithHttpInfo (string ndcPackageCode, string audience, string stateCode, string vericredApiKey = null);
+        System.Threading.Tasks.Task<ApiResponse<DrugCoverageResponse>> GetDrugCoveragesAsyncWithHttpInfo (string ndcPackageCode, string audience, string stateCode);
 
 
         /// <exception cref="IO.Vericred.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="searchTerm">Full or partial proprietary name of drug</param>
-        /// <param name="vericredApiKey">API Key (optional)</param>
         /// <returns>Task of DrugSearchResponse</returns>
-        System.Threading.Tasks.Task<DrugSearchResponse> ListDrugsAsync (string searchTerm, string vericredApiKey = null);
+        System.Threading.Tasks.Task<DrugSearchResponse> ListDrugsAsync (string searchTerm);
 
         /// <summary>
         /// Drug Search
@@ -83,9 +76,8 @@ namespace IO.Vericred.Api
 
         /// <exception cref="IO.Vericred.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="searchTerm">Full or partial proprietary name of drug</param>
-        /// <param name="vericredApiKey">API Key (optional)</param>
         /// <returns>Task of ApiResponse (DrugSearchResponse)</returns>
-        System.Threading.Tasks.Task<ApiResponse<DrugSearchResponse>> ListDrugsAsyncWithHttpInfo (string searchTerm, string vericredApiKey = null);
+        System.Threading.Tasks.Task<ApiResponse<DrugSearchResponse>> ListDrugsAsyncWithHttpInfo (string searchTerm);
         #endregion Asynchronous Operations
     }
 
@@ -183,11 +175,10 @@ namespace IO.Vericred.Api
         /// <param name="ndcPackageCode">NDC package code</param>
         /// <param name="audience">Two-character state code</param>
         /// <param name="stateCode">Two-character state code</param>
-        /// <param name="vericredApiKey">API Key (optional)</param>
         /// <returns>DrugCoverageResponse</returns>
-        public DrugCoverageResponse GetDrugCoverages (string ndcPackageCode, string audience, string stateCode, string vericredApiKey = null)
+        public DrugCoverageResponse GetDrugCoverages (string ndcPackageCode, string audience, string stateCode)
         {
-             ApiResponse<DrugCoverageResponse> localVarResponse = GetDrugCoveragesWithHttpInfo(ndcPackageCode, audience, stateCode, vericredApiKey);
+             ApiResponse<DrugCoverageResponse> localVarResponse = GetDrugCoveragesWithHttpInfo(ndcPackageCode, audience, stateCode);
              return localVarResponse.Data;
         }
 
@@ -198,9 +189,8 @@ namespace IO.Vericred.Api
         /// <param name="ndcPackageCode">NDC package code</param>
         /// <param name="audience">Two-character state code</param>
         /// <param name="stateCode">Two-character state code</param>
-        /// <param name="vericredApiKey">API Key (optional)</param>
         /// <returns>ApiResponse of DrugCoverageResponse</returns>
-        public ApiResponse< DrugCoverageResponse > GetDrugCoveragesWithHttpInfo (string ndcPackageCode, string audience, string stateCode, string vericredApiKey = null)
+        public ApiResponse< DrugCoverageResponse > GetDrugCoveragesWithHttpInfo (string ndcPackageCode, string audience, string stateCode)
         {
             // verify the required parameter 'ndcPackageCode' is set
             if (ndcPackageCode == null)
@@ -238,7 +228,12 @@ namespace IO.Vericred.Api
             if (ndcPackageCode != null) localVarPathParams.Add("ndc_package_code", Configuration.ApiClient.ParameterToString(ndcPackageCode)); // path parameter
             if (audience != null) localVarQueryParams.Add("audience", Configuration.ApiClient.ParameterToString(audience)); // query parameter
             if (stateCode != null) localVarQueryParams.Add("state_code", Configuration.ApiClient.ParameterToString(stateCode)); // query parameter
-            if (vericredApiKey != null) localVarHeaderParams.Add("Vericred-Api-Key", Configuration.ApiClient.ParameterToString(vericredApiKey)); // header parameter
+
+            // authentication (Vericred-Api-Key) required
+            if (!String.IsNullOrEmpty(Configuration.GetApiKeyWithPrefix("Vericred-Api-Key")))
+            {
+                localVarHeaderParams["Vericred-Api-Key"] = Configuration.GetApiKeyWithPrefix("Vericred-Api-Key");
+            }
 
 
             // make the HTTP request
@@ -264,11 +259,10 @@ namespace IO.Vericred.Api
         /// <param name="ndcPackageCode">NDC package code</param>
         /// <param name="audience">Two-character state code</param>
         /// <param name="stateCode">Two-character state code</param>
-        /// <param name="vericredApiKey">API Key (optional)</param>
         /// <returns>Task of DrugCoverageResponse</returns>
-        public async System.Threading.Tasks.Task<DrugCoverageResponse> GetDrugCoveragesAsync (string ndcPackageCode, string audience, string stateCode, string vericredApiKey = null)
+        public async System.Threading.Tasks.Task<DrugCoverageResponse> GetDrugCoveragesAsync (string ndcPackageCode, string audience, string stateCode)
         {
-             ApiResponse<DrugCoverageResponse> localVarResponse = await GetDrugCoveragesAsyncWithHttpInfo(ndcPackageCode, audience, stateCode, vericredApiKey);
+             ApiResponse<DrugCoverageResponse> localVarResponse = await GetDrugCoveragesAsyncWithHttpInfo(ndcPackageCode, audience, stateCode);
              return localVarResponse.Data;
 
         }
@@ -278,9 +272,8 @@ namespace IO.Vericred.Api
         /// <param name="ndcPackageCode">NDC package code</param>
         /// <param name="audience">Two-character state code</param>
         /// <param name="stateCode">Two-character state code</param>
-        /// <param name="vericredApiKey">API Key (optional)</param>
         /// <returns>Task of ApiResponse (DrugCoverageResponse)</returns>
-        public async System.Threading.Tasks.Task<ApiResponse<DrugCoverageResponse>> GetDrugCoveragesAsyncWithHttpInfo (string ndcPackageCode, string audience, string stateCode, string vericredApiKey = null)
+        public async System.Threading.Tasks.Task<ApiResponse<DrugCoverageResponse>> GetDrugCoveragesAsyncWithHttpInfo (string ndcPackageCode, string audience, string stateCode)
         {
             // verify the required parameter 'ndcPackageCode' is set
             if (ndcPackageCode == null)
@@ -318,8 +311,12 @@ namespace IO.Vericred.Api
             if (ndcPackageCode != null) localVarPathParams.Add("ndc_package_code", Configuration.ApiClient.ParameterToString(ndcPackageCode)); // path parameter
             if (audience != null) localVarQueryParams.Add("audience", Configuration.ApiClient.ParameterToString(audience)); // query parameter
             if (stateCode != null) localVarQueryParams.Add("state_code", Configuration.ApiClient.ParameterToString(stateCode)); // query parameter
-            if (vericredApiKey != null) localVarHeaderParams.Add("Vericred-Api-Key", Configuration.ApiClient.ParameterToString(vericredApiKey)); // header parameter
 
+            // authentication (Vericred-Api-Key) required
+            if (!String.IsNullOrEmpty(Configuration.GetApiKeyWithPrefix("Vericred-Api-Key")))
+            {
+                localVarHeaderParams["Vericred-Api-Key"] = Configuration.GetApiKeyWithPrefix("Vericred-Api-Key");
+            }
 
             // make the HTTP request
             IRestResponse localVarResponse = (IRestResponse) await Configuration.ApiClient.CallApiAsync(localVarPath,
@@ -344,11 +341,10 @@ namespace IO.Vericred.Api
         /// </summary>
         /// <exception cref="IO.Vericred.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="searchTerm">Full or partial proprietary name of drug</param>
-        /// <param name="vericredApiKey">API Key (optional)</param>
         /// <returns>DrugSearchResponse</returns>
-        public DrugSearchResponse ListDrugs (string searchTerm, string vericredApiKey = null)
+        public DrugSearchResponse ListDrugs (string searchTerm)
         {
-             ApiResponse<DrugSearchResponse> localVarResponse = ListDrugsWithHttpInfo(searchTerm, vericredApiKey);
+             ApiResponse<DrugSearchResponse> localVarResponse = ListDrugsWithHttpInfo(searchTerm);
              return localVarResponse.Data;
         }
 
@@ -357,9 +353,8 @@ namespace IO.Vericred.Api
         /// </summary>
         /// <exception cref="IO.Vericred.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="searchTerm">Full or partial proprietary name of drug</param>
-        /// <param name="vericredApiKey">API Key (optional)</param>
         /// <returns>ApiResponse of DrugSearchResponse</returns>
-        public ApiResponse< DrugSearchResponse > ListDrugsWithHttpInfo (string searchTerm, string vericredApiKey = null)
+        public ApiResponse< DrugSearchResponse > ListDrugsWithHttpInfo (string searchTerm)
         {
             // verify the required parameter 'searchTerm' is set
             if (searchTerm == null)
@@ -391,7 +386,12 @@ namespace IO.Vericred.Api
             // e.g. /pet/{petId}.{format} becomes /pet/{petId}.json
             localVarPathParams.Add("format", "json");
             if (searchTerm != null) localVarQueryParams.Add("search_term", Configuration.ApiClient.ParameterToString(searchTerm)); // query parameter
-            if (vericredApiKey != null) localVarHeaderParams.Add("Vericred-Api-Key", Configuration.ApiClient.ParameterToString(vericredApiKey)); // header parameter
+
+            // authentication (Vericred-Api-Key) required
+            if (!String.IsNullOrEmpty(Configuration.GetApiKeyWithPrefix("Vericred-Api-Key")))
+            {
+                localVarHeaderParams["Vericred-Api-Key"] = Configuration.GetApiKeyWithPrefix("Vericred-Api-Key");
+            }
 
 
             // make the HTTP request
@@ -415,11 +415,10 @@ namespace IO.Vericred.Api
 
         /// <exception cref="IO.Vericred.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="searchTerm">Full or partial proprietary name of drug</param>
-        /// <param name="vericredApiKey">API Key (optional)</param>
         /// <returns>Task of DrugSearchResponse</returns>
-        public async System.Threading.Tasks.Task<DrugSearchResponse> ListDrugsAsync (string searchTerm, string vericredApiKey = null)
+        public async System.Threading.Tasks.Task<DrugSearchResponse> ListDrugsAsync (string searchTerm)
         {
-             ApiResponse<DrugSearchResponse> localVarResponse = await ListDrugsAsyncWithHttpInfo(searchTerm, vericredApiKey);
+             ApiResponse<DrugSearchResponse> localVarResponse = await ListDrugsAsyncWithHttpInfo(searchTerm);
              return localVarResponse.Data;
 
         }
@@ -427,9 +426,8 @@ namespace IO.Vericred.Api
 
         /// <exception cref="IO.Vericred.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="searchTerm">Full or partial proprietary name of drug</param>
-        /// <param name="vericredApiKey">API Key (optional)</param>
         /// <returns>Task of ApiResponse (DrugSearchResponse)</returns>
-        public async System.Threading.Tasks.Task<ApiResponse<DrugSearchResponse>> ListDrugsAsyncWithHttpInfo (string searchTerm, string vericredApiKey = null)
+        public async System.Threading.Tasks.Task<ApiResponse<DrugSearchResponse>> ListDrugsAsyncWithHttpInfo (string searchTerm)
         {
             // verify the required parameter 'searchTerm' is set
             if (searchTerm == null)
@@ -461,8 +459,12 @@ namespace IO.Vericred.Api
             // e.g. /pet/{petId}.{format} becomes /pet/{petId}.json
             localVarPathParams.Add("format", "json");
             if (searchTerm != null) localVarQueryParams.Add("search_term", Configuration.ApiClient.ParameterToString(searchTerm)); // query parameter
-            if (vericredApiKey != null) localVarHeaderParams.Add("Vericred-Api-Key", Configuration.ApiClient.ParameterToString(vericredApiKey)); // header parameter
 
+            // authentication (Vericred-Api-Key) required
+            if (!String.IsNullOrEmpty(Configuration.GetApiKeyWithPrefix("Vericred-Api-Key")))
+            {
+                localVarHeaderParams["Vericred-Api-Key"] = Configuration.GetApiKeyWithPrefix("Vericred-Api-Key");
+            }
 
             // make the HTTP request
             IRestResponse localVarResponse = (IRestResponse) await Configuration.ApiClient.CallApiAsync(localVarPath,

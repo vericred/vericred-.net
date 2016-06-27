@@ -8,7 +8,7 @@ Method | HTTP request | Description
 
 
 # **GetZipCounties**
-> ZipCountyResponse GetZipCounties (string zipPrefix, string vericredApiKey = null)
+> ZipCountyResponse GetZipCounties (string zipPrefix)
 
 Search for Zip Counties
 
@@ -29,14 +29,18 @@ namespace Example
         public void main()
         {
             
+            // Configure API key authorization: Vericred-Api-Key
+            Configuration.Default.ApiKey.Add('Vericred-Api-Key', 'YOUR_API_KEY');
+            // Uncomment below to setup prefix (e.g. BEARER) for API key, if needed
+            // Configuration.Default.ApiKeyPrefix.Add('Vericred-Api-Key', 'BEARER');
+
             var apiInstance = new ZipCountiesApi();
             var zipPrefix = 1002;  // string | Partial five-digit Zip
-            var vericredApiKey = api-doc-key;  // string | API Key (optional) 
 
             try
             {
                 // Search for Zip Counties
-                ZipCountyResponse result = apiInstance.GetZipCounties(zipPrefix, vericredApiKey);
+                ZipCountyResponse result = apiInstance.GetZipCounties(zipPrefix);
                 Debug.WriteLine(result);
             }
             catch (Exception e)
@@ -53,7 +57,6 @@ namespace Example
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **zipPrefix** | **string**| Partial five-digit Zip | 
- **vericredApiKey** | **string**| API Key | [optional] 
 
 ### Return type
 
@@ -61,7 +64,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-No authorization required
+[Vericred-Api-Key](../README.md#Vericred-Api-Key)
 
 ### HTTP request headers
 
