@@ -4,6 +4,7 @@
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **AdultDental** | **bool?** | Does the plan provide dental coverage for adults? | [optional] 
+**Age29Rider** | **bool?** |  | [optional] 
 **Ambulance** | **string** | Benefits string for ambulance coverage | [optional] 
 **BenefitsSummaryUrl** | **string** | Link to the summary of benefits and coverage (SBC) document. | [optional] 
 **BuyLink** | **string** | Link to a location to purchase the plan. | [optional] 
@@ -14,6 +15,7 @@ Name | Type | Description | Notes
 **CustomerServicePhoneNumber** | **string** | Phone number to contact the insurance carrier | [optional] 
 **DurableMedicalEquipment** | **string** | Benefits summary for durable medical equipment | [optional] 
 **DiagnosticTest** | **string** | Diagnostic tests benefit summary | [optional] 
+**DpRider** | **bool?** | Is this a domestic plan? | [optional] 
 **DrugFormularyUrl** | **string** | Link to the summary of drug benefits for the plan | [optional] 
 **EffectiveDate** | **string** | Effective date of coverage. | [optional] 
 **ExpirationDate** | **string** | Expiration date of coverage. | [optional] 
@@ -22,6 +24,7 @@ Name | Type | Description | Notes
 **FamilyDrugMoop** | **string** | Maximum out-of-pocket for drugs when a family is on the plan | [optional] 
 **FamilyMedicalDeductible** | **string** | Deductible when a family is on the plan | [optional] 
 **FamilyMedicalMoop** | **string** | Maximum out-of-pocket when a family is on the plan | [optional] 
+**FpRider** | **bool?** | Is this a family plan? | [optional] 
 **GenericDrugs** | **string** | Cost for generic drugs | [optional] 
 **HabilitationServices** | **string** | Habilitation services benefits summary | [optional] 
 **HiosIssuerId** | **string** |  | [optional] 
@@ -56,8 +59,8 @@ Name | Type | Description | Notes
 **PreferredBrandDrugs** | **string** | Cost under the plan for perferred brand drugs | [optional] 
 **PrenatalPostnatalCare** | **string** | Inpatient substance abuse benefits summary | [optional] 
 **PreventativeCare** | **string** | Benefits summary for preventative care | [optional] 
-**PremiumSubsidized** | **double?** | Cumulative premium amount after subsidy | [optional] 
-**Premium** | **double?** | Cumulative premium amount | [optional] 
+**PremiumSubsidized** | **decimal?** | Cumulative premium amount after subsidy | [optional] 
+**Premium** | **decimal?** | Cumulative premium amount | [optional] 
 **PrimaryCarePhysician** | **string** | Cost under the plan to visit a Primary Care Physician | [optional] 
 **RehabilitationServices** | **string** | Benefits summary for rehabilitation services | [optional] 
 **SkilledNursing** | **string** | Benefits summary for skilled nursing services | [optional] 
@@ -66,8 +69,8 @@ Name | Type | Description | Notes
 **UrgentCare** | **string** | Benefits summary for urgent care | [optional] 
 **MatchPercentage** | **int?** | Percentage of doctors who matched this Plan | [optional] 
 **PerfectMatchPercentage** | **int?** | Percentage of employees with 100% match | [optional] 
-**EmployeePremium** | **double?** | Cumulative premium amount for employees | [optional] 
-**DependentPremium** | **double?** | Cumulative premium amount for dependents | [optional] 
+**EmployeePremium** | **decimal?** | Cumulative premium amount for employees | [optional] 
+**DependentPremium** | **decimal?** | Cumulative premium amount for dependents | [optional] 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 
