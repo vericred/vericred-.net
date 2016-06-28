@@ -9,7 +9,7 @@ Method | HTTP request | Description
 
 
 # **GetProvider**
-> ProviderShowResponse GetProvider (string npi, string vericredApiKey = null)
+> ProviderShowResponse GetProvider (string npi)
 
 Find a Provider
 
@@ -30,14 +30,18 @@ namespace Example
         public void main()
         {
             
+            // Configure API key authorization: Vericred-Api-Key
+            Configuration.Default.ApiKey.Add('Vericred-Api-Key', 'YOUR_API_KEY');
+            // Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+            // Configuration.Default.ApiKeyPrefix.Add('Vericred-Api-Key', 'Bearer');
+
             var apiInstance = new ProvidersApi();
             var npi = 1234567890;  // string | NPI number
-            var vericredApiKey = api-doc-key;  // string | API Key (optional) 
 
             try
             {
                 // Find a Provider
-                ProviderShowResponse result = apiInstance.GetProvider(npi, vericredApiKey);
+                ProviderShowResponse result = apiInstance.GetProvider(npi);
                 Debug.WriteLine(result);
             }
             catch (Exception e)
@@ -54,7 +58,6 @@ namespace Example
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **npi** | **string**| NPI number | 
- **vericredApiKey** | **string**| API Key | [optional] 
 
 ### Return type
 
@@ -62,7 +65,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-No authorization required
+[Vericred-Api-Key](../README.md#Vericred-Api-Key)
 
 ### HTTP request headers
 
@@ -76,7 +79,7 @@ No authorization required
 
 Find Providers
 
-All `Provider` searches require a `zip_code`, which we use for weighting the search results to favor `Provider`s that are near the user.  For example, we would want "Dr. John Smith" who is 5 miles away to appear before "Dr. John Smith" who is 100 miles away.  The weighting also allows for non-exact matches.  In our prior example, we would want "Dr. Jon Smith" who is 2 miles away to appear before the exact match "Dr. John Smith" who is 100 miles away because it is more likely that the user just entered an incorrect name.  The free text search also supports Specialty name search and "body part" Specialty name search.  So, searching "John Smith nose" would return "Dr. John Smith", the ENT Specialist before "Dr. John Smith" the Internist. 
+All `Provider` searches require a `zip_code`, which we use for weighting the search results to favor `Provider`s that are near the user.  For example, we would want \"Dr. John Smith\" who is 5 miles away to appear before \"Dr. John Smith\" who is 100 miles away.  The weighting also allows for non-exact matches.  In our prior example, we would want \"Dr. Jon Smith\" who is 2 miles away to appear before the exact match \"Dr. John Smith\" who is 100 miles away because it is more likely that the user just entered an incorrect name.  The free text search also supports Specialty name search and \"body part\" Specialty name search.  So, searching \"John Smith nose\" would return \"Dr. John Smith\", the ENT Specialist before \"Dr. John Smith\" the Internist. 
 
 ### Example
 ```csharp
@@ -93,6 +96,11 @@ namespace Example
         public void main()
         {
             
+            // Configure API key authorization: Vericred-Api-Key
+            Configuration.Default.ApiKey.Add('Vericred-Api-Key', 'YOUR_API_KEY');
+            // Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+            // Configuration.Default.ApiKeyPrefix.Add('Vericred-Api-Key', 'Bearer');
+
             var apiInstance = new ProvidersApi();
             var body = new RequestProvidersSearch(); // RequestProvidersSearch |  (optional) 
 
@@ -123,7 +131,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-No authorization required
+[Vericred-Api-Key](../README.md#Vericred-Api-Key)
 
 ### HTTP request headers
 

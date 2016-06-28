@@ -8,11 +8,11 @@ Method | HTTP request | Description
 
 
 # **ListNetworks**
-> NetworkSearchResponse ListNetworks (string carrierId)
+> NetworkSearchResponse ListNetworks (string carrierId, int? page = null, int? perPage = null)
 
 Networks
 
-A network is a list of the doctors, other health care providers, and hospitals that a plan has contracted with to provide medical care to its members.
+A network is a list of the doctors, other health care providers, and hospitals that a plan has contracted with to provide medical care to its members. This endpoint is paginated.
 
 ### Example
 ```csharp
@@ -29,13 +29,20 @@ namespace Example
         public void main()
         {
             
+            // Configure API key authorization: Vericred-Api-Key
+            Configuration.Default.ApiKey.Add('Vericred-Api-Key', 'YOUR_API_KEY');
+            // Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+            // Configuration.Default.ApiKeyPrefix.Add('Vericred-Api-Key', 'Bearer');
+
             var apiInstance = new NetworksApi();
             var carrierId = 33333;  // string | Carrier HIOS Issuer ID
+            var page = 1;  // int? | Page of paginated response (optional) 
+            var perPage = 1;  // int? | Responses per page (optional) 
 
             try
             {
                 // Networks
-                NetworkSearchResponse result = apiInstance.ListNetworks(carrierId);
+                NetworkSearchResponse result = apiInstance.ListNetworks(carrierId, page, perPage);
                 Debug.WriteLine(result);
             }
             catch (Exception e)
@@ -52,6 +59,8 @@ namespace Example
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **carrierId** | **string**| Carrier HIOS Issuer ID | 
+ **page** | **int?**| Page of paginated response | [optional] 
+ **perPage** | **int?**| Responses per page | [optional] 
 
 ### Return type
 
@@ -59,7 +68,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-No authorization required
+[Vericred-Api-Key](../README.md#Vericred-Api-Key)
 
 ### HTTP request headers
 
