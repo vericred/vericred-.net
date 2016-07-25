@@ -193,7 +193,7 @@ limitations under the License.
   <Import Project="$(MsBuildToolsPath)\Microsoft.CSharp.targets" />
   <ItemGroup>
       <ProjectReference Include="..\IO.Vericred\IO.Vericred.csproj">
-          <Project>{99393997-E48C-4C08-B7B4-55A1CCCFC28B}</Project>
+          <Project>{5C65A36C-63FF-4292-B7BD-376F17B62CB3}</Project>
           <Name>IO.Vericred</Name>
       </ProjectReference>
   </ItemGroup>

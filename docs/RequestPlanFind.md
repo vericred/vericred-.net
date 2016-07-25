@@ -5,10 +5,11 @@ Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **Applicants** | [**List&lt;RequestPlanFindApplicant&gt;**](RequestPlanFindApplicant.md) | Applicants for desired plans. | [optional] 
 **EnrollmentDate** | **string** | Date of enrollment | [optional] 
-**DrugPackages** | [**List&lt;DrugPackage&gt;**](DrugPackage.md) | National Drug Code Package Id | [optional] 
+**DrugPackages** | [**List&lt;RequestPlanFindDrugPackage&gt;**](RequestPlanFindDrugPackage.md) | National Drug Code Package Id | [optional] 
 **FipsCode** | **string** | County code to determine eligibility | [optional] 
 **HouseholdIncome** | **int?** | Total household income. | [optional] 
 **HouseholdSize** | **int?** | Number of people living in household. | [optional] 
+**Ids** | **List&lt;int?&gt;** | List of plan IDs to filter by | [optional] 
 **Market** | **string** | Type of plan to search for. | [optional] 
 **Providers** | [**List&lt;RequestPlanFindProvider&gt;**](RequestPlanFindProvider.md) | List of providers to search for. | [optional] 
 **Page** | **int?** | Selected page of paginated response. | [optional] 

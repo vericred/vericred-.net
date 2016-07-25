@@ -151,16 +151,18 @@ namespace IO.Vericred.Model
         /// </summary>
         /// <param name="AcceptsInsurance">Limit results to Providers who accept at least one insurance         plan.  Note that the inverse of this filter is not supported and         any value will evaluate to true.</param>
         /// <param name="HiosIds">List of HIOS ids.</param>
+        /// <param name="MinScore">Minimum search threshold to be included in the results.</param>
         /// <param name="Page">Page number.</param>
         /// <param name="PerPage">Number of records to return per page.</param>
         /// <param name="Radius">Radius (in miles) to use to limit results.</param>
         /// <param name="SearchTerm">String to search by.</param>
         /// <param name="ZipCode">Zip Code to search near.</param>
         /// <param name="Type">Either organization or individual.</param>
-        public RequestProvidersSearch(bool? AcceptsInsurance = null, List<string> HiosIds = null, int? Page = null, int? PerPage = null, int? Radius = null, string SearchTerm = null, string ZipCode = null, string Type = null)
+        public RequestProvidersSearch(bool? AcceptsInsurance = null, List<string> HiosIds = null, decimal? MinScore = null, int? Page = null, int? PerPage = null, int? Radius = null, string SearchTerm = null, string ZipCode = null, string Type = null)
         {
             this.AcceptsInsurance = AcceptsInsurance;
             this.HiosIds = HiosIds;
+            this.MinScore = MinScore;
             this.Page = Page;
             this.PerPage = PerPage;
             this.Radius = Radius;
@@ -181,6 +183,12 @@ namespace IO.Vericred.Model
         /// <value>List of HIOS ids</value>
         [DataMember(Name="hios_ids", EmitDefaultValue=false)]
         public List<string> HiosIds { get; set; }
+        /// <summary>
+        /// Minimum search threshold to be included in the results
+        /// </summary>
+        /// <value>Minimum search threshold to be included in the results</value>
+        [DataMember(Name="min_score", EmitDefaultValue=false)]
+        public decimal? MinScore { get; set; }
         /// <summary>
         /// Page number
         /// </summary>
@@ -227,6 +235,7 @@ namespace IO.Vericred.Model
             sb.Append("class RequestProvidersSearch {\n");
             sb.Append("  AcceptsInsurance: ").Append(AcceptsInsurance).Append("\n");
             sb.Append("  HiosIds: ").Append(HiosIds).Append("\n");
+            sb.Append("  MinScore: ").Append(MinScore).Append("\n");
             sb.Append("  Page: ").Append(Page).Append("\n");
             sb.Append("  PerPage: ").Append(PerPage).Append("\n");
             sb.Append("  Radius: ").Append(Radius).Append("\n");
@@ -280,6 +289,11 @@ namespace IO.Vericred.Model
                     this.HiosIds.SequenceEqual(other.HiosIds)
                 ) && 
                 (
+                    this.MinScore == other.MinScore ||
+                    this.MinScore != null &&
+                    this.MinScore.Equals(other.MinScore)
+                ) && 
+                (
                     this.Page == other.Page ||
                     this.Page != null &&
                     this.Page.Equals(other.Page)
@@ -326,6 +340,8 @@ namespace IO.Vericred.Model
                     hash = hash * 59 + this.AcceptsInsurance.GetHashCode();
                 if (this.HiosIds != null)
                     hash = hash * 59 + this.HiosIds.GetHashCode();
+                if (this.MinScore != null)
+                    hash = hash * 59 + this.MinScore.GetHashCode();
                 if (this.Page != null)
                     hash = hash * 59 + this.Page.GetHashCode();
                 if (this.PerPage != null)

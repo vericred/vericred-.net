@@ -280,6 +280,14 @@ namespace IO.Vericred.Test
             // TODO unit test for the property 'DiagnosticTest'
         }
         /// <summary>
+        /// Test the property 'DisplayName'
+        /// </summary>
+        [Test]
+        public void DisplayNameTest()
+        {
+            // TODO unit test for the property 'DisplayName'
+        }
+        /// <summary>
         /// Test the property 'DpRider'
         /// </summary>
         [Test]
@@ -398,6 +406,14 @@ namespace IO.Vericred.Test
         public void HospiceServiceTest()
         {
             // TODO unit test for the property 'HospiceService'
+        }
+        /// <summary>
+        /// Test the property 'HsaEligible'
+        /// </summary>
+        [Test]
+        public void HsaEligibleTest()
+        {
+            // TODO unit test for the property 'HsaEligible'
         }
         /// <summary>
         /// Test the property 'Id'
@@ -662,6 +678,14 @@ namespace IO.Vericred.Test
         public void RehabilitationServicesTest()
         {
             // TODO unit test for the property 'RehabilitationServices'
+        }
+        /// <summary>
+        /// Test the property 'ServiceAreaId'
+        /// </summary>
+        [Test]
+        public void ServiceAreaIdTest()
+        {
+            // TODO unit test for the property 'ServiceAreaId'
         }
         /// <summary>
         /// Test the property 'SkilledNursing'

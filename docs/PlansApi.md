@@ -5,6 +5,7 @@ All URIs are relative to *https://api.vericred.com/*
 Method | HTTP request | Description
 ------------- | ------------- | -------------
 [**FindPlans**](PlansApi.md#findplans) | **POST** /plans/search | Find Plans
+[**ShowPlan**](PlansApi.md#showplan) | **GET** /plans/{id} | Show Plan
 
 
 # **FindPlans**
@@ -70,6 +71,72 @@ Name | Type | Description  | Notes
 
  - **Content-Type**: Not defined
  - **Accept**: Not defined
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+# **ShowPlan**
+> PlanShowResponse ShowPlan (int? year = null)
+
+Show Plan
+
+Show the details of an individual Plan.  This includes deductibles, maximums out of pocket, and co-pay/coinsurance for benefits
+
+### Example
+```csharp
+using System;
+using System.Diagnostics;
+using IO.Vericred.Api;
+using IO.Vericred.Client;
+using IO.Vericred.Model;
+
+namespace Example
+{
+    public class ShowPlanExample
+    {
+        public void main()
+        {
+            
+            // Configure API key authorization: Vericred-Api-Key
+            Configuration.Default.ApiKey.Add('Vericred-Api-Key', 'YOUR_API_KEY');
+            // Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+            // Configuration.Default.ApiKeyPrefix.Add('Vericred-Api-Key', 'Bearer');
+
+            var apiInstance = new PlansApi();
+            var year = 2016;  // int? | Plan year (defaults to current year) (optional) 
+
+            try
+            {
+                // Show Plan
+                PlanShowResponse result = apiInstance.ShowPlan(year);
+                Debug.WriteLine(result);
+            }
+            catch (Exception e)
+            {
+                Debug.Print("Exception when calling PlansApi.ShowPlan: " + e.Message );
+            }
+        }
+    }
+}
+```
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **year** | **int?**| Plan year (defaults to current year) | [optional] 
+
+### Return type
+
+[**PlanShowResponse**](PlanShowResponse.md)
+
+### Authorization
+
+[Vericred-Api-Key](../README.md#Vericred-Api-Key)
+
+### HTTP request headers
+
+ - **Content-Type**: application/json
+ - **Accept**: application/json
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 

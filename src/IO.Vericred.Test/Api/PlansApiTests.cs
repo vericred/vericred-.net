@@ -195,6 +195,18 @@ namespace IO.Vericred.Test
             //Assert.IsInstanceOf<PlanSearchResponse> (response, "response is PlanSearchResponse");
         }
         
+        /// <summary>
+        /// Test ShowPlan
+        /// </summary>
+        [Test]
+        public void ShowPlanTest()
+        {
+            // TODO uncomment below to test the method and replace null with proper value
+            //int? year = null;
+            //var response = instance.ShowPlan(year);
+            //Assert.IsInstanceOf<PlanShowResponse> (response, "response is PlanShowResponse");
+        }
+        
     }
 
 }
