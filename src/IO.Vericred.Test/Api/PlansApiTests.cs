@@ -178,8 +178,8 @@ namespace IO.Vericred.Test
         [Test]
         public void InstanceTest()
         {
-            // test 'IsInstanceOfType' PlansApi
-            Assert.IsInstanceOfType(typeof(PlansApi), instance, "instance is a PlansApi");
+            // TODO uncomment below to test 'IsInstanceOfType' PlansApi
+            //Assert.IsInstanceOfType(typeof(PlansApi), instance, "instance is a PlansApi");
         }
 
         
@@ -193,6 +193,18 @@ namespace IO.Vericred.Test
             //RequestPlanFind body = null;
             //var response = instance.FindPlans(body);
             //Assert.IsInstanceOf<PlanSearchResponse> (response, "response is PlanSearchResponse");
+        }
+        
+        /// <summary>
+        /// Test ShowPlan
+        /// </summary>
+        [Test]
+        public void ShowPlanTest()
+        {
+            // TODO uncomment below to test the method and replace null with proper value
+            //int? year = null;
+            //var response = instance.ShowPlan(year);
+            //Assert.IsInstanceOf<PlanShowResponse> (response, "response is PlanShowResponse");
         }
         
     }

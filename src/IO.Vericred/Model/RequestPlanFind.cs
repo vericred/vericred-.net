@@ -155,13 +155,14 @@ namespace IO.Vericred.Model
         /// <param name="FipsCode">County code to determine eligibility.</param>
         /// <param name="HouseholdIncome">Total household income..</param>
         /// <param name="HouseholdSize">Number of people living in household..</param>
+        /// <param name="Ids">List of plan IDs to filter by.</param>
         /// <param name="Market">Type of plan to search for..</param>
         /// <param name="Providers">List of providers to search for..</param>
         /// <param name="Page">Selected page of paginated response..</param>
         /// <param name="PerPage">Results per page of response..</param>
         /// <param name="Sort">Sort responses by plan field..</param>
         /// <param name="ZipCode">5-digit zip code - this helps determine pricing..</param>
-        public RequestPlanFind(List<RequestPlanFindApplicant> Applicants = null, string EnrollmentDate = null, List<DrugPackage> DrugPackages = null, string FipsCode = null, int? HouseholdIncome = null, int? HouseholdSize = null, string Market = null, List<RequestPlanFindProvider> Providers = null, int? Page = null, int? PerPage = null, string Sort = null, string ZipCode = null)
+        public RequestPlanFind(List<RequestPlanFindApplicant> Applicants = null, string EnrollmentDate = null, List<RequestPlanFindDrugPackage> DrugPackages = null, string FipsCode = null, int? HouseholdIncome = null, int? HouseholdSize = null, List<int?> Ids = null, string Market = null, List<RequestPlanFindProvider> Providers = null, int? Page = null, int? PerPage = null, string Sort = null, string ZipCode = null)
         {
             this.Applicants = Applicants;
             this.EnrollmentDate = EnrollmentDate;
@@ -169,6 +170,7 @@ namespace IO.Vericred.Model
             this.FipsCode = FipsCode;
             this.HouseholdIncome = HouseholdIncome;
             this.HouseholdSize = HouseholdSize;
+            this.Ids = Ids;
             this.Market = Market;
             this.Providers = Providers;
             this.Page = Page;
@@ -194,7 +196,7 @@ namespace IO.Vericred.Model
         /// </summary>
         /// <value>National Drug Code Package Id</value>
         [DataMember(Name="drug_packages", EmitDefaultValue=false)]
-        public List<DrugPackage> DrugPackages { get; set; }
+        public List<RequestPlanFindDrugPackage> DrugPackages { get; set; }
         /// <summary>
         /// County code to determine eligibility
         /// </summary>
@@ -213,6 +215,12 @@ namespace IO.Vericred.Model
         /// <value>Number of people living in household.</value>
         [DataMember(Name="household_size", EmitDefaultValue=false)]
         public int? HouseholdSize { get; set; }
+        /// <summary>
+        /// List of plan IDs to filter by
+        /// </summary>
+        /// <value>List of plan IDs to filter by</value>
+        [DataMember(Name="ids", EmitDefaultValue=false)]
+        public List<int?> Ids { get; set; }
         /// <summary>
         /// Type of plan to search for.
         /// </summary>
@@ -263,6 +271,7 @@ namespace IO.Vericred.Model
             sb.Append("  FipsCode: ").Append(FipsCode).Append("\n");
             sb.Append("  HouseholdIncome: ").Append(HouseholdIncome).Append("\n");
             sb.Append("  HouseholdSize: ").Append(HouseholdSize).Append("\n");
+            sb.Append("  Ids: ").Append(Ids).Append("\n");
             sb.Append("  Market: ").Append(Market).Append("\n");
             sb.Append("  Providers: ").Append(Providers).Append("\n");
             sb.Append("  Page: ").Append(Page).Append("\n");
@@ -336,6 +345,11 @@ namespace IO.Vericred.Model
                     this.HouseholdSize.Equals(other.HouseholdSize)
                 ) && 
                 (
+                    this.Ids == other.Ids ||
+                    this.Ids != null &&
+                    this.Ids.SequenceEqual(other.Ids)
+                ) && 
+                (
                     this.Market == other.Market ||
                     this.Market != null &&
                     this.Market.Equals(other.Market)
@@ -390,6 +404,8 @@ namespace IO.Vericred.Model
                     hash = hash * 59 + this.HouseholdIncome.GetHashCode();
                 if (this.HouseholdSize != null)
                     hash = hash * 59 + this.HouseholdSize.GetHashCode();
+                if (this.Ids != null)
+                    hash = hash * 59 + this.Ids.GetHashCode();
                 if (this.Market != null)
                     hash = hash * 59 + this.Market.GetHashCode();
                 if (this.Providers != null)

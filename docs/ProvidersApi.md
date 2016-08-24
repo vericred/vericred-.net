@@ -8,8 +8,9 @@ Method | HTTP request | Description
 [**GetProviders**](ProvidersApi.md#getproviders) | **POST** /providers/search | Find Providers
 
 
+<a name="getprovider"></a>
 # **GetProvider**
-> ProviderShowResponse GetProvider (string npi)
+> ProviderShowResponse GetProvider (string npi, string year = null, string state = null)
 
 Find a Provider
 
@@ -31,17 +32,19 @@ namespace Example
         {
             
             // Configure API key authorization: Vericred-Api-Key
-            Configuration.Default.ApiKey.Add('Vericred-Api-Key', 'YOUR_API_KEY');
+            Configuration.Default.ApiKey.Add("Vericred-Api-Key", "YOUR_API_KEY");
             // Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
-            // Configuration.Default.ApiKeyPrefix.Add('Vericred-Api-Key', 'Bearer');
+            // Configuration.Default.ApiKeyPrefix.Add("Vericred-Api-Key", "Bearer");
 
             var apiInstance = new ProvidersApi();
             var npi = 1234567890;  // string | NPI number
+            var year = 2016;  // string | Only show plan ids for the given year (optional) 
+            var state = NY;  // string | Only show plan ids for the given state (optional) 
 
             try
             {
                 // Find a Provider
-                ProviderShowResponse result = apiInstance.GetProvider(npi);
+                ProviderShowResponse result = apiInstance.GetProvider(npi, year, state);
                 Debug.WriteLine(result);
             }
             catch (Exception e)
@@ -58,6 +61,8 @@ namespace Example
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **npi** | **string**| NPI number | 
+ **year** | **string**| Only show plan ids for the given year | [optional] 
+ **state** | **string**| Only show plan ids for the given state | [optional] 
 
 ### Return type
 
@@ -74,6 +79,7 @@ Name | Type | Description  | Notes
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
+<a name="getproviders"></a>
 # **GetProviders**
 > ProvidersSearchResponse GetProviders (RequestProvidersSearch body = null)
 
@@ -97,9 +103,9 @@ namespace Example
         {
             
             // Configure API key authorization: Vericred-Api-Key
-            Configuration.Default.ApiKey.Add('Vericred-Api-Key', 'YOUR_API_KEY');
+            Configuration.Default.ApiKey.Add("Vericred-Api-Key", "YOUR_API_KEY");
             // Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
-            // Configuration.Default.ApiKeyPrefix.Add('Vericred-Api-Key', 'Bearer');
+            // Configuration.Default.ApiKeyPrefix.Add("Vericred-Api-Key", "Bearer");
 
             var apiInstance = new ProvidersApi();
             var body = new RequestProvidersSearch(); // RequestProvidersSearch |  (optional) 

@@ -26,8 +26,8 @@ mozroots --import --sync
 mono nuget.exe install src/IO.Vericred.Test/packages.config -o packages
 
 echo "[INFO] Install NUnit runners via NuGet"
-mono nuget.exe install NUnit.Runners -Version 3.2.1 -OutputDirectory packages 
+mono nuget.exe install NUnit.Runners -Version 2.6.4 -OutputDirectory packages 
 
 echo "[INFO] Build the solution and run the unit test"
 xbuild IO.Vericred.sln && \
-    mono ./packages/NUnit.ConsoleRunner.3.2.1/tools/nunit3-console.exe src/IO.Vericred.Test/bin/Debug/IO.Vericred.Test.dll
+    mono ./packages/NUnit.Runners.2.6.4/tools/nunit-console.exe src/IO.Vericred.Test/bin/Debug/IO.Vericred.Test.dll

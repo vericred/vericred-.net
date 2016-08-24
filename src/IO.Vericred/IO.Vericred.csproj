@@ -131,11 +131,11 @@ limitations under the License.
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{99393997-E48C-4C08-B7B4-55A1CCCFC28B}</ProjectGuid>
+    <ProjectGuid>{1DE248AC-C43E-45D9-9F2E-7042925D6F15}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>Swagger Library</RootNamespace>
-    <AssemblyName>Swagger Library</AssemblyName>
+    <RootNamespace>IO.Vericred</RootNamespace>
+    <AssemblyName>IO.Vericred</AssemblyName>
     <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
   </PropertyGroup>

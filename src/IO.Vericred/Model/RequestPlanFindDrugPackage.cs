@@ -141,42 +141,26 @@ using Newtonsoft.Json.Converters;
 namespace IO.Vericred.Model
 {
     /// <summary>
-    /// PlanZipCounty
+    /// RequestPlanFindDrugPackage
     /// </summary>
     [DataContract]
-    public partial class PlanZipCounty :  IEquatable<PlanZipCounty>
+    public partial class RequestPlanFindDrugPackage :  IEquatable<RequestPlanFindDrugPackage>
     {
         /// <summary>
-        /// Initializes a new instance of the <see cref="PlanZipCounty" /> class.
+        /// Initializes a new instance of the <see cref="RequestPlanFindDrugPackage" /> class.
         /// </summary>
-        /// <param name="PlanId">Foreign key to plan.</param>
-        /// <param name="CountyId">Foreign key to county.</param>
-        /// <param name="ZipCodeId">Foreign key to zip code.</param>
-        public PlanZipCounty(int? PlanId = null, int? CountyId = null, int? ZipCodeId = null)
+        /// <param name="Id">National Drug Code ID (Package).</param>
+        public RequestPlanFindDrugPackage(string Id = null)
         {
-            this.PlanId = PlanId;
-            this.CountyId = CountyId;
-            this.ZipCodeId = ZipCodeId;
+            this.Id = Id;
         }
         
         /// <summary>
-        /// Foreign key to plan
+        /// National Drug Code ID (Package)
         /// </summary>
-        /// <value>Foreign key to plan</value>
-        [DataMember(Name="plan_id", EmitDefaultValue=false)]
-        public int? PlanId { get; set; }
-        /// <summary>
-        /// Foreign key to county
-        /// </summary>
-        /// <value>Foreign key to county</value>
-        [DataMember(Name="county_id", EmitDefaultValue=false)]
-        public int? CountyId { get; set; }
-        /// <summary>
-        /// Foreign key to zip code
-        /// </summary>
-        /// <value>Foreign key to zip code</value>
-        [DataMember(Name="zip_code_id", EmitDefaultValue=false)]
-        public int? ZipCodeId { get; set; }
+        /// <value>National Drug Code ID (Package)</value>
+        [DataMember(Name="id", EmitDefaultValue=false)]
+        public string Id { get; set; }
         /// <summary>
         /// Returns the string presentation of the object
         /// </summary>
@@ -184,10 +168,8 @@ namespace IO.Vericred.Model
         public override string ToString()
         {
             var sb = new StringBuilder();
-            sb.Append("class PlanZipCounty {\n");
-            sb.Append("  PlanId: ").Append(PlanId).Append("\n");
-            sb.Append("  CountyId: ").Append(CountyId).Append("\n");
-            sb.Append("  ZipCodeId: ").Append(ZipCodeId).Append("\n");
+            sb.Append("class RequestPlanFindDrugPackage {\n");
+            sb.Append("  Id: ").Append(Id).Append("\n");
             sb.Append("}\n");
             return sb.ToString();
         }
@@ -209,15 +191,15 @@ namespace IO.Vericred.Model
         public override bool Equals(object obj)
         {
             // credit: http://stackoverflow.com/a/10454552/677735
-            return this.Equals(obj as PlanZipCounty);
+            return this.Equals(obj as RequestPlanFindDrugPackage);
         }
 
         /// <summary>
-        /// Returns true if PlanZipCounty instances are equal
+        /// Returns true if RequestPlanFindDrugPackage instances are equal
         /// </summary>
-        /// <param name="other">Instance of PlanZipCounty to be compared</param>
+        /// <param name="other">Instance of RequestPlanFindDrugPackage to be compared</param>
         /// <returns>Boolean</returns>
-        public bool Equals(PlanZipCounty other)
+        public bool Equals(RequestPlanFindDrugPackage other)
         {
             // credit: http://stackoverflow.com/a/10454552/677735
             if (other == null)
@@ -225,19 +207,9 @@ namespace IO.Vericred.Model
 
             return 
                 (
-                    this.PlanId == other.PlanId ||
-                    this.PlanId != null &&
-                    this.PlanId.Equals(other.PlanId)
-                ) && 
-                (
-                    this.CountyId == other.CountyId ||
-                    this.CountyId != null &&
-                    this.CountyId.Equals(other.CountyId)
-                ) && 
-                (
-                    this.ZipCodeId == other.ZipCodeId ||
-                    this.ZipCodeId != null &&
-                    this.ZipCodeId.Equals(other.ZipCodeId)
+                    this.Id == other.Id ||
+                    this.Id != null &&
+                    this.Id.Equals(other.Id)
                 );
         }
 
@@ -252,12 +224,8 @@ namespace IO.Vericred.Model
             {
                 int hash = 41;
                 // Suitable nullity checks etc, of course :)
-                if (this.PlanId != null)
-                    hash = hash * 59 + this.PlanId.GetHashCode();
-                if (this.CountyId != null)
-                    hash = hash * 59 + this.CountyId.GetHashCode();
-                if (this.ZipCodeId != null)
-                    hash = hash * 59 + this.ZipCodeId.GetHashCode();
+                if (this.Id != null)
+                    hash = hash * 59 + this.Id.GetHashCode();
                 return hash;
             }
         }

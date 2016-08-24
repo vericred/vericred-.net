@@ -178,8 +178,8 @@ namespace IO.Vericred.Test
         [Test]
         public void InstanceTest()
         {
-            // test 'IsInstanceOfType' DrugsApi
-            Assert.IsInstanceOfType(typeof(DrugsApi), instance, "instance is a DrugsApi");
+            // TODO uncomment below to test 'IsInstanceOfType' DrugsApi
+            //Assert.IsInstanceOfType(typeof(DrugsApi), instance, "instance is a DrugsApi");
         }
 
         
