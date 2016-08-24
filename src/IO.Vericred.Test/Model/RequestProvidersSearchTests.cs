@@ -200,6 +200,14 @@ namespace IO.Vericred.Test
             // TODO unit test for the property 'HiosIds'
         }
         /// <summary>
+        /// Test the property 'MinScore'
+        /// </summary>
+        [Test]
+        public void MinScoreTest()
+        {
+            // TODO unit test for the property 'MinScore'
+        }
+        /// <summary>
         /// Test the property 'Page'
         /// </summary>
         [Test]

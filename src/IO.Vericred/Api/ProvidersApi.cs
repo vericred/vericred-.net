@@ -151,8 +151,10 @@ namespace IO.Vericred.Api
         /// </remarks>
         /// <exception cref="IO.Vericred.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="npi">NPI number</param>
+        /// <param name="year">Only show plan ids for the given year (optional)</param>
+        /// <param name="state">Only show plan ids for the given state (optional)</param>
         /// <returns>ProviderShowResponse</returns>
-        ProviderShowResponse GetProvider (string npi);
+        ProviderShowResponse GetProvider (string npi, string year = null, string state = null);
 
         /// <summary>
         /// Find a Provider
@@ -162,8 +164,10 @@ namespace IO.Vericred.Api
         /// </remarks>
         /// <exception cref="IO.Vericred.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="npi">NPI number</param>
+        /// <param name="year">Only show plan ids for the given year (optional)</param>
+        /// <param name="state">Only show plan ids for the given state (optional)</param>
         /// <returns>ApiResponse of ProviderShowResponse</returns>
-        ApiResponse<ProviderShowResponse> GetProviderWithHttpInfo (string npi);
+        ApiResponse<ProviderShowResponse> GetProviderWithHttpInfo (string npi, string year = null, string state = null);
         /// <summary>
         /// Find Providers
         /// </summary>
@@ -195,8 +199,10 @@ namespace IO.Vericred.Api
         /// </remarks>
         /// <exception cref="IO.Vericred.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="npi">NPI number</param>
+        /// <param name="year">Only show plan ids for the given year (optional)</param>
+        /// <param name="state">Only show plan ids for the given state (optional)</param>
         /// <returns>Task of ProviderShowResponse</returns>
-        System.Threading.Tasks.Task<ProviderShowResponse> GetProviderAsync (string npi);
+        System.Threading.Tasks.Task<ProviderShowResponse> GetProviderAsync (string npi, string year = null, string state = null);
 
         /// <summary>
         /// Find a Provider
@@ -206,8 +212,10 @@ namespace IO.Vericred.Api
         /// </remarks>
         /// <exception cref="IO.Vericred.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="npi">NPI number</param>
+        /// <param name="year">Only show plan ids for the given year (optional)</param>
+        /// <param name="state">Only show plan ids for the given state (optional)</param>
         /// <returns>Task of ApiResponse (ProviderShowResponse)</returns>
-        System.Threading.Tasks.Task<ApiResponse<ProviderShowResponse>> GetProviderAsyncWithHttpInfo (string npi);
+        System.Threading.Tasks.Task<ApiResponse<ProviderShowResponse>> GetProviderAsyncWithHttpInfo (string npi, string year = null, string state = null);
         /// <summary>
         /// Find Providers
         /// </summary>
@@ -346,10 +354,12 @@ namespace IO.Vericred.Api
         /// </summary>
         /// <exception cref="IO.Vericred.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="npi">NPI number</param>
+        /// <param name="year">Only show plan ids for the given year (optional)</param>
+        /// <param name="state">Only show plan ids for the given state (optional)</param>
         /// <returns>ProviderShowResponse</returns>
-        public ProviderShowResponse GetProvider (string npi)
+        public ProviderShowResponse GetProvider (string npi, string year = null, string state = null)
         {
-             ApiResponse<ProviderShowResponse> localVarResponse = GetProviderWithHttpInfo(npi);
+             ApiResponse<ProviderShowResponse> localVarResponse = GetProviderWithHttpInfo(npi, year, state);
              return localVarResponse.Data;
         }
 
@@ -358,8 +368,10 @@ namespace IO.Vericred.Api
         /// </summary>
         /// <exception cref="IO.Vericred.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="npi">NPI number</param>
+        /// <param name="year">Only show plan ids for the given year (optional)</param>
+        /// <param name="state">Only show plan ids for the given state (optional)</param>
         /// <returns>ApiResponse of ProviderShowResponse</returns>
-        public ApiResponse< ProviderShowResponse > GetProviderWithHttpInfo (string npi)
+        public ApiResponse< ProviderShowResponse > GetProviderWithHttpInfo (string npi, string year = null, string state = null)
         {
             // verify the required parameter 'npi' is set
             if (npi == null)
@@ -389,6 +401,8 @@ namespace IO.Vericred.Api
             // e.g. /pet/{petId}.{format} becomes /pet/{petId}.json
             localVarPathParams.Add("format", "json");
             if (npi != null) localVarPathParams.Add("npi", Configuration.ApiClient.ParameterToString(npi)); // path parameter
+            if (year != null) localVarQueryParams.Add("year", Configuration.ApiClient.ParameterToString(year)); // query parameter
+            if (state != null) localVarQueryParams.Add("state", Configuration.ApiClient.ParameterToString(state)); // query parameter
 
             // authentication (Vericred-Api-Key) required
             if (!String.IsNullOrEmpty(Configuration.GetApiKeyWithPrefix("Vericred-Api-Key")))
@@ -421,10 +435,12 @@ namespace IO.Vericred.Api
         /// </summary>
         /// <exception cref="IO.Vericred.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="npi">NPI number</param>
+        /// <param name="year">Only show plan ids for the given year (optional)</param>
+        /// <param name="state">Only show plan ids for the given state (optional)</param>
         /// <returns>Task of ProviderShowResponse</returns>
-        public async System.Threading.Tasks.Task<ProviderShowResponse> GetProviderAsync (string npi)
+        public async System.Threading.Tasks.Task<ProviderShowResponse> GetProviderAsync (string npi, string year = null, string state = null)
         {
-             ApiResponse<ProviderShowResponse> localVarResponse = await GetProviderAsyncWithHttpInfo(npi);
+             ApiResponse<ProviderShowResponse> localVarResponse = await GetProviderAsyncWithHttpInfo(npi, year, state);
              return localVarResponse.Data;
 
         }
@@ -434,8 +450,10 @@ namespace IO.Vericred.Api
         /// </summary>
         /// <exception cref="IO.Vericred.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="npi">NPI number</param>
+        /// <param name="year">Only show plan ids for the given year (optional)</param>
+        /// <param name="state">Only show plan ids for the given state (optional)</param>
         /// <returns>Task of ApiResponse (ProviderShowResponse)</returns>
-        public async System.Threading.Tasks.Task<ApiResponse<ProviderShowResponse>> GetProviderAsyncWithHttpInfo (string npi)
+        public async System.Threading.Tasks.Task<ApiResponse<ProviderShowResponse>> GetProviderAsyncWithHttpInfo (string npi, string year = null, string state = null)
         {
             // verify the required parameter 'npi' is set
             if (npi == null)
@@ -465,6 +483,8 @@ namespace IO.Vericred.Api
             // e.g. /pet/{petId}.{format} becomes /pet/{petId}.json
             localVarPathParams.Add("format", "json");
             if (npi != null) localVarPathParams.Add("npi", Configuration.ApiClient.ParameterToString(npi)); // path parameter
+            if (year != null) localVarQueryParams.Add("year", Configuration.ApiClient.ParameterToString(year)); // query parameter
+            if (state != null) localVarQueryParams.Add("state", Configuration.ApiClient.ParameterToString(state)); // query parameter
 
             // authentication (Vericred-Api-Key) required
             if (!String.IsNullOrEmpty(Configuration.GetApiKeyWithPrefix("Vericred-Api-Key")))

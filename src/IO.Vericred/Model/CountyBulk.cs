@@ -152,11 +152,15 @@ namespace IO.Vericred.Model
         /// <param name="Id">FIPs code for the county.</param>
         /// <param name="Name">Name of the county.</param>
         /// <param name="StateId">State code.</param>
-        public CountyBulk(string Id = null, string Name = null, string StateId = null)
+        /// <param name="RatingAreaCount">Count of unique rating areas in the county.</param>
+        /// <param name="ServiceAreaCount">Count of unique service areas in the county.</param>
+        public CountyBulk(string Id = null, string Name = null, string StateId = null, string RatingAreaCount = null, string ServiceAreaCount = null)
         {
             this.Id = Id;
             this.Name = Name;
             this.StateId = StateId;
+            this.RatingAreaCount = RatingAreaCount;
+            this.ServiceAreaCount = ServiceAreaCount;
         }
         
         /// <summary>
@@ -178,6 +182,18 @@ namespace IO.Vericred.Model
         [DataMember(Name="state_id", EmitDefaultValue=false)]
         public string StateId { get; set; }
         /// <summary>
+        /// Count of unique rating areas in the county
+        /// </summary>
+        /// <value>Count of unique rating areas in the county</value>
+        [DataMember(Name="rating_area_count", EmitDefaultValue=false)]
+        public string RatingAreaCount { get; set; }
+        /// <summary>
+        /// Count of unique service areas in the county
+        /// </summary>
+        /// <value>Count of unique service areas in the county</value>
+        [DataMember(Name="service_area_count", EmitDefaultValue=false)]
+        public string ServiceAreaCount { get; set; }
+        /// <summary>
         /// Returns the string presentation of the object
         /// </summary>
         /// <returns>String presentation of the object</returns>
@@ -188,6 +204,8 @@ namespace IO.Vericred.Model
             sb.Append("  Id: ").Append(Id).Append("\n");
             sb.Append("  Name: ").Append(Name).Append("\n");
             sb.Append("  StateId: ").Append(StateId).Append("\n");
+            sb.Append("  RatingAreaCount: ").Append(RatingAreaCount).Append("\n");
+            sb.Append("  ServiceAreaCount: ").Append(ServiceAreaCount).Append("\n");
             sb.Append("}\n");
             return sb.ToString();
         }
@@ -238,6 +256,16 @@ namespace IO.Vericred.Model
                     this.StateId == other.StateId ||
                     this.StateId != null &&
                     this.StateId.Equals(other.StateId)
+                ) && 
+                (
+                    this.RatingAreaCount == other.RatingAreaCount ||
+                    this.RatingAreaCount != null &&
+                    this.RatingAreaCount.Equals(other.RatingAreaCount)
+                ) && 
+                (
+                    this.ServiceAreaCount == other.ServiceAreaCount ||
+                    this.ServiceAreaCount != null &&
+                    this.ServiceAreaCount.Equals(other.ServiceAreaCount)
                 );
         }
 
@@ -258,6 +286,10 @@ namespace IO.Vericred.Model
                     hash = hash * 59 + this.Name.GetHashCode();
                 if (this.StateId != null)
                     hash = hash * 59 + this.StateId.GetHashCode();
+                if (this.RatingAreaCount != null)
+                    hash = hash * 59 + this.RatingAreaCount.GetHashCode();
+                if (this.ServiceAreaCount != null)
+                    hash = hash * 59 + this.ServiceAreaCount.GetHashCode();
                 return hash;
             }
         }

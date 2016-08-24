@@ -164,6 +164,27 @@ namespace IO.Vericred.Api
         /// <param name="body"> (optional)</param>
         /// <returns>ApiResponse of PlanSearchResponse</returns>
         ApiResponse<PlanSearchResponse> FindPlansWithHttpInfo (RequestPlanFind body = null);
+        /// <summary>
+        /// Show Plan
+        /// </summary>
+        /// <remarks>
+        /// Show the details of an individual Plan.  This includes deductibles, maximums out of pocket, and co-pay/coinsurance for benefits
+        /// </remarks>
+        /// <exception cref="IO.Vericred.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="year">Plan year (defaults to current year) (optional)</param>
+        /// <returns>PlanShowResponse</returns>
+        PlanShowResponse ShowPlan (int? year = null);
+
+        /// <summary>
+        /// Show Plan
+        /// </summary>
+        /// <remarks>
+        /// Show the details of an individual Plan.  This includes deductibles, maximums out of pocket, and co-pay/coinsurance for benefits
+        /// </remarks>
+        /// <exception cref="IO.Vericred.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="year">Plan year (defaults to current year) (optional)</param>
+        /// <returns>ApiResponse of PlanShowResponse</returns>
+        ApiResponse<PlanShowResponse> ShowPlanWithHttpInfo (int? year = null);
         #endregion Synchronous Operations
         #region Asynchronous Operations
         /// <summary>
@@ -187,6 +208,27 @@ namespace IO.Vericred.Api
         /// <param name="body"> (optional)</param>
         /// <returns>Task of ApiResponse (PlanSearchResponse)</returns>
         System.Threading.Tasks.Task<ApiResponse<PlanSearchResponse>> FindPlansAsyncWithHttpInfo (RequestPlanFind body = null);
+        /// <summary>
+        /// Show Plan
+        /// </summary>
+        /// <remarks>
+        /// Show the details of an individual Plan.  This includes deductibles, maximums out of pocket, and co-pay/coinsurance for benefits
+        /// </remarks>
+        /// <exception cref="IO.Vericred.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="year">Plan year (defaults to current year) (optional)</param>
+        /// <returns>Task of PlanShowResponse</returns>
+        System.Threading.Tasks.Task<PlanShowResponse> ShowPlanAsync (int? year = null);
+
+        /// <summary>
+        /// Show Plan
+        /// </summary>
+        /// <remarks>
+        /// Show the details of an individual Plan.  This includes deductibles, maximums out of pocket, and co-pay/coinsurance for benefits
+        /// </remarks>
+        /// <exception cref="IO.Vericred.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="year">Plan year (defaults to current year) (optional)</param>
+        /// <returns>Task of ApiResponse (PlanShowResponse)</returns>
+        System.Threading.Tasks.Task<ApiResponse<PlanShowResponse>> ShowPlanAsyncWithHttpInfo (int? year = null);
         #endregion Asynchronous Operations
     }
 
@@ -454,6 +496,154 @@ namespace IO.Vericred.Api
             return new ApiResponse<PlanSearchResponse>(localVarStatusCode,
                 localVarResponse.Headers.ToDictionary(x => x.Name, x => x.Value.ToString()),
                 (PlanSearchResponse) Configuration.ApiClient.Deserialize(localVarResponse, typeof(PlanSearchResponse)));
+            
+        }
+
+        /// <summary>
+        /// Show Plan Show the details of an individual Plan.  This includes deductibles, maximums out of pocket, and co-pay/coinsurance for benefits
+        /// </summary>
+        /// <exception cref="IO.Vericred.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="year">Plan year (defaults to current year) (optional)</param>
+        /// <returns>PlanShowResponse</returns>
+        public PlanShowResponse ShowPlan (int? year = null)
+        {
+             ApiResponse<PlanShowResponse> localVarResponse = ShowPlanWithHttpInfo(year);
+             return localVarResponse.Data;
+        }
+
+        /// <summary>
+        /// Show Plan Show the details of an individual Plan.  This includes deductibles, maximums out of pocket, and co-pay/coinsurance for benefits
+        /// </summary>
+        /// <exception cref="IO.Vericred.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="year">Plan year (defaults to current year) (optional)</param>
+        /// <returns>ApiResponse of PlanShowResponse</returns>
+        public ApiResponse< PlanShowResponse > ShowPlanWithHttpInfo (int? year = null)
+        {
+
+            var localVarPath = "/plans/{id}";
+            var localVarPathParams = new Dictionary<String, String>();
+            var localVarQueryParams = new Dictionary<String, String>();
+            var localVarHeaderParams = new Dictionary<String, String>(Configuration.DefaultHeader);
+            var localVarFormParams = new Dictionary<String, String>();
+            var localVarFileParams = new Dictionary<String, FileParameter>();
+            Object localVarPostBody = null;
+
+            // to determine the Content-Type header
+            String[] localVarHttpContentTypes = new String[] {
+                "application/json"
+            };
+            String localVarHttpContentType = Configuration.ApiClient.SelectHeaderContentType(localVarHttpContentTypes);
+
+            // to determine the Accept header
+            String[] localVarHttpHeaderAccepts = new String[] {
+                "application/json"
+            };
+            String localVarHttpHeaderAccept = Configuration.ApiClient.SelectHeaderAccept(localVarHttpHeaderAccepts);
+            if (localVarHttpHeaderAccept != null)
+                localVarHeaderParams.Add("Accept", localVarHttpHeaderAccept);
+
+            // set "format" to json by default
+            // e.g. /pet/{petId}.{format} becomes /pet/{petId}.json
+            localVarPathParams.Add("format", "json");
+            if (year != null) localVarQueryParams.Add("year", Configuration.ApiClient.ParameterToString(year)); // query parameter
+
+            // authentication (Vericred-Api-Key) required
+            if (!String.IsNullOrEmpty(Configuration.GetApiKeyWithPrefix("Vericred-Api-Key")))
+            {
+                localVarHeaderParams["Vericred-Api-Key"] = Configuration.GetApiKeyWithPrefix("Vericred-Api-Key");
+            }
+
+
+            // make the HTTP request
+            IRestResponse localVarResponse = (IRestResponse) Configuration.ApiClient.CallApi(localVarPath,
+                Method.GET, localVarQueryParams, localVarPostBody, localVarHeaderParams, localVarFormParams, localVarFileParams,
+                localVarPathParams, localVarHttpContentType);
+
+            int localVarStatusCode = (int) localVarResponse.StatusCode;
+
+            if (ExceptionFactory != null)
+            {
+                Exception exception = ExceptionFactory("ShowPlan", localVarResponse);
+                if (exception != null) throw exception;
+            }
+
+            return new ApiResponse<PlanShowResponse>(localVarStatusCode,
+                localVarResponse.Headers.ToDictionary(x => x.Name, x => x.Value.ToString()),
+                (PlanShowResponse) Configuration.ApiClient.Deserialize(localVarResponse, typeof(PlanShowResponse)));
+            
+        }
+
+        /// <summary>
+        /// Show Plan Show the details of an individual Plan.  This includes deductibles, maximums out of pocket, and co-pay/coinsurance for benefits
+        /// </summary>
+        /// <exception cref="IO.Vericred.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="year">Plan year (defaults to current year) (optional)</param>
+        /// <returns>Task of PlanShowResponse</returns>
+        public async System.Threading.Tasks.Task<PlanShowResponse> ShowPlanAsync (int? year = null)
+        {
+             ApiResponse<PlanShowResponse> localVarResponse = await ShowPlanAsyncWithHttpInfo(year);
+             return localVarResponse.Data;
+
+        }
+
+        /// <summary>
+        /// Show Plan Show the details of an individual Plan.  This includes deductibles, maximums out of pocket, and co-pay/coinsurance for benefits
+        /// </summary>
+        /// <exception cref="IO.Vericred.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="year">Plan year (defaults to current year) (optional)</param>
+        /// <returns>Task of ApiResponse (PlanShowResponse)</returns>
+        public async System.Threading.Tasks.Task<ApiResponse<PlanShowResponse>> ShowPlanAsyncWithHttpInfo (int? year = null)
+        {
+
+            var localVarPath = "/plans/{id}";
+            var localVarPathParams = new Dictionary<String, String>();
+            var localVarQueryParams = new Dictionary<String, String>();
+            var localVarHeaderParams = new Dictionary<String, String>(Configuration.DefaultHeader);
+            var localVarFormParams = new Dictionary<String, String>();
+            var localVarFileParams = new Dictionary<String, FileParameter>();
+            Object localVarPostBody = null;
+
+            // to determine the Content-Type header
+            String[] localVarHttpContentTypes = new String[] {
+                "application/json"
+            };
+            String localVarHttpContentType = Configuration.ApiClient.SelectHeaderContentType(localVarHttpContentTypes);
+
+            // to determine the Accept header
+            String[] localVarHttpHeaderAccepts = new String[] {
+                "application/json"
+            };
+            String localVarHttpHeaderAccept = Configuration.ApiClient.SelectHeaderAccept(localVarHttpHeaderAccepts);
+            if (localVarHttpHeaderAccept != null)
+                localVarHeaderParams.Add("Accept", localVarHttpHeaderAccept);
+
+            // set "format" to json by default
+            // e.g. /pet/{petId}.{format} becomes /pet/{petId}.json
+            localVarPathParams.Add("format", "json");
+            if (year != null) localVarQueryParams.Add("year", Configuration.ApiClient.ParameterToString(year)); // query parameter
+
+            // authentication (Vericred-Api-Key) required
+            if (!String.IsNullOrEmpty(Configuration.GetApiKeyWithPrefix("Vericred-Api-Key")))
+            {
+                localVarHeaderParams["Vericred-Api-Key"] = Configuration.GetApiKeyWithPrefix("Vericred-Api-Key");
+            }
+
+            // make the HTTP request
+            IRestResponse localVarResponse = (IRestResponse) await Configuration.ApiClient.CallApiAsync(localVarPath,
+                Method.GET, localVarQueryParams, localVarPostBody, localVarHeaderParams, localVarFormParams, localVarFileParams,
+                localVarPathParams, localVarHttpContentType);
+
+            int localVarStatusCode = (int) localVarResponse.StatusCode;
+
+            if (ExceptionFactory != null)
+            {
+                Exception exception = ExceptionFactory("ShowPlan", localVarResponse);
+                if (exception != null) throw exception;
+            }
+
+            return new ApiResponse<PlanShowResponse>(localVarStatusCode,
+                localVarResponse.Headers.ToDictionary(x => x.Name, x => x.Value.ToString()),
+                (PlanShowResponse) Configuration.ApiClient.Deserialize(localVarResponse, typeof(PlanShowResponse)));
             
         }
 

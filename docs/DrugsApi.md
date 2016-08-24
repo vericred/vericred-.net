@@ -8,6 +8,7 @@ Method | HTTP request | Description
 [**ListDrugs**](DrugsApi.md#listdrugs) | **GET** /drugs | Drug Search
 
 
+<a name="getdrugcoverages"></a>
 # **GetDrugCoverages**
 > DrugCoverageResponse GetDrugCoverages (string ndcPackageCode, string audience, string stateCode)
 
@@ -31,9 +32,9 @@ namespace Example
         {
             
             // Configure API key authorization: Vericred-Api-Key
-            Configuration.Default.ApiKey.Add('Vericred-Api-Key', 'YOUR_API_KEY');
+            Configuration.Default.ApiKey.Add("Vericred-Api-Key", "YOUR_API_KEY");
             // Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
-            // Configuration.Default.ApiKeyPrefix.Add('Vericred-Api-Key', 'Bearer');
+            // Configuration.Default.ApiKeyPrefix.Add("Vericred-Api-Key", "Bearer");
 
             var apiInstance = new DrugsApi();
             var ndcPackageCode = 12345-4321-11;  // string | NDC package code
@@ -78,6 +79,7 @@ Name | Type | Description  | Notes
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
+<a name="listdrugs"></a>
 # **ListDrugs**
 > DrugSearchResponse ListDrugs (string searchTerm)
 
@@ -101,9 +103,9 @@ namespace Example
         {
             
             // Configure API key authorization: Vericred-Api-Key
-            Configuration.Default.ApiKey.Add('Vericred-Api-Key', 'YOUR_API_KEY');
+            Configuration.Default.ApiKey.Add("Vericred-Api-Key", "YOUR_API_KEY");
             // Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
-            // Configuration.Default.ApiKeyPrefix.Add('Vericred-Api-Key', 'Bearer');
+            // Configuration.Default.ApiKeyPrefix.Add("Vericred-Api-Key", "Bearer");
 
             var apiInstance = new DrugsApi();
             var searchTerm = Zyrtec;  // string | Full or partial proprietary name of drug

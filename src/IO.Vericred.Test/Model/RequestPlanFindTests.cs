@@ -232,6 +232,14 @@ namespace IO.Vericred.Test
             // TODO unit test for the property 'HouseholdSize'
         }
         /// <summary>
+        /// Test the property 'Ids'
+        /// </summary>
+        [Test]
+        public void IdsTest()
+        {
+            // TODO unit test for the property 'Ids'
+        }
+        /// <summary>
         /// Test the property 'Market'
         /// </summary>
         [Test]

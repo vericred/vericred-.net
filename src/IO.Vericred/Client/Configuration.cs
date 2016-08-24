@@ -165,7 +165,7 @@ namespace IO.Vericred.Client
                              string tempFolderPath = null,
                              string dateTimeFormat = null,
                              int timeout = 100000,
-                             string userAgent = "Swagger-Codegen/0.0.4/csharp"
+                             string userAgent = "Swagger-Codegen/0.0.5/csharp"
                             )
         {
             setApiClientUsingDefault(apiClient);
@@ -200,7 +200,7 @@ namespace IO.Vericred.Client
         /// Version of the package.
         /// </summary>
         /// <value>Version of the package.</value>
-        public const string Version = "0.0.4";
+        public const string Version = "0.0.5";
 
         /// <summary>
         /// Gets or sets the default Configuration.
@@ -286,7 +286,28 @@ namespace IO.Vericred.Client
         /// <returns></returns>
         public void AddDefaultHeader(string key, string value)
         {
-            _defaultHeaderMap.Add(key, value);
+            _defaultHeaderMap[key] = value;
+        }
+
+        /// <summary>
+        /// Add Api Key Header.
+        /// </summary>
+        /// <param name="key">Api Key name.</param>
+        /// <param name="value">Api Key value.</param>
+        /// <returns></returns>
+        public void AddApiKey(string key, string value)
+        {
+            ApiKey[key] = value;
+        }
+
+        /// <summary>
+        /// Sets the API key prefix.
+        /// </summary>
+        /// <param name="key">Api Key name.</param>
+        /// <param name="value">Api Key value.</param>
+        public void AddApiKeyPrefix(string key, string value)
+        {
+            ApiKeyPrefix[key] = value;
         }
 
         /// <summary>
@@ -416,7 +437,7 @@ namespace IO.Vericred.Client
                      .GetReferencedAssemblies()
                      .Where(x => x.Name == "System.Core").First().Version.ToString()  + "\n";
             report += "    Version of the API: 1.0.0\n";
-            report += "    SDK Package Version: 0.0.4\n";
+            report += "    SDK Package Version: 0.0.5\n";
 
             return report;
         }

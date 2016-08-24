@@ -7,6 +7,7 @@ Method | HTTP request | Description
 [**ListNetworks**](NetworksApi.md#listnetworks) | **GET** /networks | Networks
 
 
+<a name="listnetworks"></a>
 # **ListNetworks**
 > NetworkSearchResponse ListNetworks (string carrierId, int? page = null, int? perPage = null)
 
@@ -30,9 +31,9 @@ namespace Example
         {
             
             // Configure API key authorization: Vericred-Api-Key
-            Configuration.Default.ApiKey.Add('Vericred-Api-Key', 'YOUR_API_KEY');
+            Configuration.Default.ApiKey.Add("Vericred-Api-Key", "YOUR_API_KEY");
             // Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
-            // Configuration.Default.ApiKeyPrefix.Add('Vericred-Api-Key', 'Bearer');
+            // Configuration.Default.ApiKeyPrefix.Add("Vericred-Api-Key", "Bearer");
 
             var apiInstance = new NetworksApi();
             var carrierId = 33333;  // string | Carrier HIOS Issuer ID

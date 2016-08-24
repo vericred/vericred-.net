@@ -7,6 +7,7 @@ Method | HTTP request | Description
 [**GetZipCounties**](ZipCountiesApi.md#getzipcounties) | **GET** /zip_counties | Search for Zip Counties
 
 
+<a name="getzipcounties"></a>
 # **GetZipCounties**
 > ZipCountyResponse GetZipCounties (string zipPrefix)
 
@@ -30,9 +31,9 @@ namespace Example
         {
             
             // Configure API key authorization: Vericred-Api-Key
-            Configuration.Default.ApiKey.Add('Vericred-Api-Key', 'YOUR_API_KEY');
+            Configuration.Default.ApiKey.Add("Vericred-Api-Key", "YOUR_API_KEY");
             // Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
-            // Configuration.Default.ApiKeyPrefix.Add('Vericred-Api-Key', 'Bearer');
+            // Configuration.Default.ApiKeyPrefix.Add("Vericred-Api-Key", "Bearer");
 
             var apiInstance = new ZipCountiesApi();
             var zipPrefix = 1002;  // string | Partial five-digit Zip

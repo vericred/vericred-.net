@@ -161,6 +161,7 @@ namespace IO.Vericred.Model
         /// <param name="CustomerServicePhoneNumber">Phone number to contact the insurance carrier.</param>
         /// <param name="DurableMedicalEquipment">Benefits summary for durable medical equipment.</param>
         /// <param name="DiagnosticTest">Diagnostic tests benefit summary.</param>
+        /// <param name="DisplayName">Alternate name for the Plan.</param>
         /// <param name="DpRider">Is this a domestic plan?.</param>
         /// <param name="DrugFormularyUrl">Link to the summary of drug benefits for the plan.</param>
         /// <param name="EffectiveDate">Effective date of coverage..</param>
@@ -176,6 +177,7 @@ namespace IO.Vericred.Model
         /// <param name="HiosIssuerId">.</param>
         /// <param name="HomeHealthCare">Home health care benefits summary.</param>
         /// <param name="HospiceService">Hospice service benefits summary.</param>
+        /// <param name="HsaEligible">Is the plan HSA eligible?.</param>
         /// <param name="Id">Government-issued HIOS plan ID.</param>
         /// <param name="Imaging">Benefits summary for imaging coverage.</param>
         /// <param name="InNetworkIds">List of NPI numbers for Providers passed in who accept this Plan.</param>
@@ -210,11 +212,12 @@ namespace IO.Vericred.Model
         /// <param name="Premium">Cumulative premium amount.</param>
         /// <param name="PrimaryCarePhysician">Cost under the plan to visit a Primary Care Physician.</param>
         /// <param name="RehabilitationServices">Benefits summary for rehabilitation services.</param>
+        /// <param name="ServiceAreaId">Foreign key for service area.</param>
         /// <param name="SkilledNursing">Benefits summary for skilled nursing services.</param>
         /// <param name="Specialist">Cost under the plan to visit a specialist.</param>
         /// <param name="SpecialtyDrugs">Cost under the plan for specialty drugs.</param>
         /// <param name="UrgentCare">Benefits summary for urgent care.</param>
-        public Plan(bool? AdultDental = null, bool? Age29Rider = null, string Ambulance = null, string BenefitsSummaryUrl = null, string BuyLink = null, string CarrierName = null, bool? ChildDental = null, string ChildEyewear = null, string ChildEyeExam = null, string CustomerServicePhoneNumber = null, string DurableMedicalEquipment = null, string DiagnosticTest = null, bool? DpRider = null, string DrugFormularyUrl = null, string EffectiveDate = null, string ExpirationDate = null, string EmergencyRoom = null, string FamilyDrugDeductible = null, string FamilyDrugMoop = null, string FamilyMedicalDeductible = null, string FamilyMedicalMoop = null, bool? FpRider = null, string GenericDrugs = null, string HabilitationServices = null, string HiosIssuerId = null, string HomeHealthCare = null, string HospiceService = null, string Id = null, string Imaging = null, List<int?> InNetworkIds = null, string IndividualDrugDeductible = null, string IndividualDrugMoop = null, string IndividualMedicalDeductible = null, string IndividualMedicalMoop = null, string InpatientBirth = null, string InpatientFacility = null, string InpatientMentalHealth = null, string InpatientPhysician = null, string InpatientSubstance = null, string Level = null, string LogoUrl = null, string Name = null, int? NetworkSize = null, string NonPreferredBrandDrugs = null, bool? OnMarket = null, bool? OffMarket = null, bool? OutOfNetworkCoverage = null, List<int?> OutOfNetworkIds = null, string OutpatientFacility = null, string OutpatientMentalHealth = null, string OutpatientPhysician = null, string OutpatientSubstance = null, string PlanMarket = null, string PlanType = null, string PreferredBrandDrugs = null, string PrenatalPostnatalCare = null, string PreventativeCare = null, decimal? PremiumSubsidized = null, decimal? Premium = null, string PrimaryCarePhysician = null, string RehabilitationServices = null, string SkilledNursing = null, string Specialist = null, string SpecialtyDrugs = null, string UrgentCare = null)
+        public Plan(bool? AdultDental = null, bool? Age29Rider = null, string Ambulance = null, string BenefitsSummaryUrl = null, string BuyLink = null, string CarrierName = null, bool? ChildDental = null, string ChildEyewear = null, string ChildEyeExam = null, string CustomerServicePhoneNumber = null, string DurableMedicalEquipment = null, string DiagnosticTest = null, string DisplayName = null, bool? DpRider = null, string DrugFormularyUrl = null, string EffectiveDate = null, string ExpirationDate = null, string EmergencyRoom = null, string FamilyDrugDeductible = null, string FamilyDrugMoop = null, string FamilyMedicalDeductible = null, string FamilyMedicalMoop = null, bool? FpRider = null, string GenericDrugs = null, string HabilitationServices = null, string HiosIssuerId = null, string HomeHealthCare = null, string HospiceService = null, bool? HsaEligible = null, string Id = null, string Imaging = null, List<int?> InNetworkIds = null, string IndividualDrugDeductible = null, string IndividualDrugMoop = null, string IndividualMedicalDeductible = null, string IndividualMedicalMoop = null, string InpatientBirth = null, string InpatientFacility = null, string InpatientMentalHealth = null, string InpatientPhysician = null, string InpatientSubstance = null, string Level = null, string LogoUrl = null, string Name = null, int? NetworkSize = null, string NonPreferredBrandDrugs = null, bool? OnMarket = null, bool? OffMarket = null, bool? OutOfNetworkCoverage = null, List<int?> OutOfNetworkIds = null, string OutpatientFacility = null, string OutpatientMentalHealth = null, string OutpatientPhysician = null, string OutpatientSubstance = null, string PlanMarket = null, string PlanType = null, string PreferredBrandDrugs = null, string PrenatalPostnatalCare = null, string PreventativeCare = null, decimal? PremiumSubsidized = null, decimal? Premium = null, string PrimaryCarePhysician = null, string RehabilitationServices = null, string ServiceAreaId = null, string SkilledNursing = null, string Specialist = null, string SpecialtyDrugs = null, string UrgentCare = null)
         {
             this.AdultDental = AdultDental;
             this.Age29Rider = Age29Rider;
@@ -228,6 +231,7 @@ namespace IO.Vericred.Model
             this.CustomerServicePhoneNumber = CustomerServicePhoneNumber;
             this.DurableMedicalEquipment = DurableMedicalEquipment;
             this.DiagnosticTest = DiagnosticTest;
+            this.DisplayName = DisplayName;
             this.DpRider = DpRider;
             this.DrugFormularyUrl = DrugFormularyUrl;
             this.EffectiveDate = EffectiveDate;
@@ -243,6 +247,7 @@ namespace IO.Vericred.Model
             this.HiosIssuerId = HiosIssuerId;
             this.HomeHealthCare = HomeHealthCare;
             this.HospiceService = HospiceService;
+            this.HsaEligible = HsaEligible;
             this.Id = Id;
             this.Imaging = Imaging;
             this.InNetworkIds = InNetworkIds;
@@ -277,6 +282,7 @@ namespace IO.Vericred.Model
             this.Premium = Premium;
             this.PrimaryCarePhysician = PrimaryCarePhysician;
             this.RehabilitationServices = RehabilitationServices;
+            this.ServiceAreaId = ServiceAreaId;
             this.SkilledNursing = SkilledNursing;
             this.Specialist = Specialist;
             this.SpecialtyDrugs = SpecialtyDrugs;
@@ -355,6 +361,12 @@ namespace IO.Vericred.Model
         /// <value>Diagnostic tests benefit summary</value>
         [DataMember(Name="diagnostic_test", EmitDefaultValue=false)]
         public string DiagnosticTest { get; set; }
+        /// <summary>
+        /// Alternate name for the Plan
+        /// </summary>
+        /// <value>Alternate name for the Plan</value>
+        [DataMember(Name="display_name", EmitDefaultValue=false)]
+        public string DisplayName { get; set; }
         /// <summary>
         /// Is this a domestic plan?
         /// </summary>
@@ -445,6 +457,12 @@ namespace IO.Vericred.Model
         /// <value>Hospice service benefits summary</value>
         [DataMember(Name="hospice_service", EmitDefaultValue=false)]
         public string HospiceService { get; set; }
+        /// <summary>
+        /// Is the plan HSA eligible?
+        /// </summary>
+        /// <value>Is the plan HSA eligible?</value>
+        [DataMember(Name="hsa_eligible", EmitDefaultValue=false)]
+        public bool? HsaEligible { get; set; }
         /// <summary>
         /// Government-issued HIOS plan ID
         /// </summary>
@@ -650,6 +668,12 @@ namespace IO.Vericred.Model
         [DataMember(Name="rehabilitation_services", EmitDefaultValue=false)]
         public string RehabilitationServices { get; set; }
         /// <summary>
+        /// Foreign key for service area
+        /// </summary>
+        /// <value>Foreign key for service area</value>
+        [DataMember(Name="service_area_id", EmitDefaultValue=false)]
+        public string ServiceAreaId { get; set; }
+        /// <summary>
         /// Benefits summary for skilled nursing services
         /// </summary>
         /// <value>Benefits summary for skilled nursing services</value>
@@ -693,6 +717,7 @@ namespace IO.Vericred.Model
             sb.Append("  CustomerServicePhoneNumber: ").Append(CustomerServicePhoneNumber).Append("\n");
             sb.Append("  DurableMedicalEquipment: ").Append(DurableMedicalEquipment).Append("\n");
             sb.Append("  DiagnosticTest: ").Append(DiagnosticTest).Append("\n");
+            sb.Append("  DisplayName: ").Append(DisplayName).Append("\n");
             sb.Append("  DpRider: ").Append(DpRider).Append("\n");
             sb.Append("  DrugFormularyUrl: ").Append(DrugFormularyUrl).Append("\n");
             sb.Append("  EffectiveDate: ").Append(EffectiveDate).Append("\n");
@@ -708,6 +733,7 @@ namespace IO.Vericred.Model
             sb.Append("  HiosIssuerId: ").Append(HiosIssuerId).Append("\n");
             sb.Append("  HomeHealthCare: ").Append(HomeHealthCare).Append("\n");
             sb.Append("  HospiceService: ").Append(HospiceService).Append("\n");
+            sb.Append("  HsaEligible: ").Append(HsaEligible).Append("\n");
             sb.Append("  Id: ").Append(Id).Append("\n");
             sb.Append("  Imaging: ").Append(Imaging).Append("\n");
             sb.Append("  InNetworkIds: ").Append(InNetworkIds).Append("\n");
@@ -742,6 +768,7 @@ namespace IO.Vericred.Model
             sb.Append("  Premium: ").Append(Premium).Append("\n");
             sb.Append("  PrimaryCarePhysician: ").Append(PrimaryCarePhysician).Append("\n");
             sb.Append("  RehabilitationServices: ").Append(RehabilitationServices).Append("\n");
+            sb.Append("  ServiceAreaId: ").Append(ServiceAreaId).Append("\n");
             sb.Append("  SkilledNursing: ").Append(SkilledNursing).Append("\n");
             sb.Append("  Specialist: ").Append(Specialist).Append("\n");
             sb.Append("  SpecialtyDrugs: ").Append(SpecialtyDrugs).Append("\n");
@@ -843,6 +870,11 @@ namespace IO.Vericred.Model
                     this.DiagnosticTest.Equals(other.DiagnosticTest)
                 ) && 
                 (
+                    this.DisplayName == other.DisplayName ||
+                    this.DisplayName != null &&
+                    this.DisplayName.Equals(other.DisplayName)
+                ) && 
+                (
                     this.DpRider == other.DpRider ||
                     this.DpRider != null &&
                     this.DpRider.Equals(other.DpRider)
@@ -916,6 +948,11 @@ namespace IO.Vericred.Model
                     this.HospiceService == other.HospiceService ||
                     this.HospiceService != null &&
                     this.HospiceService.Equals(other.HospiceService)
+                ) && 
+                (
+                    this.HsaEligible == other.HsaEligible ||
+                    this.HsaEligible != null &&
+                    this.HsaEligible.Equals(other.HsaEligible)
                 ) && 
                 (
                     this.Id == other.Id ||
@@ -1088,6 +1125,11 @@ namespace IO.Vericred.Model
                     this.RehabilitationServices.Equals(other.RehabilitationServices)
                 ) && 
                 (
+                    this.ServiceAreaId == other.ServiceAreaId ||
+                    this.ServiceAreaId != null &&
+                    this.ServiceAreaId.Equals(other.ServiceAreaId)
+                ) && 
+                (
                     this.SkilledNursing == other.SkilledNursing ||
                     this.SkilledNursing != null &&
                     this.SkilledNursing.Equals(other.SkilledNursing)
@@ -1144,6 +1186,8 @@ namespace IO.Vericred.Model
                     hash = hash * 59 + this.DurableMedicalEquipment.GetHashCode();
                 if (this.DiagnosticTest != null)
                     hash = hash * 59 + this.DiagnosticTest.GetHashCode();
+                if (this.DisplayName != null)
+                    hash = hash * 59 + this.DisplayName.GetHashCode();
                 if (this.DpRider != null)
                     hash = hash * 59 + this.DpRider.GetHashCode();
                 if (this.DrugFormularyUrl != null)
@@ -1174,6 +1218,8 @@ namespace IO.Vericred.Model
                     hash = hash * 59 + this.HomeHealthCare.GetHashCode();
                 if (this.HospiceService != null)
                     hash = hash * 59 + this.HospiceService.GetHashCode();
+                if (this.HsaEligible != null)
+                    hash = hash * 59 + this.HsaEligible.GetHashCode();
                 if (this.Id != null)
                     hash = hash * 59 + this.Id.GetHashCode();
                 if (this.Imaging != null)
@@ -1242,6 +1288,8 @@ namespace IO.Vericred.Model
                     hash = hash * 59 + this.PrimaryCarePhysician.GetHashCode();
                 if (this.RehabilitationServices != null)
                     hash = hash * 59 + this.RehabilitationServices.GetHashCode();
+                if (this.ServiceAreaId != null)
+                    hash = hash * 59 + this.ServiceAreaId.GetHashCode();
                 if (this.SkilledNursing != null)
                     hash = hash * 59 + this.SkilledNursing.GetHashCode();
                 if (this.Specialist != null)
