@@ -37,9 +37,9 @@ namespace Example
             // Configuration.Default.ApiKeyPrefix.Add("Vericred-Api-Key", "Bearer");
 
             var apiInstance = new DrugsApi();
-            var ndcPackageCode = 12345-4321-11;  // string | NDC package code
-            var audience = individual;  // string | Two-character state code
-            var stateCode = NY;  // string | Two-character state code
+            var ndcPackageCode = 07777-3105-01;  // string | NDC package code
+            var audience = individual;  // string | Plan Audience (individual or small_group)
+            var stateCode = CA;  // string | Two-character state code
 
             try
             {
@@ -61,7 +61,7 @@ namespace Example
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **ndcPackageCode** | **string**| NDC package code | 
- **audience** | **string**| Two-character state code | 
+ **audience** | **string**| Plan Audience (individual or small_group) | 
  **stateCode** | **string**| Two-character state code | 
 
 ### Return type
