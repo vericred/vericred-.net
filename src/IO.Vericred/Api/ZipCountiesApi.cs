@@ -148,19 +148,51 @@ In [this other Summary of Benefits &amp; Coverage](https://s3.amazonaws.com/veri
 Here's a description of the benefits summary string, represented as a context-free grammar:
 
 ```
-<cost-share>     ::= <tier> <opt-num-prefix> <value> <opt-per-unit> <deductible> <tier-limit> "/" <tier> <opt-num-prefix> <value> <opt-per-unit> <deductible> "|" <benefit-limit>
-<tier>           ::= "In-Network:" | "In-Network-Tier-2:" | "Out-of-Network:"
-<opt-num-prefix> ::= "first" <num> <unit> | ""
-<unit>           ::= "day(s)" | "visit(s)" | "exam(s)" | "item(s)"
-<value>          ::= <ddct_moop> | <copay> | <coinsurance> | <compound> | "unknown" | "Not Applicable"
-<compound>       ::= <copay> <deductible> "then" <coinsurance> <deductible> | <copay> <deductible> "then" <copay> <deductible> | <coinsurance> <deductible> "then" <coinsurance> <deductible>
-<copay>          ::= "$" <num>
-<coinsurace>     ::= <num> "%"
-<ddct_moop>      ::= <copay> | "Included in Medical" | "Unlimited"
-<opt-per-unit>   ::= "per day" | "per visit" | "per stay" | ""
-<deductible>     ::= "before deductible" | "after deductible" | ""
-<tier-limit>     ::= ", " <limit> | ""
-<benefit-limit>  ::= <limit> | ""
+root                      ::= coverage
+
+coverage                  ::= (simple_coverage | tiered_coverage) (space pipe space coverage_limitation)?
+tiered_coverage           ::= tier (space slash space tier)*
+tier                      ::= tier_name colon space (tier_coverage | not_applicable)
+tier_coverage             ::= simple_coverage (space (then | or | and) space simple_coverage)* tier_limitation?
+simple_coverage           ::= (pre_coverage_limitation space)? coverage_amount (space post_coverage_limitation)? (comma? space coverage_condition)?
+coverage_limitation       ::= "limit" colon space (((simple_coverage | simple_limitation) (semicolon space see_carrier_documentation)?) | see_carrier_documentation | waived_if_admitted)
+waived_if_admitted        ::= ("copay" space)? "waived if admitted"
+simple_limitation         ::= pre_coverage_limitation space "copay applies"
+tier_name                 ::= "In-Network-Tier-2" | "Out-of-Network" | "In-Network"
+tier_limitation           ::= comma space "up to" space (currency | (integer space time_unit plural?)) (space post_coverage_limitation)?
+coverage_amount           ::= currency | unlimited | included | unknown | percentage | (digits space (treatment_unit | time_unit) plural?)
+pre_coverage_limitation   ::= first space digits space time_unit plural?
+post_coverage_limitation  ::= (((then space currency) | "per condition") space)? "per" space (treatment_unit | (integer space time_unit) | time_unit) plural?
+coverage_condition        ::= ("before deductible" | "after deductible" | "penalty" | allowance | "in-state" | "out-of-state") (space allowance)?
+allowance                 ::= upto_allowance | after_allowance
+upto_allowance            ::= "up to" space (currency space)? "allowance"
+after_allowance           ::= "after" space (currency space)? "allowance"
+see_carrier_documentation ::= "see carrier documentation for more information"
+unknown                   ::= "unknown"
+unlimited                 ::= /[uU]nlimited/
+included                  ::= /[iI]ncluded in [mM]edical/
+time_unit                 ::= /[hH]our/ | (((/[cC]alendar/ | /[cC]ontract/) space)? /[yY]ear/) | /[mM]onth/ | /[dD]ay/ | /[wW]eek/ | /[vV]isit/ | /[lL]ifetime/ | ((((/[bB]enefit/ plural?) | /[eE]ligibility/) space)? /[pP]eriod/)
+treatment_unit            ::= /[pP]erson/ | /[gG]roup/ | /[cC]ondition/ | /[sS]cript/ | /[vV]isit/ | /[eE]xam/ | /[iI]tem/ | /[sS]tay/ | /[tT]reatment/ | /[aA]dmission/ | /[eE]pisode/
+comma                     ::= ","
+colon                     ::= ":"
+semicolon                 ::= ";"
+pipe                      ::= "|"
+slash                     ::= "/"
+plural                    ::= "(s)" | "s"
+then                      ::= "then" | ("," space) | space
+or                        ::= "or"
+and                       ::= "and"
+not_applicable            ::= "Not Applicable" | "N/A" | "NA"
+first                     ::= "first"
+currency                  ::= "$" number
+percentage                ::= number "%"
+number                    ::= float | integer
+float                     ::= digits "." digits
+integer                   ::= /[0-9]/+ (comma_int | under_int)*
+comma_int                 ::= ("," /[0-9]/*3) !"_"
+under_int                 ::= ("_" /[0-9]/*3) !","
+digits                    ::= /[0-9]/+ ("_" /[0-9]/+)*
+space                     ::= /[ \t]/+
 ```
 
 
@@ -206,8 +238,8 @@ namespace IO.Vericred.Api
         /// </remarks>
         /// <exception cref="IO.Vericred.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="zipPrefix">Partial five-digit Zip</param>
-        /// <returns>ZipCountyResponse</returns>
-        ZipCountyResponse GetZipCounties (string zipPrefix);
+        /// <returns>ZipCountiesResponse</returns>
+        ZipCountiesResponse GetZipCounties (string zipPrefix);
 
         /// <summary>
         /// Search for Zip Counties
@@ -217,8 +249,29 @@ namespace IO.Vericred.Api
         /// </remarks>
         /// <exception cref="IO.Vericred.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="zipPrefix">Partial five-digit Zip</param>
+        /// <returns>ApiResponse of ZipCountiesResponse</returns>
+        ApiResponse<ZipCountiesResponse> GetZipCountiesWithHttpInfo (string zipPrefix);
+        /// <summary>
+        /// Show an individual ZipCounty
+        /// </summary>
+        /// <remarks>
+        /// Our &#x60;Plan&#x60; endpoints require a zip code and a fips (county) code.  This is because plan pricing requires both of these elements.  Users are unlikely to know their fips code, so we provide this endpoint to returns the details for a &#x60;ZipCounty&#x60; by zip code and return both the selected zip and fips codes.
+        /// </remarks>
+        /// <exception cref="IO.Vericred.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="id">Unique ID for ZipCounty</param>
+        /// <returns>ZipCountyResponse</returns>
+        ZipCountyResponse ShowZipCounty (int? id);
+
+        /// <summary>
+        /// Show an individual ZipCounty
+        /// </summary>
+        /// <remarks>
+        /// Our &#x60;Plan&#x60; endpoints require a zip code and a fips (county) code.  This is because plan pricing requires both of these elements.  Users are unlikely to know their fips code, so we provide this endpoint to returns the details for a &#x60;ZipCounty&#x60; by zip code and return both the selected zip and fips codes.
+        /// </remarks>
+        /// <exception cref="IO.Vericred.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="id">Unique ID for ZipCounty</param>
         /// <returns>ApiResponse of ZipCountyResponse</returns>
-        ApiResponse<ZipCountyResponse> GetZipCountiesWithHttpInfo (string zipPrefix);
+        ApiResponse<ZipCountyResponse> ShowZipCountyWithHttpInfo (int? id);
         #endregion Synchronous Operations
         #region Asynchronous Operations
         /// <summary>
@@ -229,8 +282,8 @@ namespace IO.Vericred.Api
         /// </remarks>
         /// <exception cref="IO.Vericred.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="zipPrefix">Partial five-digit Zip</param>
-        /// <returns>Task of ZipCountyResponse</returns>
-        System.Threading.Tasks.Task<ZipCountyResponse> GetZipCountiesAsync (string zipPrefix);
+        /// <returns>Task of ZipCountiesResponse</returns>
+        System.Threading.Tasks.Task<ZipCountiesResponse> GetZipCountiesAsync (string zipPrefix);
 
         /// <summary>
         /// Search for Zip Counties
@@ -240,8 +293,29 @@ namespace IO.Vericred.Api
         /// </remarks>
         /// <exception cref="IO.Vericred.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="zipPrefix">Partial five-digit Zip</param>
+        /// <returns>Task of ApiResponse (ZipCountiesResponse)</returns>
+        System.Threading.Tasks.Task<ApiResponse<ZipCountiesResponse>> GetZipCountiesAsyncWithHttpInfo (string zipPrefix);
+        /// <summary>
+        /// Show an individual ZipCounty
+        /// </summary>
+        /// <remarks>
+        /// Our &#x60;Plan&#x60; endpoints require a zip code and a fips (county) code.  This is because plan pricing requires both of these elements.  Users are unlikely to know their fips code, so we provide this endpoint to returns the details for a &#x60;ZipCounty&#x60; by zip code and return both the selected zip and fips codes.
+        /// </remarks>
+        /// <exception cref="IO.Vericred.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="id">Unique ID for ZipCounty</param>
+        /// <returns>Task of ZipCountyResponse</returns>
+        System.Threading.Tasks.Task<ZipCountyResponse> ShowZipCountyAsync (int? id);
+
+        /// <summary>
+        /// Show an individual ZipCounty
+        /// </summary>
+        /// <remarks>
+        /// Our &#x60;Plan&#x60; endpoints require a zip code and a fips (county) code.  This is because plan pricing requires both of these elements.  Users are unlikely to know their fips code, so we provide this endpoint to returns the details for a &#x60;ZipCounty&#x60; by zip code and return both the selected zip and fips codes.
+        /// </remarks>
+        /// <exception cref="IO.Vericred.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="id">Unique ID for ZipCounty</param>
         /// <returns>Task of ApiResponse (ZipCountyResponse)</returns>
-        System.Threading.Tasks.Task<ApiResponse<ZipCountyResponse>> GetZipCountiesAsyncWithHttpInfo (string zipPrefix);
+        System.Threading.Tasks.Task<ApiResponse<ZipCountyResponse>> ShowZipCountyAsyncWithHttpInfo (int? id);
         #endregion Asynchronous Operations
     }
 
@@ -359,10 +433,10 @@ namespace IO.Vericred.Api
         /// </summary>
         /// <exception cref="IO.Vericred.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="zipPrefix">Partial five-digit Zip</param>
-        /// <returns>ZipCountyResponse</returns>
-        public ZipCountyResponse GetZipCounties (string zipPrefix)
+        /// <returns>ZipCountiesResponse</returns>
+        public ZipCountiesResponse GetZipCounties (string zipPrefix)
         {
-             ApiResponse<ZipCountyResponse> localVarResponse = GetZipCountiesWithHttpInfo(zipPrefix);
+             ApiResponse<ZipCountiesResponse> localVarResponse = GetZipCountiesWithHttpInfo(zipPrefix);
              return localVarResponse.Data;
         }
 
@@ -371,8 +445,8 @@ namespace IO.Vericred.Api
         /// </summary>
         /// <exception cref="IO.Vericred.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="zipPrefix">Partial five-digit Zip</param>
-        /// <returns>ApiResponse of ZipCountyResponse</returns>
-        public ApiResponse< ZipCountyResponse > GetZipCountiesWithHttpInfo (string zipPrefix)
+        /// <returns>ApiResponse of ZipCountiesResponse</returns>
+        public ApiResponse< ZipCountiesResponse > GetZipCountiesWithHttpInfo (string zipPrefix)
         {
             // verify the required parameter 'zipPrefix' is set
             if (zipPrefix == null)
@@ -423,9 +497,9 @@ namespace IO.Vericred.Api
                 if (exception != null) throw exception;
             }
 
-            return new ApiResponse<ZipCountyResponse>(localVarStatusCode,
+            return new ApiResponse<ZipCountiesResponse>(localVarStatusCode,
                 localVarResponse.Headers.ToDictionary(x => x.Name, x => x.Value.ToString()),
-                (ZipCountyResponse) Configuration.ApiClient.Deserialize(localVarResponse, typeof(ZipCountyResponse)));
+                (ZipCountiesResponse) Configuration.ApiClient.Deserialize(localVarResponse, typeof(ZipCountiesResponse)));
             
         }
 
@@ -434,10 +508,10 @@ namespace IO.Vericred.Api
         /// </summary>
         /// <exception cref="IO.Vericred.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="zipPrefix">Partial five-digit Zip</param>
-        /// <returns>Task of ZipCountyResponse</returns>
-        public async System.Threading.Tasks.Task<ZipCountyResponse> GetZipCountiesAsync (string zipPrefix)
+        /// <returns>Task of ZipCountiesResponse</returns>
+        public async System.Threading.Tasks.Task<ZipCountiesResponse> GetZipCountiesAsync (string zipPrefix)
         {
-             ApiResponse<ZipCountyResponse> localVarResponse = await GetZipCountiesAsyncWithHttpInfo(zipPrefix);
+             ApiResponse<ZipCountiesResponse> localVarResponse = await GetZipCountiesAsyncWithHttpInfo(zipPrefix);
              return localVarResponse.Data;
 
         }
@@ -447,8 +521,8 @@ namespace IO.Vericred.Api
         /// </summary>
         /// <exception cref="IO.Vericred.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="zipPrefix">Partial five-digit Zip</param>
-        /// <returns>Task of ApiResponse (ZipCountyResponse)</returns>
-        public async System.Threading.Tasks.Task<ApiResponse<ZipCountyResponse>> GetZipCountiesAsyncWithHttpInfo (string zipPrefix)
+        /// <returns>Task of ApiResponse (ZipCountiesResponse)</returns>
+        public async System.Threading.Tasks.Task<ApiResponse<ZipCountiesResponse>> GetZipCountiesAsyncWithHttpInfo (string zipPrefix)
         {
             // verify the required parameter 'zipPrefix' is set
             if (zipPrefix == null)
@@ -495,6 +569,156 @@ namespace IO.Vericred.Api
             if (ExceptionFactory != null)
             {
                 Exception exception = ExceptionFactory("GetZipCounties", localVarResponse);
+                if (exception != null) throw exception;
+            }
+
+            return new ApiResponse<ZipCountiesResponse>(localVarStatusCode,
+                localVarResponse.Headers.ToDictionary(x => x.Name, x => x.Value.ToString()),
+                (ZipCountiesResponse) Configuration.ApiClient.Deserialize(localVarResponse, typeof(ZipCountiesResponse)));
+            
+        }
+
+        /// <summary>
+        /// Show an individual ZipCounty Our &#x60;Plan&#x60; endpoints require a zip code and a fips (county) code.  This is because plan pricing requires both of these elements.  Users are unlikely to know their fips code, so we provide this endpoint to returns the details for a &#x60;ZipCounty&#x60; by zip code and return both the selected zip and fips codes.
+        /// </summary>
+        /// <exception cref="IO.Vericred.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="id">Unique ID for ZipCounty</param>
+        /// <returns>ZipCountyResponse</returns>
+        public ZipCountyResponse ShowZipCounty (int? id)
+        {
+             ApiResponse<ZipCountyResponse> localVarResponse = ShowZipCountyWithHttpInfo(id);
+             return localVarResponse.Data;
+        }
+
+        /// <summary>
+        /// Show an individual ZipCounty Our &#x60;Plan&#x60; endpoints require a zip code and a fips (county) code.  This is because plan pricing requires both of these elements.  Users are unlikely to know their fips code, so we provide this endpoint to returns the details for a &#x60;ZipCounty&#x60; by zip code and return both the selected zip and fips codes.
+        /// </summary>
+        /// <exception cref="IO.Vericred.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="id">Unique ID for ZipCounty</param>
+        /// <returns>ApiResponse of ZipCountyResponse</returns>
+        public ApiResponse< ZipCountyResponse > ShowZipCountyWithHttpInfo (int? id)
+        {
+            // verify the required parameter 'id' is set
+            if (id == null)
+                throw new ApiException(400, "Missing required parameter 'id' when calling ZipCountiesApi->ShowZipCounty");
+
+            var localVarPath = "/zip_counties/{id}";
+            var localVarPathParams = new Dictionary<String, String>();
+            var localVarQueryParams = new Dictionary<String, String>();
+            var localVarHeaderParams = new Dictionary<String, String>(Configuration.DefaultHeader);
+            var localVarFormParams = new Dictionary<String, String>();
+            var localVarFileParams = new Dictionary<String, FileParameter>();
+            Object localVarPostBody = null;
+
+            // to determine the Content-Type header
+            String[] localVarHttpContentTypes = new String[] {
+            };
+            String localVarHttpContentType = Configuration.ApiClient.SelectHeaderContentType(localVarHttpContentTypes);
+
+            // to determine the Accept header
+            String[] localVarHttpHeaderAccepts = new String[] {
+            };
+            String localVarHttpHeaderAccept = Configuration.ApiClient.SelectHeaderAccept(localVarHttpHeaderAccepts);
+            if (localVarHttpHeaderAccept != null)
+                localVarHeaderParams.Add("Accept", localVarHttpHeaderAccept);
+
+            // set "format" to json by default
+            // e.g. /pet/{petId}.{format} becomes /pet/{petId}.json
+            localVarPathParams.Add("format", "json");
+            if (id != null) localVarPathParams.Add("id", Configuration.ApiClient.ParameterToString(id)); // path parameter
+
+            // authentication (Vericred-Api-Key) required
+            if (!String.IsNullOrEmpty(Configuration.GetApiKeyWithPrefix("Vericred-Api-Key")))
+            {
+                localVarHeaderParams["Vericred-Api-Key"] = Configuration.GetApiKeyWithPrefix("Vericred-Api-Key");
+            }
+
+
+            // make the HTTP request
+            IRestResponse localVarResponse = (IRestResponse) Configuration.ApiClient.CallApi(localVarPath,
+                Method.GET, localVarQueryParams, localVarPostBody, localVarHeaderParams, localVarFormParams, localVarFileParams,
+                localVarPathParams, localVarHttpContentType);
+
+            int localVarStatusCode = (int) localVarResponse.StatusCode;
+
+            if (ExceptionFactory != null)
+            {
+                Exception exception = ExceptionFactory("ShowZipCounty", localVarResponse);
+                if (exception != null) throw exception;
+            }
+
+            return new ApiResponse<ZipCountyResponse>(localVarStatusCode,
+                localVarResponse.Headers.ToDictionary(x => x.Name, x => x.Value.ToString()),
+                (ZipCountyResponse) Configuration.ApiClient.Deserialize(localVarResponse, typeof(ZipCountyResponse)));
+            
+        }
+
+        /// <summary>
+        /// Show an individual ZipCounty Our &#x60;Plan&#x60; endpoints require a zip code and a fips (county) code.  This is because plan pricing requires both of these elements.  Users are unlikely to know their fips code, so we provide this endpoint to returns the details for a &#x60;ZipCounty&#x60; by zip code and return both the selected zip and fips codes.
+        /// </summary>
+        /// <exception cref="IO.Vericred.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="id">Unique ID for ZipCounty</param>
+        /// <returns>Task of ZipCountyResponse</returns>
+        public async System.Threading.Tasks.Task<ZipCountyResponse> ShowZipCountyAsync (int? id)
+        {
+             ApiResponse<ZipCountyResponse> localVarResponse = await ShowZipCountyAsyncWithHttpInfo(id);
+             return localVarResponse.Data;
+
+        }
+
+        /// <summary>
+        /// Show an individual ZipCounty Our &#x60;Plan&#x60; endpoints require a zip code and a fips (county) code.  This is because plan pricing requires both of these elements.  Users are unlikely to know their fips code, so we provide this endpoint to returns the details for a &#x60;ZipCounty&#x60; by zip code and return both the selected zip and fips codes.
+        /// </summary>
+        /// <exception cref="IO.Vericred.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="id">Unique ID for ZipCounty</param>
+        /// <returns>Task of ApiResponse (ZipCountyResponse)</returns>
+        public async System.Threading.Tasks.Task<ApiResponse<ZipCountyResponse>> ShowZipCountyAsyncWithHttpInfo (int? id)
+        {
+            // verify the required parameter 'id' is set
+            if (id == null)
+                throw new ApiException(400, "Missing required parameter 'id' when calling ZipCountiesApi->ShowZipCounty");
+
+            var localVarPath = "/zip_counties/{id}";
+            var localVarPathParams = new Dictionary<String, String>();
+            var localVarQueryParams = new Dictionary<String, String>();
+            var localVarHeaderParams = new Dictionary<String, String>(Configuration.DefaultHeader);
+            var localVarFormParams = new Dictionary<String, String>();
+            var localVarFileParams = new Dictionary<String, FileParameter>();
+            Object localVarPostBody = null;
+
+            // to determine the Content-Type header
+            String[] localVarHttpContentTypes = new String[] {
+            };
+            String localVarHttpContentType = Configuration.ApiClient.SelectHeaderContentType(localVarHttpContentTypes);
+
+            // to determine the Accept header
+            String[] localVarHttpHeaderAccepts = new String[] {
+            };
+            String localVarHttpHeaderAccept = Configuration.ApiClient.SelectHeaderAccept(localVarHttpHeaderAccepts);
+            if (localVarHttpHeaderAccept != null)
+                localVarHeaderParams.Add("Accept", localVarHttpHeaderAccept);
+
+            // set "format" to json by default
+            // e.g. /pet/{petId}.{format} becomes /pet/{petId}.json
+            localVarPathParams.Add("format", "json");
+            if (id != null) localVarPathParams.Add("id", Configuration.ApiClient.ParameterToString(id)); // path parameter
+
+            // authentication (Vericred-Api-Key) required
+            if (!String.IsNullOrEmpty(Configuration.GetApiKeyWithPrefix("Vericred-Api-Key")))
+            {
+                localVarHeaderParams["Vericred-Api-Key"] = Configuration.GetApiKeyWithPrefix("Vericred-Api-Key");
+            }
+
+            // make the HTTP request
+            IRestResponse localVarResponse = (IRestResponse) await Configuration.ApiClient.CallApiAsync(localVarPath,
+                Method.GET, localVarQueryParams, localVarPostBody, localVarHeaderParams, localVarFormParams, localVarFileParams,
+                localVarPathParams, localVarHttpContentType);
+
+            int localVarStatusCode = (int) localVarResponse.StatusCode;
+
+            if (ExceptionFactory != null)
+            {
+                Exception exception = ExceptionFactory("ShowZipCounty", localVarResponse);
                 if (exception != null) throw exception;
             }
 

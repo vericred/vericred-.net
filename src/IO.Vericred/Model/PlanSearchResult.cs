@@ -148,19 +148,51 @@ In [this other Summary of Benefits &amp; Coverage](https://s3.amazonaws.com/veri
 Here's a description of the benefits summary string, represented as a context-free grammar:
 
 ```
-<cost-share>     ::= <tier> <opt-num-prefix> <value> <opt-per-unit> <deductible> <tier-limit> "/" <tier> <opt-num-prefix> <value> <opt-per-unit> <deductible> "|" <benefit-limit>
-<tier>           ::= "In-Network:" | "In-Network-Tier-2:" | "Out-of-Network:"
-<opt-num-prefix> ::= "first" <num> <unit> | ""
-<unit>           ::= "day(s)" | "visit(s)" | "exam(s)" | "item(s)"
-<value>          ::= <ddct_moop> | <copay> | <coinsurance> | <compound> | "unknown" | "Not Applicable"
-<compound>       ::= <copay> <deductible> "then" <coinsurance> <deductible> | <copay> <deductible> "then" <copay> <deductible> | <coinsurance> <deductible> "then" <coinsurance> <deductible>
-<copay>          ::= "$" <num>
-<coinsurace>     ::= <num> "%"
-<ddct_moop>      ::= <copay> | "Included in Medical" | "Unlimited"
-<opt-per-unit>   ::= "per day" | "per visit" | "per stay" | ""
-<deductible>     ::= "before deductible" | "after deductible" | ""
-<tier-limit>     ::= ", " <limit> | ""
-<benefit-limit>  ::= <limit> | ""
+root                      ::= coverage
+
+coverage                  ::= (simple_coverage | tiered_coverage) (space pipe space coverage_limitation)?
+tiered_coverage           ::= tier (space slash space tier)*
+tier                      ::= tier_name colon space (tier_coverage | not_applicable)
+tier_coverage             ::= simple_coverage (space (then | or | and) space simple_coverage)* tier_limitation?
+simple_coverage           ::= (pre_coverage_limitation space)? coverage_amount (space post_coverage_limitation)? (comma? space coverage_condition)?
+coverage_limitation       ::= "limit" colon space (((simple_coverage | simple_limitation) (semicolon space see_carrier_documentation)?) | see_carrier_documentation | waived_if_admitted)
+waived_if_admitted        ::= ("copay" space)? "waived if admitted"
+simple_limitation         ::= pre_coverage_limitation space "copay applies"
+tier_name                 ::= "In-Network-Tier-2" | "Out-of-Network" | "In-Network"
+tier_limitation           ::= comma space "up to" space (currency | (integer space time_unit plural?)) (space post_coverage_limitation)?
+coverage_amount           ::= currency | unlimited | included | unknown | percentage | (digits space (treatment_unit | time_unit) plural?)
+pre_coverage_limitation   ::= first space digits space time_unit plural?
+post_coverage_limitation  ::= (((then space currency) | "per condition") space)? "per" space (treatment_unit | (integer space time_unit) | time_unit) plural?
+coverage_condition        ::= ("before deductible" | "after deductible" | "penalty" | allowance | "in-state" | "out-of-state") (space allowance)?
+allowance                 ::= upto_allowance | after_allowance
+upto_allowance            ::= "up to" space (currency space)? "allowance"
+after_allowance           ::= "after" space (currency space)? "allowance"
+see_carrier_documentation ::= "see carrier documentation for more information"
+unknown                   ::= "unknown"
+unlimited                 ::= /[uU]nlimited/
+included                  ::= /[iI]ncluded in [mM]edical/
+time_unit                 ::= /[hH]our/ | (((/[cC]alendar/ | /[cC]ontract/) space)? /[yY]ear/) | /[mM]onth/ | /[dD]ay/ | /[wW]eek/ | /[vV]isit/ | /[lL]ifetime/ | ((((/[bB]enefit/ plural?) | /[eE]ligibility/) space)? /[pP]eriod/)
+treatment_unit            ::= /[pP]erson/ | /[gG]roup/ | /[cC]ondition/ | /[sS]cript/ | /[vV]isit/ | /[eE]xam/ | /[iI]tem/ | /[sS]tay/ | /[tT]reatment/ | /[aA]dmission/ | /[eE]pisode/
+comma                     ::= ","
+colon                     ::= ":"
+semicolon                 ::= ";"
+pipe                      ::= "|"
+slash                     ::= "/"
+plural                    ::= "(s)" | "s"
+then                      ::= "then" | ("," space) | space
+or                        ::= "or"
+and                       ::= "and"
+not_applicable            ::= "Not Applicable" | "N/A" | "NA"
+first                     ::= "first"
+currency                  ::= "$" number
+percentage                ::= number "%"
+number                    ::= float | integer
+float                     ::= digits "." digits
+integer                   ::= /[0-9]/+ (comma_int | under_int)*
+comma_int                 ::= ("," /[0-9]/*3) !"_"
+under_int                 ::= ("_" /[0-9]/*3) !","
+digits                    ::= /[0-9]/+ ("_" /[0-9]/+)*
+space                     ::= /[ \t]/+
 ```
 
 
@@ -258,7 +290,7 @@ namespace IO.Vericred.Model
         /// <param name="OutpatientPhysician">Benefits summary for outpatient physician coverage.</param>
         /// <param name="OutpatientSubstance">Outpatient substance abuse benefits summary.</param>
         /// <param name="PlanMarket">Market in which the plan is offered (on_marketplace, shop, etc).</param>
-        /// <param name="PlanType">Category of the plan (e.g. EPO, HMO, PPO, POS, Indemnity).</param>
+        /// <param name="PlanType">Category of the plan (e.g. EPO, HMO, PPO, POS, Indemnity, PACE, Medicare-Medicaid, HMO w/POS, Cost, FFS, MSA).</param>
         /// <param name="PreferredBrandDrugs">Cost under the plan for perferred brand drugs.</param>
         /// <param name="PrenatalPostnatalCare">Inpatient substance abuse benefits summary.</param>
         /// <param name="PreventativeCare">Benefits summary for preventative care.</param>
@@ -269,6 +301,7 @@ namespace IO.Vericred.Model
         /// <param name="RehabilitationServices">Benefits summary for rehabilitation services.</param>
         /// <param name="ServiceAreaId">Foreign key for service area.</param>
         /// <param name="SkilledNursing">Benefits summary for skilled nursing services.</param>
+        /// <param name="Source">Source of the plan benefit data.</param>
         /// <param name="Specialist">Cost under the plan to visit a specialist.</param>
         /// <param name="SpecialtyDrugs">Cost under the plan for specialty drugs.</param>
         /// <param name="UrgentCare">Benefits summary for urgent care.</param>
@@ -276,7 +309,7 @@ namespace IO.Vericred.Model
         /// <param name="PerfectMatchPercentage">Percentage of employees with 100% match.</param>
         /// <param name="EmployeePremium">Cumulative premium amount for employees.</param>
         /// <param name="DependentPremium">Cumulative premium amount for dependents.</param>
-        public PlanSearchResult(bool? AdultDental = null, bool? Age29Rider = null, string Ambulance = null, string BenefitsSummaryUrl = null, string BuyLink = null, string CarrierName = null, bool? ChildDental = null, string ChildEyewear = null, string ChildEyeExam = null, string CustomerServicePhoneNumber = null, string DurableMedicalEquipment = null, string DiagnosticTest = null, string DisplayName = null, bool? DpRider = null, string DrugFormularyUrl = null, string EffectiveDate = null, string ExpirationDate = null, string EmergencyRoom = null, string FamilyDrugDeductible = null, string FamilyDrugMoop = null, string FamilyMedicalDeductible = null, string FamilyMedicalMoop = null, bool? FpRider = null, string GenericDrugs = null, string HabilitationServices = null, string HiosIssuerId = null, string HomeHealthCare = null, string HospiceService = null, bool? HsaEligible = null, string Id = null, string Imaging = null, List<int?> InNetworkIds = null, string IndividualDrugDeductible = null, string IndividualDrugMoop = null, string IndividualMedicalDeductible = null, string IndividualMedicalMoop = null, string InpatientBirth = null, string InpatientFacility = null, string InpatientMentalHealth = null, string InpatientPhysician = null, string InpatientSubstance = null, string Level = null, string LogoUrl = null, string Name = null, string NonPreferredBrandDrugs = null, bool? OnMarket = null, bool? OffMarket = null, bool? OutOfNetworkCoverage = null, List<int?> OutOfNetworkIds = null, string OutpatientFacility = null, string OutpatientMentalHealth = null, string OutpatientPhysician = null, string OutpatientSubstance = null, string PlanMarket = null, string PlanType = null, string PreferredBrandDrugs = null, string PrenatalPostnatalCare = null, string PreventativeCare = null, decimal? PremiumSubsidized = null, decimal? Premium = null, string PremiumSource = null, string PrimaryCarePhysician = null, string RehabilitationServices = null, string ServiceAreaId = null, string SkilledNursing = null, string Specialist = null, string SpecialtyDrugs = null, string UrgentCare = null, int? MatchPercentage = null, int? PerfectMatchPercentage = null, decimal? EmployeePremium = null, decimal? DependentPremium = null)
+        public PlanSearchResult(bool? AdultDental = null, bool? Age29Rider = null, string Ambulance = null, string BenefitsSummaryUrl = null, string BuyLink = null, string CarrierName = null, bool? ChildDental = null, string ChildEyewear = null, string ChildEyeExam = null, string CustomerServicePhoneNumber = null, string DurableMedicalEquipment = null, string DiagnosticTest = null, string DisplayName = null, bool? DpRider = null, string DrugFormularyUrl = null, string EffectiveDate = null, string ExpirationDate = null, string EmergencyRoom = null, string FamilyDrugDeductible = null, string FamilyDrugMoop = null, string FamilyMedicalDeductible = null, string FamilyMedicalMoop = null, bool? FpRider = null, string GenericDrugs = null, string HabilitationServices = null, string HiosIssuerId = null, string HomeHealthCare = null, string HospiceService = null, bool? HsaEligible = null, string Id = null, string Imaging = null, List<int?> InNetworkIds = null, string IndividualDrugDeductible = null, string IndividualDrugMoop = null, string IndividualMedicalDeductible = null, string IndividualMedicalMoop = null, string InpatientBirth = null, string InpatientFacility = null, string InpatientMentalHealth = null, string InpatientPhysician = null, string InpatientSubstance = null, string Level = null, string LogoUrl = null, string Name = null, string NonPreferredBrandDrugs = null, bool? OnMarket = null, bool? OffMarket = null, bool? OutOfNetworkCoverage = null, List<int?> OutOfNetworkIds = null, string OutpatientFacility = null, string OutpatientMentalHealth = null, string OutpatientPhysician = null, string OutpatientSubstance = null, string PlanMarket = null, string PlanType = null, string PreferredBrandDrugs = null, string PrenatalPostnatalCare = null, string PreventativeCare = null, decimal? PremiumSubsidized = null, decimal? Premium = null, string PremiumSource = null, string PrimaryCarePhysician = null, string RehabilitationServices = null, string ServiceAreaId = null, string SkilledNursing = null, string Source = null, string Specialist = null, string SpecialtyDrugs = null, string UrgentCare = null, int? MatchPercentage = null, int? PerfectMatchPercentage = null, decimal? EmployeePremium = null, decimal? DependentPremium = null)
         {
             this.AdultDental = AdultDental;
             this.Age29Rider = Age29Rider;
@@ -343,6 +376,7 @@ namespace IO.Vericred.Model
             this.RehabilitationServices = RehabilitationServices;
             this.ServiceAreaId = ServiceAreaId;
             this.SkilledNursing = SkilledNursing;
+            this.Source = Source;
             this.Specialist = Specialist;
             this.SpecialtyDrugs = SpecialtyDrugs;
             this.UrgentCare = UrgentCare;
@@ -677,9 +711,9 @@ namespace IO.Vericred.Model
         [DataMember(Name="plan_market", EmitDefaultValue=false)]
         public string PlanMarket { get; set; }
         /// <summary>
-        /// Category of the plan (e.g. EPO, HMO, PPO, POS, Indemnity)
+        /// Category of the plan (e.g. EPO, HMO, PPO, POS, Indemnity, PACE, Medicare-Medicaid, HMO w/POS, Cost, FFS, MSA)
         /// </summary>
-        /// <value>Category of the plan (e.g. EPO, HMO, PPO, POS, Indemnity)</value>
+        /// <value>Category of the plan (e.g. EPO, HMO, PPO, POS, Indemnity, PACE, Medicare-Medicaid, HMO w/POS, Cost, FFS, MSA)</value>
         [DataMember(Name="plan_type", EmitDefaultValue=false)]
         public string PlanType { get; set; }
         /// <summary>
@@ -742,6 +776,12 @@ namespace IO.Vericred.Model
         /// <value>Benefits summary for skilled nursing services</value>
         [DataMember(Name="skilled_nursing", EmitDefaultValue=false)]
         public string SkilledNursing { get; set; }
+        /// <summary>
+        /// Source of the plan benefit data
+        /// </summary>
+        /// <value>Source of the plan benefit data</value>
+        [DataMember(Name="source", EmitDefaultValue=false)]
+        public string Source { get; set; }
         /// <summary>
         /// Cost under the plan to visit a specialist
         /// </summary>
@@ -857,6 +897,7 @@ namespace IO.Vericred.Model
             sb.Append("  RehabilitationServices: ").Append(RehabilitationServices).Append("\n");
             sb.Append("  ServiceAreaId: ").Append(ServiceAreaId).Append("\n");
             sb.Append("  SkilledNursing: ").Append(SkilledNursing).Append("\n");
+            sb.Append("  Source: ").Append(Source).Append("\n");
             sb.Append("  Specialist: ").Append(Specialist).Append("\n");
             sb.Append("  SpecialtyDrugs: ").Append(SpecialtyDrugs).Append("\n");
             sb.Append("  UrgentCare: ").Append(UrgentCare).Append("\n");
@@ -1226,6 +1267,11 @@ namespace IO.Vericred.Model
                     this.SkilledNursing.Equals(other.SkilledNursing)
                 ) && 
                 (
+                    this.Source == other.Source ||
+                    this.Source != null &&
+                    this.Source.Equals(other.Source)
+                ) && 
+                (
                     this.Specialist == other.Specialist ||
                     this.Specialist != null &&
                     this.Specialist.Equals(other.Specialist)
@@ -1403,6 +1449,8 @@ namespace IO.Vericred.Model
                     hash = hash * 59 + this.ServiceAreaId.GetHashCode();
                 if (this.SkilledNursing != null)
                     hash = hash * 59 + this.SkilledNursing.GetHashCode();
+                if (this.Source != null)
+                    hash = hash * 59 + this.Source.GetHashCode();
                 if (this.Specialist != null)
                     hash = hash * 59 + this.Specialist.GetHashCode();
                 if (this.SpecialtyDrugs != null)

@@ -2,7 +2,7 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 2012
 VisualStudioVersion = 12.0.0.0
 MinimumVisualStudioVersion = 10.0.0.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "IO.Vericred", "src\IO.Vericred\IO.Vericred.csproj", "{45C0841F-E1B2-44BF-A01F-FD03B3E98114}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "IO.Vericred", "src\IO.Vericred\IO.Vericred.csproj", "{3EC39AED-F806-466B-82A3-6C4D371B7EEA}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "IO.Vericred.Test", "src\IO.Vericred.Test\IO.Vericred.Test.csproj", "{19F1DEBC-DE5E-4517-8062-F000CD499087}"
 EndProject
@@ -12,10 +12,10 @@ Debug|Any CPU = Debug|Any CPU
 Release|Any CPU = Release|Any CPU
 EndGlobalSection
 GlobalSection(ProjectConfigurationPlatforms) = postSolution
-{45C0841F-E1B2-44BF-A01F-FD03B3E98114}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-{45C0841F-E1B2-44BF-A01F-FD03B3E98114}.Debug|Any CPU.Build.0 = Debug|Any CPU
-{45C0841F-E1B2-44BF-A01F-FD03B3E98114}.Release|Any CPU.ActiveCfg = Release|Any CPU
-{45C0841F-E1B2-44BF-A01F-FD03B3E98114}.Release|Any CPU.Build.0 = Release|Any CPU
+{3EC39AED-F806-466B-82A3-6C4D371B7EEA}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+{3EC39AED-F806-466B-82A3-6C4D371B7EEA}.Debug|Any CPU.Build.0 = Debug|Any CPU
+{3EC39AED-F806-466B-82A3-6C4D371B7EEA}.Release|Any CPU.ActiveCfg = Release|Any CPU
+{3EC39AED-F806-466B-82A3-6C4D371B7EEA}.Release|Any CPU.Build.0 = Release|Any CPU
 {19F1DEBC-DE5E-4517-8062-F000CD499087}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 {19F1DEBC-DE5E-4517-8062-F000CD499087}.Debug|Any CPU.Build.0 = Debug|Any CPU
 {19F1DEBC-DE5E-4517-8062-F000CD499087}.Release|Any CPU.ActiveCfg = Release|Any CPU

@@ -148,19 +148,51 @@ In [this other Summary of Benefits &amp; Coverage](https://s3.amazonaws.com/veri
 Here's a description of the benefits summary string, represented as a context-free grammar:
 
 ```
-<cost-share>     ::= <tier> <opt-num-prefix> <value> <opt-per-unit> <deductible> <tier-limit> "/" <tier> <opt-num-prefix> <value> <opt-per-unit> <deductible> "|" <benefit-limit>
-<tier>           ::= "In-Network:" | "In-Network-Tier-2:" | "Out-of-Network:"
-<opt-num-prefix> ::= "first" <num> <unit> | ""
-<unit>           ::= "day(s)" | "visit(s)" | "exam(s)" | "item(s)"
-<value>          ::= <ddct_moop> | <copay> | <coinsurance> | <compound> | "unknown" | "Not Applicable"
-<compound>       ::= <copay> <deductible> "then" <coinsurance> <deductible> | <copay> <deductible> "then" <copay> <deductible> | <coinsurance> <deductible> "then" <coinsurance> <deductible>
-<copay>          ::= "$" <num>
-<coinsurace>     ::= <num> "%"
-<ddct_moop>      ::= <copay> | "Included in Medical" | "Unlimited"
-<opt-per-unit>   ::= "per day" | "per visit" | "per stay" | ""
-<deductible>     ::= "before deductible" | "after deductible" | ""
-<tier-limit>     ::= ", " <limit> | ""
-<benefit-limit>  ::= <limit> | ""
+root                      ::= coverage
+
+coverage                  ::= (simple_coverage | tiered_coverage) (space pipe space coverage_limitation)?
+tiered_coverage           ::= tier (space slash space tier)*
+tier                      ::= tier_name colon space (tier_coverage | not_applicable)
+tier_coverage             ::= simple_coverage (space (then | or | and) space simple_coverage)* tier_limitation?
+simple_coverage           ::= (pre_coverage_limitation space)? coverage_amount (space post_coverage_limitation)? (comma? space coverage_condition)?
+coverage_limitation       ::= "limit" colon space (((simple_coverage | simple_limitation) (semicolon space see_carrier_documentation)?) | see_carrier_documentation | waived_if_admitted)
+waived_if_admitted        ::= ("copay" space)? "waived if admitted"
+simple_limitation         ::= pre_coverage_limitation space "copay applies"
+tier_name                 ::= "In-Network-Tier-2" | "Out-of-Network" | "In-Network"
+tier_limitation           ::= comma space "up to" space (currency | (integer space time_unit plural?)) (space post_coverage_limitation)?
+coverage_amount           ::= currency | unlimited | included | unknown | percentage | (digits space (treatment_unit | time_unit) plural?)
+pre_coverage_limitation   ::= first space digits space time_unit plural?
+post_coverage_limitation  ::= (((then space currency) | "per condition") space)? "per" space (treatment_unit | (integer space time_unit) | time_unit) plural?
+coverage_condition        ::= ("before deductible" | "after deductible" | "penalty" | allowance | "in-state" | "out-of-state") (space allowance)?
+allowance                 ::= upto_allowance | after_allowance
+upto_allowance            ::= "up to" space (currency space)? "allowance"
+after_allowance           ::= "after" space (currency space)? "allowance"
+see_carrier_documentation ::= "see carrier documentation for more information"
+unknown                   ::= "unknown"
+unlimited                 ::= /[uU]nlimited/
+included                  ::= /[iI]ncluded in [mM]edical/
+time_unit                 ::= /[hH]our/ | (((/[cC]alendar/ | /[cC]ontract/) space)? /[yY]ear/) | /[mM]onth/ | /[dD]ay/ | /[wW]eek/ | /[vV]isit/ | /[lL]ifetime/ | ((((/[bB]enefit/ plural?) | /[eE]ligibility/) space)? /[pP]eriod/)
+treatment_unit            ::= /[pP]erson/ | /[gG]roup/ | /[cC]ondition/ | /[sS]cript/ | /[vV]isit/ | /[eE]xam/ | /[iI]tem/ | /[sS]tay/ | /[tT]reatment/ | /[aA]dmission/ | /[eE]pisode/
+comma                     ::= ","
+colon                     ::= ":"
+semicolon                 ::= ";"
+pipe                      ::= "|"
+slash                     ::= "/"
+plural                    ::= "(s)" | "s"
+then                      ::= "then" | ("," space) | space
+or                        ::= "or"
+and                       ::= "and"
+not_applicable            ::= "Not Applicable" | "N/A" | "NA"
+first                     ::= "first"
+currency                  ::= "$" number
+percentage                ::= number "%"
+number                    ::= float | integer
+float                     ::= digits "." digits
+integer                   ::= /[0-9]/+ (comma_int | under_int)*
+comma_int                 ::= ("," /[0-9]/*3) !"_"
+under_int                 ::= ("_" /[0-9]/*3) !","
+digits                    ::= /[0-9]/+ ("_" /[0-9]/+)*
+space                     ::= /[ \t]/+
 ```
 
 
@@ -199,31 +231,6 @@ namespace IO.Vericred.Api
     {
         #region Synchronous Operations
         /// <summary>
-        /// Search for DrugCoverages
-        /// </summary>
-        /// <remarks>
-        /// Drug Coverages are the specific tier level, quantity limit, prior authorization and step therapy for a given Drug/Plan combination. This endpoint returns all DrugCoverages for a given Drug
-        /// </remarks>
-        /// <exception cref="IO.Vericred.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="ndcPackageCode">NDC package code</param>
-        /// <param name="audience">Plan Audience (individual or small_group)</param>
-        /// <param name="stateCode">Two-character state code</param>
-        /// <returns>DrugCoverageResponse</returns>
-        DrugCoverageResponse GetDrugCoverages (string ndcPackageCode, string audience, string stateCode);
-
-        /// <summary>
-        /// Search for DrugCoverages
-        /// </summary>
-        /// <remarks>
-        /// Drug Coverages are the specific tier level, quantity limit, prior authorization and step therapy for a given Drug/Plan combination. This endpoint returns all DrugCoverages for a given Drug
-        /// </remarks>
-        /// <exception cref="IO.Vericred.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="ndcPackageCode">NDC package code</param>
-        /// <param name="audience">Plan Audience (individual or small_group)</param>
-        /// <param name="stateCode">Two-character state code</param>
-        /// <returns>ApiResponse of DrugCoverageResponse</returns>
-        ApiResponse<DrugCoverageResponse> GetDrugCoveragesWithHttpInfo (string ndcPackageCode, string audience, string stateCode);
-        /// <summary>
         /// Drug Search
         /// </summary>
         /// <remarks>
@@ -246,31 +253,6 @@ namespace IO.Vericred.Api
         ApiResponse<DrugSearchResponse> ListDrugsWithHttpInfo (string searchTerm);
         #endregion Synchronous Operations
         #region Asynchronous Operations
-        /// <summary>
-        /// Search for DrugCoverages
-        /// </summary>
-        /// <remarks>
-        /// Drug Coverages are the specific tier level, quantity limit, prior authorization and step therapy for a given Drug/Plan combination. This endpoint returns all DrugCoverages for a given Drug
-        /// </remarks>
-        /// <exception cref="IO.Vericred.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="ndcPackageCode">NDC package code</param>
-        /// <param name="audience">Plan Audience (individual or small_group)</param>
-        /// <param name="stateCode">Two-character state code</param>
-        /// <returns>Task of DrugCoverageResponse</returns>
-        System.Threading.Tasks.Task<DrugCoverageResponse> GetDrugCoveragesAsync (string ndcPackageCode, string audience, string stateCode);
-
-        /// <summary>
-        /// Search for DrugCoverages
-        /// </summary>
-        /// <remarks>
-        /// Drug Coverages are the specific tier level, quantity limit, prior authorization and step therapy for a given Drug/Plan combination. This endpoint returns all DrugCoverages for a given Drug
-        /// </remarks>
-        /// <exception cref="IO.Vericred.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="ndcPackageCode">NDC package code</param>
-        /// <param name="audience">Plan Audience (individual or small_group)</param>
-        /// <param name="stateCode">Two-character state code</param>
-        /// <returns>Task of ApiResponse (DrugCoverageResponse)</returns>
-        System.Threading.Tasks.Task<ApiResponse<DrugCoverageResponse>> GetDrugCoveragesAsyncWithHttpInfo (string ndcPackageCode, string audience, string stateCode);
         /// <summary>
         /// Drug Search
         /// </summary>
@@ -402,180 +384,6 @@ namespace IO.Vericred.Api
         public void AddDefaultHeader(string key, string value)
         {
             this.Configuration.AddDefaultHeader(key, value);
-        }
-
-        /// <summary>
-        /// Search for DrugCoverages Drug Coverages are the specific tier level, quantity limit, prior authorization and step therapy for a given Drug/Plan combination. This endpoint returns all DrugCoverages for a given Drug
-        /// </summary>
-        /// <exception cref="IO.Vericred.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="ndcPackageCode">NDC package code</param>
-        /// <param name="audience">Plan Audience (individual or small_group)</param>
-        /// <param name="stateCode">Two-character state code</param>
-        /// <returns>DrugCoverageResponse</returns>
-        public DrugCoverageResponse GetDrugCoverages (string ndcPackageCode, string audience, string stateCode)
-        {
-             ApiResponse<DrugCoverageResponse> localVarResponse = GetDrugCoveragesWithHttpInfo(ndcPackageCode, audience, stateCode);
-             return localVarResponse.Data;
-        }
-
-        /// <summary>
-        /// Search for DrugCoverages Drug Coverages are the specific tier level, quantity limit, prior authorization and step therapy for a given Drug/Plan combination. This endpoint returns all DrugCoverages for a given Drug
-        /// </summary>
-        /// <exception cref="IO.Vericred.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="ndcPackageCode">NDC package code</param>
-        /// <param name="audience">Plan Audience (individual or small_group)</param>
-        /// <param name="stateCode">Two-character state code</param>
-        /// <returns>ApiResponse of DrugCoverageResponse</returns>
-        public ApiResponse< DrugCoverageResponse > GetDrugCoveragesWithHttpInfo (string ndcPackageCode, string audience, string stateCode)
-        {
-            // verify the required parameter 'ndcPackageCode' is set
-            if (ndcPackageCode == null)
-                throw new ApiException(400, "Missing required parameter 'ndcPackageCode' when calling DrugsApi->GetDrugCoverages");
-            // verify the required parameter 'audience' is set
-            if (audience == null)
-                throw new ApiException(400, "Missing required parameter 'audience' when calling DrugsApi->GetDrugCoverages");
-            // verify the required parameter 'stateCode' is set
-            if (stateCode == null)
-                throw new ApiException(400, "Missing required parameter 'stateCode' when calling DrugsApi->GetDrugCoverages");
-
-            var localVarPath = "/drug_packages/{ndc_package_code}/coverages";
-            var localVarPathParams = new Dictionary<String, String>();
-            var localVarQueryParams = new Dictionary<String, String>();
-            var localVarHeaderParams = new Dictionary<String, String>(Configuration.DefaultHeader);
-            var localVarFormParams = new Dictionary<String, String>();
-            var localVarFileParams = new Dictionary<String, FileParameter>();
-            Object localVarPostBody = null;
-
-            // to determine the Content-Type header
-            String[] localVarHttpContentTypes = new String[] {
-            };
-            String localVarHttpContentType = Configuration.ApiClient.SelectHeaderContentType(localVarHttpContentTypes);
-
-            // to determine the Accept header
-            String[] localVarHttpHeaderAccepts = new String[] {
-            };
-            String localVarHttpHeaderAccept = Configuration.ApiClient.SelectHeaderAccept(localVarHttpHeaderAccepts);
-            if (localVarHttpHeaderAccept != null)
-                localVarHeaderParams.Add("Accept", localVarHttpHeaderAccept);
-
-            // set "format" to json by default
-            // e.g. /pet/{petId}.{format} becomes /pet/{petId}.json
-            localVarPathParams.Add("format", "json");
-            if (ndcPackageCode != null) localVarPathParams.Add("ndc_package_code", Configuration.ApiClient.ParameterToString(ndcPackageCode)); // path parameter
-            if (audience != null) localVarQueryParams.Add("audience", Configuration.ApiClient.ParameterToString(audience)); // query parameter
-            if (stateCode != null) localVarQueryParams.Add("state_code", Configuration.ApiClient.ParameterToString(stateCode)); // query parameter
-
-            // authentication (Vericred-Api-Key) required
-            if (!String.IsNullOrEmpty(Configuration.GetApiKeyWithPrefix("Vericred-Api-Key")))
-            {
-                localVarHeaderParams["Vericred-Api-Key"] = Configuration.GetApiKeyWithPrefix("Vericred-Api-Key");
-            }
-
-
-            // make the HTTP request
-            IRestResponse localVarResponse = (IRestResponse) Configuration.ApiClient.CallApi(localVarPath,
-                Method.GET, localVarQueryParams, localVarPostBody, localVarHeaderParams, localVarFormParams, localVarFileParams,
-                localVarPathParams, localVarHttpContentType);
-
-            int localVarStatusCode = (int) localVarResponse.StatusCode;
-
-            if (ExceptionFactory != null)
-            {
-                Exception exception = ExceptionFactory("GetDrugCoverages", localVarResponse);
-                if (exception != null) throw exception;
-            }
-
-            return new ApiResponse<DrugCoverageResponse>(localVarStatusCode,
-                localVarResponse.Headers.ToDictionary(x => x.Name, x => x.Value.ToString()),
-                (DrugCoverageResponse) Configuration.ApiClient.Deserialize(localVarResponse, typeof(DrugCoverageResponse)));
-            
-        }
-
-        /// <summary>
-        /// Search for DrugCoverages Drug Coverages are the specific tier level, quantity limit, prior authorization and step therapy for a given Drug/Plan combination. This endpoint returns all DrugCoverages for a given Drug
-        /// </summary>
-        /// <exception cref="IO.Vericred.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="ndcPackageCode">NDC package code</param>
-        /// <param name="audience">Plan Audience (individual or small_group)</param>
-        /// <param name="stateCode">Two-character state code</param>
-        /// <returns>Task of DrugCoverageResponse</returns>
-        public async System.Threading.Tasks.Task<DrugCoverageResponse> GetDrugCoveragesAsync (string ndcPackageCode, string audience, string stateCode)
-        {
-             ApiResponse<DrugCoverageResponse> localVarResponse = await GetDrugCoveragesAsyncWithHttpInfo(ndcPackageCode, audience, stateCode);
-             return localVarResponse.Data;
-
-        }
-
-        /// <summary>
-        /// Search for DrugCoverages Drug Coverages are the specific tier level, quantity limit, prior authorization and step therapy for a given Drug/Plan combination. This endpoint returns all DrugCoverages for a given Drug
-        /// </summary>
-        /// <exception cref="IO.Vericred.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="ndcPackageCode">NDC package code</param>
-        /// <param name="audience">Plan Audience (individual or small_group)</param>
-        /// <param name="stateCode">Two-character state code</param>
-        /// <returns>Task of ApiResponse (DrugCoverageResponse)</returns>
-        public async System.Threading.Tasks.Task<ApiResponse<DrugCoverageResponse>> GetDrugCoveragesAsyncWithHttpInfo (string ndcPackageCode, string audience, string stateCode)
-        {
-            // verify the required parameter 'ndcPackageCode' is set
-            if (ndcPackageCode == null)
-                throw new ApiException(400, "Missing required parameter 'ndcPackageCode' when calling DrugsApi->GetDrugCoverages");
-            // verify the required parameter 'audience' is set
-            if (audience == null)
-                throw new ApiException(400, "Missing required parameter 'audience' when calling DrugsApi->GetDrugCoverages");
-            // verify the required parameter 'stateCode' is set
-            if (stateCode == null)
-                throw new ApiException(400, "Missing required parameter 'stateCode' when calling DrugsApi->GetDrugCoverages");
-
-            var localVarPath = "/drug_packages/{ndc_package_code}/coverages";
-            var localVarPathParams = new Dictionary<String, String>();
-            var localVarQueryParams = new Dictionary<String, String>();
-            var localVarHeaderParams = new Dictionary<String, String>(Configuration.DefaultHeader);
-            var localVarFormParams = new Dictionary<String, String>();
-            var localVarFileParams = new Dictionary<String, FileParameter>();
-            Object localVarPostBody = null;
-
-            // to determine the Content-Type header
-            String[] localVarHttpContentTypes = new String[] {
-            };
-            String localVarHttpContentType = Configuration.ApiClient.SelectHeaderContentType(localVarHttpContentTypes);
-
-            // to determine the Accept header
-            String[] localVarHttpHeaderAccepts = new String[] {
-            };
-            String localVarHttpHeaderAccept = Configuration.ApiClient.SelectHeaderAccept(localVarHttpHeaderAccepts);
-            if (localVarHttpHeaderAccept != null)
-                localVarHeaderParams.Add("Accept", localVarHttpHeaderAccept);
-
-            // set "format" to json by default
-            // e.g. /pet/{petId}.{format} becomes /pet/{petId}.json
-            localVarPathParams.Add("format", "json");
-            if (ndcPackageCode != null) localVarPathParams.Add("ndc_package_code", Configuration.ApiClient.ParameterToString(ndcPackageCode)); // path parameter
-            if (audience != null) localVarQueryParams.Add("audience", Configuration.ApiClient.ParameterToString(audience)); // query parameter
-            if (stateCode != null) localVarQueryParams.Add("state_code", Configuration.ApiClient.ParameterToString(stateCode)); // query parameter
-
-            // authentication (Vericred-Api-Key) required
-            if (!String.IsNullOrEmpty(Configuration.GetApiKeyWithPrefix("Vericred-Api-Key")))
-            {
-                localVarHeaderParams["Vericred-Api-Key"] = Configuration.GetApiKeyWithPrefix("Vericred-Api-Key");
-            }
-
-            // make the HTTP request
-            IRestResponse localVarResponse = (IRestResponse) await Configuration.ApiClient.CallApiAsync(localVarPath,
-                Method.GET, localVarQueryParams, localVarPostBody, localVarHeaderParams, localVarFormParams, localVarFileParams,
-                localVarPathParams, localVarHttpContentType);
-
-            int localVarStatusCode = (int) localVarResponse.StatusCode;
-
-            if (ExceptionFactory != null)
-            {
-                Exception exception = ExceptionFactory("GetDrugCoverages", localVarResponse);
-                if (exception != null) throw exception;
-            }
-
-            return new ApiResponse<DrugCoverageResponse>(localVarStatusCode,
-                localVarResponse.Headers.ToDictionary(x => x.Name, x => x.Value.ToString()),
-                (DrugCoverageResponse) Configuration.ApiClient.Deserialize(localVarResponse, typeof(DrugCoverageResponse)));
-            
         }
 
         /// <summary>
